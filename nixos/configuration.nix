@@ -7,11 +7,10 @@
 		pkgs,
 		...
 }: 
-let
-	globals = import ./globals.nix;
-in
 {
 	imports = [
+		./variables.nix
+		./nvidia.nix
 		./hardware-configuration.nix
 	];
 	boot.loader = {
@@ -58,11 +57,11 @@ in
 		nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
 	};
 	networking = {
-		hostName = "${globals.myHostName}";
+		hostName = "${config.myHostName}";
 		networkmanager.enable = true;
 	};
 	users.users = {
-		"${globals.myUserName}" = {
+		"${config.myUserName}" = {
 			initialPassword = "stevenpassword";
 			isNormalUser = true;
 			openssh.authorizedKeys.keys = [

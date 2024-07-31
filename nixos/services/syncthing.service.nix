@@ -1,8 +1,6 @@
 {pkgs, lib, ...}:
-let
-	myUserName = "";
-in
 {
 	enable = true;
-	user = ""
+	user = "${config.myUserName}";
+
 }
