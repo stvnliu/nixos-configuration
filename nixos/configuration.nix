@@ -8,15 +8,11 @@
 		...
 }: 
 let
-myHostName = "homelab-nix";
-stevenUserName = "stvnliu";
+	globals = import ./globals.nix;
 in
 {
 	imports = [
-#inputs.hardware.nixosModules.common-cpu-amd
-#inputs.hardware.nixosModules.common-ssd
 		./hardware-configuration.nix
-		./services/display-manager.nix
 	];
 	boot.loader = {
 		efi.canTouchEfiVariables = true;
@@ -35,6 +31,12 @@ in
 			}
 			'';
 		};
+	};
+	security.polkit.enable = true;
+	services.gnome.gnome-keyring.enable = true;
+	programs.sway = {
+		enable = true;
+		wrapperFeatures.gtk = true;
 	};
 	nixpkgs = {
 		overlays = [
@@ -56,20 +58,18 @@ in
 		nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
 	};
 	networking = {
-		hostName = "${myHostName}";
+		hostName = "${globals.myHostName}";
 		networkmanager.enable = true;
 	};
 	users.users = {
-		"${stevenUserName}" = {
+		"${globals.myUserName}" = {
 			initialPassword = "stevenpassword";
 			isNormalUser = true;
 			openssh.authorizedKeys.keys = [
 			];
 			packages = with pkgs; [
-				nh
-					neovim
-					gitFull
-			];
+					nh
+				];
 			extraGroups = ["wheel"];
 		};
 	};
