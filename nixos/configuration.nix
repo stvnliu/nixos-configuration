@@ -10,7 +10,10 @@
 {
 	imports = [
 		./variables.nix
-		./nvidia.nix
+		#./greetd-sway.nix
+		#./nvidia.nix
+		./fonts.nix
+		./services/nginx.service.nix
 		./hardware-configuration.nix
 	];
 	boot.loader = {
@@ -31,6 +34,18 @@
 			'';
 		};
 	};
+	services.displayManager.sddm = {
+		enable = true;
+		wayland.enable = true;
+	};
+	systemd.user.services.kanshi = {
+		description = "kanshi daemon";
+		serviceConfig = {
+			Type = "simple";
+			ExecStart = ''${pkgs.kanshi}/bin/kanshi -c kanshi_config_file'';
+		};
+	};
+
 	security.polkit.enable = true;
 	services.gnome.gnome-keyring.enable = true;
 	programs.sway = {
@@ -53,6 +68,7 @@
 			flake-registry = "";
 			nix-path = config.nix.nixPath;
 		};
+		channel.enable = false;
 		registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
 		nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
 	};
@@ -79,6 +95,7 @@
 			PasswordAuthentication = false;
 		};
 	};
+	services.automatic-timezoned.enable = true;
 # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
 	system.stateVersion = "24.05";
 }

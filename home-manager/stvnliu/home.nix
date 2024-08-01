@@ -1,4 +1,4 @@
-# This is your home-manager configuration file
+#his is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 {
 	inputs,
@@ -18,7 +18,8 @@ in
 # inputs.nix-colors.homeManagerModule
 
 # You can also split up your configuration and import pieces of it here:
-# ./nvim.nix
+		./swaywm.nix
+		./shells
 	];
 
 	nixpkgs = {
@@ -48,7 +49,10 @@ in
 		homeDirectory = "/home/${myUserName}";
 	};
 	programs.neovim.enable = true;
-	home.packages = with pkgs; [ protonvpn-gui ];
+	home.packages = with pkgs; [
+		protonvpn-gui
+		devenv
+	];
 	programs.home-manager.enable = true;
 	programs.git.enable = true;
 	programs.firefox.enable = true;
