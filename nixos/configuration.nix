@@ -48,10 +48,11 @@
 
 	security.polkit.enable = true;
 	services.gnome.gnome-keyring.enable = true;
-	programs.sway = {
-		enable = true;
-		wrapperFeatures.gtk = true;
-	};
+	#programs.sway = {
+	#	enable = true;
+	#	wrapperFeatures.gtk = true;
+	#};
+	programs.hyprland.enable = true; # enables Hyprland DM.
 	nixpkgs = {
 		overlays = [
 		];

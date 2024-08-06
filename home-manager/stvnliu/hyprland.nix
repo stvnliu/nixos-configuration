@@ -9,9 +9,11 @@
 		xwayland.enable = true;
 		settings = {
 			"$mod" = "SUPER";
-			bindm = [
+			bind = [
 				# foot terminal
-				"$mod, ENTER, exec ${pkgs.foot}/bin/foot -f 'BlexMono Nerd Font:size=24' zsh"
+				"$mod, ENTER, exec, ${pkgs.foot}/bin/foot -f 'BlexMono Nerd Font:size=24' zsh"
+			];
+			bindm = [
 				# mouse movements
 				"$mod, mouse:272, movewindow"
 				"$mod, mouse:273, resizewindow"
