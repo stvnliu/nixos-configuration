@@ -14,9 +14,7 @@
 			};
 		};
 	};
-	hardware.opengl = {
-		enable = true;
-	};
+	hardware.graphics.enable = true;
 	services.xserver.videoDrivers = [ "nvidia" ];
 	hardware.nvidia = {
 		prime = {
@@ -31,8 +29,8 @@
 		modesetting.enable = true;
 		powerManagement.enable = false;
 		powerManagement.finegrained = false;
-		open = true;
+		# open = true;
 		nvidiaSettings = true;
-		package = config.boot.kernelPackages.nvidiaPackages.stable;
+		package = config.boot.kernelPackages.nvidiaPackages.beta;
 	};
 }

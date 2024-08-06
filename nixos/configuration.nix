@@ -11,7 +11,7 @@
 	imports = [
 		./variables.nix
 		#./greetd-sway.nix
-		#./nvidia.nix
+		./nvidia.nix
 		./fonts.nix
 		./services/nginx.service.nix
 		./hardware-configuration.nix
@@ -34,10 +34,10 @@
 			'';
 		};
 	};
-	services.displayManager.sddm = {
-		enable = true;
-		wayland.enable = true;
-	};
+	#services.displayManager.sddm = {
+	#	enable = true;
+	#	wayland.enable = true;
+	#};
 	systemd.user.services.kanshi = {
 		description = "kanshi daemon";
 		serviceConfig = {
