@@ -8,8 +8,8 @@
 		...
 }: 
 let
-myUserName = "stvnliu";
-myEmail = "z.liu@outlook.com.gr";
+	myUserName = "stvnliu";
+	myEmail = "z.liu@outlook.com.gr";
 in
 {
 # You can import other home-manager modules here
@@ -18,7 +18,8 @@ in
 # inputs.nix-colors.homeManagerModule
 
 # You can also split up your configuration and import pieces of it here:
-		./swaywm.nix
+		#./swaywm.nix
+		./hyprland.nix
 		./shells
 	];
 
