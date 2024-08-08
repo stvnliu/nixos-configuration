@@ -13,7 +13,7 @@
 		#./greetd-sway.nix
 		./nvidia.nix
 		./fonts.nix
-		./services/nginx.service.nix
+		./services/laptop.preset.nix
 		./hardware-configuration.nix
 	];
 	boot.loader = {

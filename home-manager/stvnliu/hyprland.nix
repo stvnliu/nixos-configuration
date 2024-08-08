@@ -18,7 +18,7 @@
 		settings = {
 			"$mod" = "SUPER";
 			bind = [
-				"$mod, D, exec, dmenu"
+				"$mod, D, exec, ${pkgs.fuzzel}/bin/fuzzel"
 # firefox quickstart
 					"$mod, F, exec, ${pkgs.firefox}/bin/firefox"
 # foot terminal
