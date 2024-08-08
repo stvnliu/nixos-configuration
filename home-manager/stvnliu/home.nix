@@ -59,7 +59,35 @@ in
 	programs.firefox.enable = true;
 # Nicely reload system units when changing configs
 	systemd.user.startServices = "sd-switch";
-
+	services.kanshi = {
+		enable = true;
+		profiles = {
+			undocked = {
+				outputs = [
+					{
+						criteria = "eDP-1";
+						scale = 1.0;
+						status = "enable";
+					}
+				];
+			};
+			docked = {
+				outputs = [
+					{
+						criteria = "HDMI-A-1";
+						position = "0,0";
+						mode = "1920x1080@60Hz";
+					}
+					{
+						criteria = "eDP-1";
+						position = "0,0";
+						status = "enable";
+					}
+				];
+			};
+		};
+		systemdTarget = "hyprland-session.target";
+	};
 # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
 	home.stateVersion = "24.05";
 }

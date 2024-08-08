@@ -34,17 +34,17 @@
 			'';
 		};
 	};
-	#services.displayManager.sddm = {
-	#	enable = true;
-	#	wayland.enable = true;
-	#};
-	systemd.user.services.kanshi = {
-		description = "kanshi daemon";
-		serviceConfig = {
-			Type = "simple";
-			ExecStart = ''${pkgs.kanshi}/bin/kanshi -c kanshi_config_file'';
-		};
+	services.displayManager.sddm = {
+		enable = true;
+		wayland.enable = true;
 	};
+	#systemd.user.services.kanshi = {
+	#	description = "kanshi daemon";
+	#	serviceConfig = {
+	#		Type = "simple";
+	#		ExecStart = ''${pkgs.kanshi}/bin/kanshi -c kanshi_config_file'';
+	#	};
+	#};
 
 	security.polkit.enable = true;
 	services.gnome.gnome-keyring.enable = true;
