@@ -45,6 +45,7 @@
   home = {
     username = "${config.myUserName}";
     homeDirectory = "/home/${config.myUserName}";
+    # copy wallpaper from assets
     file = {
       "wallpaper.png".source = ./assets/gruvbox-wallpaper.png;
     };
@@ -53,6 +54,7 @@
   home.packages = with pkgs; [
     protonvpn-gui
     devenv
+    vlc
   ];
   programs.git = {
     enable = true;
