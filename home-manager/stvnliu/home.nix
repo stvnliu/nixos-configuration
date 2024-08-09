@@ -7,10 +7,6 @@
 		pkgs,
 		...
 }: 
-let
-	myUserName = "stvnliu";
-	myEmail = "z.liu@outlook.com.gr";
-in
 {
 # You can import other home-manager modules here
 	imports = [
@@ -21,6 +17,7 @@ in
 		#./swaywm.nix
 		./hyprland.nix
 		./shells
+		./variables.nix
 	];
 
 	nixpkgs = {
@@ -46,8 +43,11 @@ in
 	};
 
 	home = {
-		username = "${myUserName}";
-		homeDirectory = "/home/${myUserName}";
+		username = "${config.myUserName}";
+		homeDirectory = "/home/${config.myUserName}";
+		file = {
+			"wallpaper.png".source = ./assets/gruvbox-wallpaper.png;
+		};
 	};
 	programs.neovim.enable = true;
 	home.packages = with pkgs; [
@@ -55,7 +55,11 @@ in
 		devenv
 	];
 	programs.home-manager.enable = true;
-	programs.git.enable = true;
+	programs.git = {
+		enable = true;
+		userName = config.myDisplayName;
+		userEmail = config.myEmail;
+	};
 	programs.firefox.enable = true;
 # Nicely reload system units when changing configs
 	systemd.user.startServices = "sd-switch";
