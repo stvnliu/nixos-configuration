@@ -16,6 +16,9 @@
 		./services/laptop.preset.nix
 		./hardware-configuration.nix
 	];
+	
+	security.pam.services.hyprlock = {};
+
 	boot.loader = {
 		efi.canTouchEfiVariables = true;
 		grub = {

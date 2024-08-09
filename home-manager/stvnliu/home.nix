@@ -14,9 +14,8 @@
 # inputs.nix-colors.homeManagerModule
 
 # You can also split up your configuration and import pieces of it here:
-		#./swaywm.nix
-		./hyprland.nix
-		./hyprpaper.nix
+#./swaywm.nix
+		./hypr
 		./shells
 		./variables.nix
 	];
@@ -53,8 +52,9 @@
 	programs.neovim.enable = true;
 	home.packages = with pkgs; [
 		protonvpn-gui
-		devenv
+			devenv
 	];
+	
 	programs.home-manager.enable = true;
 	programs.git = {
 		enable = true;
@@ -69,25 +69,25 @@
 		profiles = {
 			undocked = {
 				outputs = [
-					{
-						criteria = "eDP-1";
-						scale = 1.0;
-						status = "enable";
-					}
+				{
+					criteria = "eDP-1";
+					scale = 1.0;
+					status = "enable";
+				}
 				];
 			};
 			docked = {
 				outputs = [
-					{
-						criteria = "HDMI-A-1";
-						position = "0,0";
-						mode = "1920x1080@60Hz";
-					}
-					{
-						criteria = "eDP-1";
-						position = "0,0";
-						status = "enable";
-					}
+				{
+					criteria = "HDMI-A-1";
+					position = "0,0";
+					mode = "1920x1080@60Hz";
+				}
+				{
+					criteria = "eDP-1";
+					position = "0,0";
+					status = "enable";
+				}
 				];
 			};
 		};
