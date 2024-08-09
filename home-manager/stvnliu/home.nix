@@ -50,7 +50,14 @@
       "wallpaper.png".source = ./assets/gruvbox-wallpaper.png;
     };
   };
-  programs.neovim.enable = true;
+  programs.neovim = {
+    enable = true;
+    viAlias = true;
+    vimAlias = true;
+    extraConfig = ''
+      set number
+    '';
+  };
   home.packages = with pkgs; [
     protonvpn-gui
     devenv
