@@ -1,10 +1,10 @@
 {pkgs, config, lib, ...}:
 {
 	options = with lib; with types; {
-		myWallPaperPathString = { type = str; };
-		myUserName = { type = str; };
-		myDisplayName = { type = str; };
-		myEmail = { type = str; };
+		myWallPaperPathString = mkOption { type = str; };
+		myUserName = mkOption { type = str; };
+		myDisplayName = mkOption { type = str; };
+		myEmail = mkOption { type = str; };
 	};
 	config = rec {
 		myUserName = "stvnliu";

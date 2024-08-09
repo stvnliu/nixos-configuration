@@ -6,7 +6,7 @@
 			ipc = "on";
 			splash = false;
 			preload = [ config.myWallPaperPathString ];
-			wallpapaer = ",${config.myWallPaperPathString}";
+			wallpaper = [ ",${config.myWallPaperPathString}" ];
 		};
 	};
 }

@@ -16,13 +16,19 @@
 # Whether to enable XWayland
 		xwayland.enable = true;
 		settings = {
+			misc = {
+				disable_hyprland_logo = true;
+				disable_splash_rendering = true;
+				font_family = "monospace";
+			};
 			"$mod" = "SUPER";
 			bind = [
+				"$mod, Q, killactive"
 				"$mod, D, exec, ${pkgs.fuzzel}/bin/fuzzel"
-# firefox quickstart
-					"$mod, F, exec, ${pkgs.firefox}/bin/firefox"
-# foot terminal
-					"$mod, Return, exec, ${pkgs.foot}/bin/foot -f 'BlexMono Nerd Font:size=16' zsh"
+				# firefox quickstart
+				"$mod, F, exec, ${pkgs.firefox}/bin/firefox"
+				# foot terminal
+				"$mod, Return, exec, ${pkgs.foot}/bin/foot -f 'BlexMono Nerd Font:size=16' zsh"
 			] ++ (
 # workspaces
 # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}

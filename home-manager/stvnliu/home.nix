@@ -16,6 +16,7 @@
 # You can also split up your configuration and import pieces of it here:
 		#./swaywm.nix
 		./hyprland.nix
+		./hyprpaper.nix
 		./shells
 		./variables.nix
 	];
