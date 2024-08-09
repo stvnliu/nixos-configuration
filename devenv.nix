@@ -33,6 +33,7 @@
   enterShell = ''
     hello
     git --version
+    alejandra --version
   '';
 
   # https://devenv.sh/tests/
