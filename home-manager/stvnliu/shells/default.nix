@@ -9,19 +9,20 @@ in
   with lib; {
     imports = [
       ./zsh.nix
+      ./fish.nix
       ./direnv.nix
       ./starship
     ];
+
     options.myShells = {
+      defaultShell = with types; mkOption {type = str;};
       enable = mkEnableOption "Enables the shell customisation module.";
-      useZsh = mkOption {
-        type = types.bool;
-        default = true;
-      };
     };
-    config = mkIf cfg.enable {
+    config = {
       myShells = {
-        zsh.enable = cfg.useZsh;
+        zsh.enable = false;
+        fish.enable = true;
+        defaultShell = "fish";
         prompts.starship.enable = true;
       };
     };

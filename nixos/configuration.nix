@@ -15,7 +15,7 @@
     ./services/laptop.preset.nix
     ./hardware-configuration.nix
   ];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  #boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.supportedFilesystems = ["ntfs"];
   security.pam.services.hyprlock = {};
   hardware.bluetooth = {
@@ -98,7 +98,7 @@
       packages = with pkgs; [
         nh
       ];
-      extraGroups = ["wheel"];
+      extraGroups = ["wheel" "input"];
     };
   };
   services.openssh = {

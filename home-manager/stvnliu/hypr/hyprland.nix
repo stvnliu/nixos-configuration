@@ -40,7 +40,7 @@
           # firefox quickstart
           "$mod, F, exec, ${pkgs.firefox}/bin/firefox"
           # foot terminal
-          "$mod, Return, exec, ${pkgs.foot}/bin/foot -f 'BlexMono Nerd Font:size=16' -o colors.alpha=0.85 zsh"
+          "$mod, Return, exec, ${pkgs.foot}/bin/foot -f 'BlexMono Nerd Font:size=16' -o colors.alpha=0.85 ${config.myShells.defaultShell}"
         ]
         ++ (
           # workspaces

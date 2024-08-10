@@ -17,7 +17,8 @@ in
     config = {
       programs.starship = {
         enable = true;
-        enableZshIntegration = true;
+        enableZshIntegration = config.myShells.zsh.enable;
+        enableFishIntegration = config.myShells.fish.enable;
         settings = builtins.fromTOML (builtins.readFile cfg.confPath);
       };
     };
