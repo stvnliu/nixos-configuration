@@ -33,12 +33,14 @@
       "$mod" = "SUPER";
       bind =
         [
+          "$mod, F10, exec, ${pkgs.pamixer} --increase 10"
+          "$mod, F9, exec, ${pkgs.pamixer} --decrease 10"
           "$mod, Q, killactive"
           "$mod, D, exec, ${pkgs.fuzzel}/bin/fuzzel"
           # firefox quickstart
           "$mod, F, exec, ${pkgs.firefox}/bin/firefox"
           # foot terminal
-          "$mod, Return, exec, ${pkgs.foot}/bin/foot -f 'BlexMono Nerd Font:size=16' zsh"
+          "$mod, Return, exec, ${pkgs.foot}/bin/foot -f 'BlexMono Nerd Font:size=16' -o colors.alpha=0.85 zsh"
         ]
         ++ (
           # workspaces

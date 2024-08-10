@@ -62,6 +62,8 @@
     protonvpn-gui
     devenv
     vlc
+    zed-editor
+    rhythmbox
   ];
   programs.git = {
     enable = true;
