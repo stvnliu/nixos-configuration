@@ -64,8 +64,8 @@
     vlc
     zed-editor
     rhythmbox
+    clash-verge-rev
   ];
-
   programs.waybar = {
     enable = true;
     settings = [
@@ -133,7 +133,7 @@
           {
             criteria = "eDP-1";
             position = "0,0";
-            status = "enable";
+            status = "disable";
           }
         ];
       };

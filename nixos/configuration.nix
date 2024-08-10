@@ -15,7 +15,7 @@
     ./services/laptop.preset.nix
     ./hardware-configuration.nix
   ];
-  #boot.kernelPackages = pkgs.linuxPackages_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.supportedFilesystems = ["ntfs"];
   security.pam.services.hyprlock = {};
   hardware.bluetooth = {
@@ -28,6 +28,13 @@
     wantedBy = ["default.target"];
     serviceConfig.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
   };
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+  };
+
   boot.loader = {
     efi.canTouchEfiVariables = true;
     grub = {
