@@ -15,6 +15,7 @@
     ./services/laptop.preset.nix
     ./hardware-configuration.nix
   ];
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.supportedFilesystems = ["ntfs"];
   security.pam.services.hyprlock = {};
   hardware.bluetooth = {
