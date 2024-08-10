@@ -65,6 +65,7 @@
     zed-editor
     rhythmbox
     clash-verge-rev
+    libreoffice
   ];
   programs.waybar = {
     enable = true;

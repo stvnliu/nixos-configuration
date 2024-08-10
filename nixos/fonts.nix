@@ -2,13 +2,13 @@
   fonts.packages = with pkgs; [
     #helvetica-neue-lt-std
     aileron
-    #corefonts
+    corefonts
     #vistafonts
     #vistafonts-chs
     noto-fonts
-    #noto-fonts-cjk
+    noto-fonts-cjk
     noto-fonts-emoji
-    #liberation_ttf
+    liberation_ttf
     #mplus-outline-fonts.githubRelease
     #dina-font
     #proggyfonts
@@ -16,7 +16,7 @@
     (
       nerdfonts.override {
         fonts = [
-          "FiraCode"
+          #"FiraCode"
           "IBMPlexMono"
           #"IntelOneMono"
           #"CascadiaMono"
