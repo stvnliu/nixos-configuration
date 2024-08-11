@@ -10,6 +10,7 @@ in
     imports = [
       ./zsh.nix
       ./fish.nix
+      ./zoxide.nix
       ./direnv.nix
       ./starship
     ];

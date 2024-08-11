@@ -14,9 +14,6 @@ in
       programs.fish = {
         enable = true;
         shellAliases = import ./aliases {inherit pkgs;};
-        interactiveShellInit = ''
-          ${pkgs.zoxide}/bin/zoxide init fish | source
-        '';
         plugins = [
           {
             name = "z";
