@@ -13,7 +13,11 @@ in
     config = mkIf cfg.enable {
       programs.fish = {
         enable = true;
-        shellAliases = import ./aliases {inherit pkgs;};
+        shellInit = ''
+          ${builtins.readFile ./init/zoxide.fish}
+          ${builtins.readFile ./init/nh.fish}
+        '';
+        shellAliases = import ../aliases {inherit pkgs;};
         plugins = [
           {
             name = "z";

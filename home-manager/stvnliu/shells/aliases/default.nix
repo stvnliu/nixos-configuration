@@ -1,6 +1,6 @@
 {pkgs}: {
-  #cd = "z";
-  #cdi = "zi";
+  cd = "z";
+  cdi = "zi";
   ls = "${pkgs.eza}/bin/exa";
   cat = "${pkgs.bat}/bin/bat";
   ll = "ls -l";

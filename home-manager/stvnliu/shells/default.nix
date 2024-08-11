@@ -9,7 +9,7 @@ in
   with lib; {
     imports = [
       ./zsh.nix
-      ./fish.nix
+      ./fish
       ./zoxide.nix
       ./direnv.nix
       ./starship
