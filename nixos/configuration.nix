@@ -15,13 +15,27 @@
     ./services/laptop.preset.nix
     ./hardware-configuration.nix
   ];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.supportedFilesystems = ["ntfs"];
   security.pam.services.hyprlock = {};
+  i18n.inputMethod = {
+    enabled = "fcitx5";
+    fcitx5.addons = with pkgs; [
+      fcitx5-mozc
+      fcitx5-gtk
+      fcitx5-rime
+      fcitx5-chinese-addons
+    ];
+    #enabled = "ibus";
+    #ibus.engines = with pkgs.ibus-engines; [rime];
+  };
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
   };
+  networking.proxy = {
+    default = "http://127.0.0.1:7897/";
+    noProxy = "127.0.0.1,localhost,internal.domain";
+  };
+
   systemd.user.services.mpris-proxy = {
     description = "Mpris proxy";
     after = ["network.target" "sound.target"];
@@ -30,54 +44,61 @@
   };
   programs.steam = {
     enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+    remotePlay.openFirewall =
+      true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall =
+      true; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall =
+      true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
 
-  boot.loader = {
-    efi.canTouchEfiVariables = true;
-    grub = {
-      enable = true;
-      useOSProber = true;
-      efiSupport = true;
-      fsIdentifier = "label";
-      devices = ["nodev"];
-      extraEntries = ''
-        	menuentry "Reboot" {
-        		reboot
-        	}
-        menuentry "Poweroff" {
-        	halt
-        }
-      '';
+  boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
+    supportedFilesystems = ["ntfs"];
+    loader = {
+      efi.canTouchEfiVariables = true;
+      grub = {
+        enable = true;
+        useOSProber = true;
+        efiSupport = true;
+        fsIdentifier = "label";
+        devices = ["nodev"];
+        extraEntries = ''
+          	menuentry "Reboot" {
+          		reboot
+          	}
+          menuentry "Poweroff" {
+          	halt
+          }
+        '';
+      };
     };
   };
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-  };
-  #systemd.user.services.kanshi = {
-  #	description = "kanshi daemon";
-  #	serviceConfig = {
-  #		Type = "simple";
-  #		ExecStart = ''${pkgs.kanshi}/bin/kanshi -c kanshi_config_file'';
-  #	};
-  #};
-
   security.polkit.enable = true;
-  services.gnome.gnome-keyring.enable = true;
+  services = {
+    displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
+    };
+    automatic-timezoned.enable = true;
+    openssh = {
+      enable = true;
+      settings = {
+        PermitRootLogin = "no";
+        PasswordAuthentication = false;
+      };
+    };
+
+    gnome.gnome-keyring.enable = true;
+  };
   #programs.sway = {
   #	enable = true;
   #	wrapperFeatures.gtk = true;
   #};
   programs.hyprland.enable = true; # enables Hyprland DM.
   nixpkgs = {
-    overlays = [
-    ];
-    config = {
-      allowUnfree = true;
-    };
+    overlays = [];
+    config = {allowUnfree = true;};
   };
 
   nix = let
@@ -100,22 +121,11 @@
     "${config.myUserName}" = {
       initialPassword = "stevenpassword";
       isNormalUser = true;
-      openssh.authorizedKeys.keys = [
-      ];
-      packages = with pkgs; [
-        nh
-      ];
-      extraGroups = ["wheel" "input"];
+      openssh.authorizedKeys.keys = [];
+      packages = with pkgs; [nh];
+      extraGroups = ["wheel" "input" "networkmanager"];
     };
   };
-  services.openssh = {
-    enable = true;
-    settings = {
-      PermitRootLogin = "no";
-      PasswordAuthentication = false;
-    };
-  };
-  services.automatic-timezoned.enable = true;
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.05";
 }
