@@ -1,0 +1,1 @@
+{plugins.transparent.enable = true;}

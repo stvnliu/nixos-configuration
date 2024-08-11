@@ -18,6 +18,8 @@
     ./shells
     ./variables.nix
     ./mako.nix
+    ./wechat
+    ./editors.nix
   ];
 
   nixpkgs = {
@@ -50,14 +52,14 @@
       "wallpaper.png".source = ./assets/gruvbox-wallpaper.png;
     };
   };
-  programs.neovim = {
-    enable = true;
-    viAlias = true;
-    vimAlias = true;
-    extraConfig = ''
-      set number
-    '';
-  };
+  #programs.neovim = {
+  #  enable = true;
+  #  viAlias = true;
+  #  vimAlias = true;
+  #  extraConfig = ''
+  #    set number
+  #  '';
+  #};
   home.packages = with pkgs; [
     protonvpn-gui
     devenv
@@ -65,34 +67,9 @@
     zed-editor
     rhythmbox
     clash-verge-rev
+    qq
     libreoffice
   ];
-  programs.waybar = {
-    enable = true;
-    settings = [
-      {
-        mainBar = {
-          layer = "top";
-          position = "top";
-          height = 30;
-          output = ["eDP-1" "HDMI-A-1"];
-          modules-left = ["hyprland/workspaces" "hyprland/mode" "wlr/taskbar"];
-          modules-center = ["hyprland/window" "custom/hello-from-waybar"];
-          modules-right = ["mpd" "temperature"];
-          "hyprland/workspaces" = {
-            disable-scroll = true;
-            all-outputs = true;
-          };
-          "custom/hello-from-waybar" = {
-            format = "hello {}";
-            max-length = 40;
-            interval = "once";
-            exec = pkgs.writeShellScript "hello-from-waybar" ''echo "from within waybar"'';
-          };
-        };
-      }
-    ];
-  };
   programs.git = {
     enable = true;
     package = pkgs.gitFull;
@@ -124,12 +101,12 @@
           }
         ];
       };
-      docked = {
+      docked_office_cn = {
         outputs = [
           {
-            criteria = "HDMI-A-1";
+            criteria = "AOC 2619 M1194JA002428";
             position = "0,0";
-            mode = "1920x1080@60Hz";
+            mode = "1920x1200@59.94Hz";
           }
           {
             criteria = "eDP-1";
