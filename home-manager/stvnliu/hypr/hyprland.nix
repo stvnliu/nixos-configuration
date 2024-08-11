@@ -3,22 +3,47 @@
   pkgs,
   ...
 }: {
-  home.packages = with pkgs; [
-    foot
-  ];
+  home.packages = with pkgs; [foot];
+  programs.waybar = {
+    enable = true;
+    settings = [
+      {
+        layer = "top";
+        position = "top";
+        height = 30;
+        output = ["eDP-1" "HDMI-A-1"];
+        modules-left = ["hyprland/window" "wlr/taskbar" "cpu" "memory" "idle-inhibitor"];
+        modules-center = ["hyprland/workspaces" "custom/hello-from-waybar"];
+        modules-right = ["mpd" "custom/mymodule#with-css-id" "temperature" "battery"];
+
+        "hyprland/workspaces" = {
+          disable-scroll = true;
+          all-outputs = true;
+        };
+        "custom/hello-from-waybar" = {
+          format = "hello {}";
+          max-length = 40;
+          interval = "once";
+          exec = pkgs.writeShellScript "hello-from-waybar" ''
+            echo "from within waybar"
+          '';
+        };
+      }
+    ];
+    systemd.enable = true;
+    systemd.target = "hyprland-session.target";
+  };
+
   wayland.windowManager.hyprland = {
     # Whether to enable Hyprland wayland compositor
     enable = true;
     # The hyprland package to use
     package = pkgs.hyprland;
-    plugins = with pkgs.hyprlandPlugins; [
-      hyprbars
-      hyprfocus
-      csgo-vulkan-fix
-    ];
+    plugins = with pkgs.hyprlandPlugins; [hyprfocus csgo-vulkan-fix];
     # Whether to enable XWayland
     xwayland.enable = true;
     settings = {
+      monitor = ",preferred,auto,1.6";
       input = {
         # xset rate 250 50 replacement on wayland...
         # FAST MODE LET'S GOOO
@@ -33,6 +58,8 @@
       "$mod" = "SUPER";
       bind =
         [
+          ", Print, exec, ${pkgs.grimblast}/bin/grimblast copy area"
+          "$mod, S, togglespecialworkspace"
           "$mod, F10, exec, ${pkgs.pamixer} --increase 10"
           "$mod, F9, exec, ${pkgs.pamixer} --decrease 10"
           "$mod, Q, killactive"
@@ -45,17 +72,12 @@
         ++ (
           # workspaces
           # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
-          builtins.concatLists (builtins.genList (
-              x: let
-                ws = let
-                  c = (x + 1) / 10;
-                in
-                  builtins.toString (x + 1 - (c * 10));
-              in [
-                "$mod, ${ws}, workspace, ${toString (x + 1)}"
-                "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
-              ]
-            )
+          builtins.concatLists (builtins.genList (x: let
+              ws = let c = (x + 1) / 10; in builtins.toString (x + 1 - (c * 10));
+            in [
+              "$mod, ${ws}, workspace, ${toString (x + 1)}"
+              "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+            ])
             10)
         );
       bindm = [
