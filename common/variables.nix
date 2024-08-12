@@ -18,7 +18,7 @@
   # Default values for this configuration
   config = rec {
     myUserName = "stvnliu";
-    myHostName = "homelab-nix";
+    myHostName = "nixos-msi";
     displayScale = 2;
     myWallPaperPathString = "/home/${myUserName}/wallpaper.png";
     myDisplayName = "Zhongheng Liu";

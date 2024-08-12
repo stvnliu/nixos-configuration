@@ -20,7 +20,7 @@
     ...
   } @ inputs: let
     inherit (self) outputs;
-    myHostName = "homelab-nix";
+    myHostName = "nixos-msi";
     stevenUserName = "stvnliu";
   in {
     # NixOS configuration entrypoint
