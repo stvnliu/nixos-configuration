@@ -1,5 +1,5 @@
 {pkgs, ...}: let
-  timeoutSeconds = 60;
+  timeoutSeconds = 600;
 in {
   services.hypridle = {
     enable = true;

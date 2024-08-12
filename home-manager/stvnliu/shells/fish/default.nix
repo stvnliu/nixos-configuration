@@ -22,19 +22,38 @@ in
           funcsave -q fish_greeting
         '';
         shellAliases = import ../aliases {inherit pkgs;};
-        plugins = [
+        plugins = with pkgs.fishPlugins; [
           {
             name = "z";
-            src = pkgs.fetchFromGitHub {
-              owner = "jethrokuan";
-              repo = "z";
-              rev = "ddeb28a7b6a1f0ec6dae40c636e5ca4908ad160a";
-              sha256 = "0c5i7sdrsp0q3vbziqzdyqn4fmp235ax4mn4zslrswvn8g3fvdyh";
-            };
+            src = z.src;
           }
           {
             name = "plugin-git";
-            src = pkgs.fishPlugins.plugin-git.src;
+            src = plugin-git.src;
+          }
+          {
+            name = "transient-fish";
+            src = transient-fish.src;
+          }
+          {
+            name = "done";
+            src = done.src;
+          }
+          {
+            name = "gruvbox";
+            src = gruvbox.src;
+          }
+          {
+            name = "colored-man-pages";
+            src = colored-man-pages.src;
+          }
+          {
+            name = "puffer";
+            src = puffer.src;
+          }
+          {
+            name = "pisces";
+            src = pisces.src;
           }
         ];
       };

@@ -60,6 +60,12 @@
   #    set number
   #  '';
   #};
+  programs.thunderbird = {
+    enable = true;
+    profiles.default = {
+      isDefault = true;
+    };
+  };
   home.packages = with pkgs; [
     protonvpn-gui
     devenv

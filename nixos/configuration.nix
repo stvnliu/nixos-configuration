@@ -125,7 +125,7 @@
       initialPassword = "stevenpassword";
       isNormalUser = true;
       openssh.authorizedKeys.keys = [];
-      packages = with pkgs; [nh];
+      packages = with pkgs; [nh gparted];
       extraGroups = ["wheel" "input" "networkmanager"];
     };
   };
