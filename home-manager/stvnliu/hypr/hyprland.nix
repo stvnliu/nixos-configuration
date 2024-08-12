@@ -14,8 +14,7 @@
         output = ["eDP-1" "HDMI-A-1"];
         modules-left = ["hyprland/window" "wlr/taskbar" "cpu" "memory" "idle-inhibitor"];
         modules-center = ["hyprland/workspaces" "custom/hello-from-waybar"];
-        modules-right = ["mpd" "custom/mymodule#with-css-id" "temperature" "battery"];
-
+        modules-right = ["mpd" "custom/mymodule#with-css-id" "tray" "temperature" "battery"];
         "hyprland/workspaces" = {
           disable-scroll = true;
           all-outputs = true;
@@ -43,13 +42,15 @@
     # Whether to enable XWayland
     xwayland.enable = true;
     settings = {
-      monitor = ",preferred,auto,1.6";
+      xwayland = {force_zero_scaling = true;};
+      monitor = ",preferred,auto,${builtins.toString config.displayScale}";
       input = {
         # xset rate 250 50 replacement on wayland...
         # FAST MODE LET'S GOOO
         repeat_rate = 50;
         repeat_delay = 250;
       };
+      exec-once = "fcitx5";
       misc = {
         disable_hyprland_logo = true;
         disable_splash_rendering = true;
@@ -67,7 +68,7 @@
           # firefox quickstart
           "$mod, F, exec, ${pkgs.firefox}/bin/firefox"
           # foot terminal
-          "$mod, Return, exec, ${pkgs.foot}/bin/foot -f 'BlexMono Nerd Font:size=16' -o colors.alpha=0.85 ${config.myShells.defaultShell}"
+          "$mod, Return, exec, ${pkgs.foot}/bin/foot -f 'BlexMono Nerd Font:size=12' -o colors.alpha=0.85 ${config.myShells.defaultShell}"
         ]
         ++ (
           # workspaces
@@ -89,7 +90,9 @@
     };
     # Optional
     # Whether to enable hyprland-session.target on hyprland startup
-    systemd.enable = true;
+    systemd = {
+      enable = true;
+    };
   };
   # ...
 }
