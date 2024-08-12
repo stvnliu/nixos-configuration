@@ -16,7 +16,7 @@
     #./swaywm.nix
     ./hypr
     ./shells
-    ./variables.nix
+    ../../common/variables.nix
     ./mako.nix
     ./wechat
     ./editors.nix
