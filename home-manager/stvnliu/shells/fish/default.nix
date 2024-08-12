@@ -16,6 +16,10 @@ in
         shellInit = ''
           ${builtins.readFile ./init/zoxide.fish}
           ${builtins.readFile ./init/nh.fish}
+          function fish_greeting
+            ${pkgs.fortune}/bin/fortune -a
+          end
+          funcsave -q fish_greeting
         '';
         shellAliases = import ../aliases {inherit pkgs;};
         plugins = [

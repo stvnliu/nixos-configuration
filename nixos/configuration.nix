@@ -8,13 +8,16 @@
   ...
 }: {
   imports = [
-    ./variables.nix
+    ../common/variables.nix
     #./greetd-sway.nix
     ./nvidia.nix
     ./fonts.nix
     ./services/laptop.preset.nix
     ./hardware-configuration.nix
   ];
+  environment.variables = {
+    GDK_SCALE = config.displayScale;
+  };
   security.pam.services.hyprlock = {};
   i18n.inputMethod = {
     enabled = "fcitx5";
