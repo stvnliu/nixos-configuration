@@ -24,6 +24,7 @@
     ./wilder.nix
   ];
   enable = true;
+  defaultEditor = true;
   globals.mapleader = " ";
   colorschemes.gruvbox = {enable = true;};
   keymaps = [
