@@ -70,11 +70,13 @@
     protonvpn-gui
     devenv
     vlc
+    tree
     zed-editor
     rhythmbox
     clash-verge-rev
     qq
     libreoffice
+    discord
   ];
   programs.git = {
     enable = true;
