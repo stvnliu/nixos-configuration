@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: {
   specialisation = {
@@ -14,7 +15,12 @@
       };
     };
   };
-  hardware.graphics.enable = true;
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      libvdpau-va-gl
+    ];
+  };
   services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia = {
     prime = {
@@ -27,8 +33,6 @@
     };
     forceFullCompositionPipeline = true;
     modesetting.enable = true;
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
     # open = true;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.beta;
