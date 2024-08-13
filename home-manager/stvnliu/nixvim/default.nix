@@ -22,6 +22,7 @@
     ./trouble.nix
     ./which_key.nix
     ./wilder.nix
+    ./virt-column.nix
   ];
   enable = true;
   defaultEditor = true;
