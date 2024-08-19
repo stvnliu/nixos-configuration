@@ -17,9 +17,11 @@
     ./hypr
     ./shells
     ../../common/variables.nix
-    ./mako.nix
+    #./mako.nix
     ./wechat
     ./editors.nix
+    ./gtk.nix
+    #./ags.nix
   ];
 
   nixpkgs = {
@@ -77,6 +79,7 @@
     qq
     libreoffice
     discord
+    zathura
   ];
   programs.git = {
     enable = true;

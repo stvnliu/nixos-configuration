@@ -25,6 +25,7 @@
     ./virt-column.nix
   ];
   enable = true;
+  enableMan = true;
   defaultEditor = true;
   globals.mapleader = " ";
   colorschemes.gruvbox = {enable = true;};

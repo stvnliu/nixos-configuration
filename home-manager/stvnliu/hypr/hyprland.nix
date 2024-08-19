@@ -4,35 +4,6 @@
   ...
 }: {
   home.packages = with pkgs; [foot];
-  programs.waybar = {
-    enable = true;
-    settings = [
-      {
-        layer = "top";
-        position = "top";
-        height = 30;
-        output = ["eDP-1" "HDMI-A-1"];
-        modules-left = ["hyprland/window" "wlr/taskbar" "cpu" "memory" "idle-inhibitor"];
-        modules-center = ["hyprland/workspaces" "custom/hello-from-waybar"];
-        modules-right = ["mpd" "custom/mymodule#with-css-id" "tray" "temperature" "battery"];
-        "hyprland/workspaces" = {
-          disable-scroll = true;
-          all-outputs = true;
-        };
-        "custom/hello-from-waybar" = {
-          format = "hello {}";
-          max-length = 40;
-          interval = "once";
-          exec = pkgs.writeShellScript "hello-from-waybar" ''
-            echo "from within waybar"
-          '';
-        };
-      }
-    ];
-    systemd.enable = true;
-    systemd.target = "hyprland-session.target";
-  };
-
   wayland.windowManager.hyprland = {
     # Whether to enable Hyprland wayland compositor
     enable = true;
