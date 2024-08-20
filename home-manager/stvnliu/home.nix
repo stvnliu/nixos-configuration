@@ -81,6 +81,10 @@
     libreoffice
     discord
     zathura
+    shotwell
+    mpv
+    kdenlive
+    obsidian
   ];
   myAutostartCommands = [
     "${pkgs.clash-verge-rev}/bin/clash-verge"
