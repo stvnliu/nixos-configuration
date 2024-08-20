@@ -21,7 +21,10 @@
         repeat_rate = 50;
         repeat_delay = 250;
       };
-      exec-once = "fcitx5";
+      exec-once = [
+        "fcitx5"
+        "ags"
+      ];
       misc = {
         disable_hyprland_logo = true;
         disable_splash_rendering = true;

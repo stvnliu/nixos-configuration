@@ -10,7 +10,10 @@
         gopls.enable = true;
         nil_ls.enable = true;
         #nixd.enable = true;
-        rust-analyzer.enable = true;
+        rust-analyzer = {
+          enable = true;
+          installRustc = true;
+        };
         tsserver.enable = true;
       };
       keymaps.lspBuf = {
