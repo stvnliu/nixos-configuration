@@ -1,4 +1,4 @@
-#his is your home-manager configuration file
+# his is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 {
   inputs,
@@ -21,7 +21,7 @@
     ./wechat
     ./editors.nix
     ./gtk.nix
-    #./ags.nix
+    ./ags
   ];
 
   nixpkgs = {
@@ -36,6 +36,11 @@
       #     patches = [ ./change-hello-to-hi.patch ];
       #   });
       # })
+      (final: prev: {
+        ags = prev.ags.overrideAttrs (old: {
+          buildInputs = old.buildInputs ++ [pkgs.libdbusmenu-gtk3];
+        });
+      })
     ];
     # Configure your nixpkgs instance
     config = {
@@ -50,9 +55,7 @@
     username = "${config.myUserName}";
     homeDirectory = "/home/${config.myUserName}";
     # copy wallpaper from assets
-    file = {
-      "wallpaper.png".source = ./assets/gruvbox-wallpaper.png;
-    };
+    file = {"wallpaper.png".source = ./assets/gruvbox-wallpaper.png;};
   };
   #programs.neovim = {
   #  enable = true;
@@ -64,9 +67,7 @@
   #};
   programs.thunderbird = {
     enable = true;
-    profiles.default = {
-      isDefault = true;
-    };
+    profiles.default = {isDefault = true;};
   };
   home.packages = with pkgs; [
     protonvpn-gui
@@ -80,6 +81,11 @@
     libreoffice
     discord
     zathura
+  ];
+  myAutostartCommands = [
+    "${pkgs.clash-verge-rev}/bin/clash-verge"
+    "${pkgs.firefox}/bin/firefox"
+    "${pkgs.thunderbird}/bin/thunderbird"
   ];
   programs.git = {
     enable = true;

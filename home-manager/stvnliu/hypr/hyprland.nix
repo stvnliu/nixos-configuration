@@ -21,10 +21,13 @@
         repeat_rate = 50;
         repeat_delay = 250;
       };
-      exec-once = [
-        "fcitx5"
-        "ags"
-      ];
+      exec-once =
+        config.myAutostartCommands
+        ++ [
+          ''
+            [workspace special silent] ${pkgs.foot}/bin/foot -f 'BlexMono Nerd Fon
+                    t:size=12' -o colors.alpha=0.85 ${config.myShells.defaultShell}''
+        ];
       misc = {
         disable_hyprland_logo = true;
         disable_splash_rendering = true;
@@ -42,7 +45,9 @@
           # firefox quickstart
           "$mod, F, exec, ${pkgs.firefox}/bin/firefox"
           # foot terminal
-          "$mod, Return, exec, ${pkgs.foot}/bin/foot -f 'BlexMono Nerd Font:size=12' -o colors.alpha=0.85 ${config.myShells.defaultShell}"
+          ''
+            $mod, Return, exec, ${pkgs.foot}/bin/foot -f 'BlexMono Nerd Font:size=
+                    12' -o colors.alpha=0.85 ${config.myShells.defaultShell}''
         ]
         ++ (
           # workspaces
@@ -64,9 +69,7 @@
     };
     # Optional
     # Whether to enable hyprland-session.target on hyprland startup
-    systemd = {
-      enable = true;
-    };
+    systemd = {enable = true;};
   };
   # ...
 }

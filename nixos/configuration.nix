@@ -15,7 +15,7 @@
     ./fonts.nix
     ./services/laptop.preset.nix
     ./hardware-configuration.nix
-    ./ags.nix
+    #./ags.nix
   ];
   environment.variables = {GDK_SCALE = config.displayScale;};
   security.pam.services.hyprlock = {};
@@ -88,13 +88,7 @@
   #};
   programs.hyprland.enable = true; # enables Hyprland DM.
   nixpkgs = {
-    overlays = [
-      (final: prev: {
-        ags = prev.ags.overrideAttrs (old: {
-          buildInputs = old.buildInputs ++ [pkgs.libdbusmenu-gtk3];
-        });
-      })
-    ];
+    overlays = [];
     config = {allowUnfree = true;};
   };
 

@@ -1,5 +1,5 @@
 {
-  tmconfig,
+  config,
   pkgs,
   lib,
   ...
@@ -13,6 +13,7 @@
     myDisplayName = mkOption {type = str;};
     myEmail = mkOption {type = str;};
     displayScale = mkOption {type = int;};
+    myAutostartCommands = mkOption {type = listOf str;};
   };
 
   # Default values for this configuration
@@ -23,5 +24,8 @@
     myWallPaperPathString = "/home/${myUserName}/wallpaper.png";
     myDisplayName = "Zhongheng Liu";
     myEmail = "z.liu@outlook.com.gr";
+    myAutostartCommands = [
+      "fcitx5"
+    ];
   };
 }
