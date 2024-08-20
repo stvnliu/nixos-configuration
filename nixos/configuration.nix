@@ -9,7 +9,8 @@
 }: {
   imports = [
     ../common/variables.nix
-    #./greetd-sway.nix
+    ./greetd.nix
+    ./grub.nix
     ./nvidia.nix
     ./fonts.nix
     ./services/laptop.preset.nix
@@ -55,33 +56,21 @@
   };
 
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_zen;
     supportedFilesystems = ["ntfs"];
-    loader = {
-      efi.canTouchEfiVariables = true;
-      grub = {
-        enable = true;
-        useOSProber = true;
-        efiSupport = true;
-        fsIdentifier = "label";
-        devices = ["nodev"];
-        extraEntries = ''
-          	menuentry "Reboot" {
-          		reboot
-          	}
-          menuentry "Poweroff" {
-          	halt
-          }
-        '';
-      };
-    };
   };
   security.polkit.enable = true;
+  environment.systemPackages = with pkgs; [
+    libsForQt5.qt5.qtquickcontrols2
+    libsForQt5.qt5.qtgraphicaleffects
+  ];
+  time.hardwareClockInLocalTime = true;
   services = {
-    displayManager.sddm = {
-      enable = true;
-      wayland.enable = true;
-    };
+    #displayManager.sddm = {
+    #  enable = true;
+    #  wayland.enable = true;
+    #  theme = "${import ./sddm-theme.nix {inherit pkgs;}}";
+    #};
     automatic-timezoned.enable = true;
     openssh = {
       enable = true;
