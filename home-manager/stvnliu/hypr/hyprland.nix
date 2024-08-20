@@ -25,8 +25,7 @@
         config.myAutostartCommands
         ++ [
           ''
-            [workspace special silent] ${pkgs.foot}/bin/foot -f 'BlexMono Nerd Fon
-                    t:size=12' -o colors.alpha=0.85 ${config.myShells.defaultShell}''
+            [workspace special silent] ${pkgs.foot}/bin/foot -f 'BlexMono Nerd Font:size=12' -o colors.alpha=0.85 ${config.myShells.defaultShell}''
         ];
       misc = {
         disable_hyprland_logo = true;
@@ -46,8 +45,7 @@
           "$mod, F, exec, ${pkgs.firefox}/bin/firefox"
           # foot terminal
           ''
-            $mod, Return, exec, ${pkgs.foot}/bin/foot -f 'BlexMono Nerd Font:size=
-                    12' -o colors.alpha=0.85 ${config.myShells.defaultShell}''
+            $mod, Return, exec, ${pkgs.foot}/bin/foot -f 'BlexMono Nerd Font:size=12' -o colors.alpha=0.85 ${config.myShells.defaultShell}''
         ]
         ++ (
           # workspaces
