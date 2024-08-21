@@ -17,7 +17,10 @@
     ./hardware-configuration.nix
     #./ags.nix
   ];
-  environment.variables = {GDK_SCALE = config.displayScale;};
+  environment.variables = {
+    GDK_SCALE = config.displayScale;
+    FLAKE = config.myConfigLocation;
+  };
   security.pam.services.hyprlock = {};
   i18n.inputMethod = {
     enabled = "fcitx5";

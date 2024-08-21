@@ -14,6 +14,7 @@
     myEmail = mkOption {type = str;};
     displayScale = mkOption {type = int;};
     myAutostartCommands = mkOption {type = listOf str;};
+    myConfigLocation = mkOption {type = str;};
   };
 
   # Default values for this configuration
@@ -27,5 +28,6 @@
     myAutostartCommands = [
       "fcitx5"
     ];
+    myConfigLocation = "/home/${myUserName}/nix-conf";
   };
 }
