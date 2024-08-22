@@ -43,6 +43,7 @@
           "$mod, D, exec, ${pkgs.fuzzel}/bin/fuzzel"
           # firefox quickstart
           "$mod, F, exec, ${pkgs.firefox}/bin/firefox"
+          "$mod, E, exec, ${pkgs.pcmanfm}/bin/pcmanfm"
           # foot terminal
           ''
             $mod, Return, exec, ${pkgs.foot}/bin/foot -f 'BlexMono Nerd Font:size=12' -o colors.alpha=0.85 ${config.myShells.defaultShell}''

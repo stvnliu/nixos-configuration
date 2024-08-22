@@ -16,6 +16,7 @@
     ./services/laptop.preset.nix
     ./hardware-configuration.nix
     #./ags.nix
+    ./xdg.nix
   ];
   environment.variables = {
     GDK_SCALE = config.displayScale;

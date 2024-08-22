@@ -27,6 +27,7 @@
     myEmail = "z.liu@outlook.com.gr";
     myAutostartCommands = [
       "fcitx5"
+      "${pkgs.udiskie}/bin/udiskie"
     ];
     myConfigLocation = "/home/${myUserName}/nix-conf";
   };
