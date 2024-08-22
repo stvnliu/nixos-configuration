@@ -12,7 +12,7 @@
     home.packages = with pkgs; [ags];
     myAutostartCommands = [
       #"${pkgs.ags}/bin/ags --init"
-      #"${pkgs.ags}/bin/ags"
+      "${pkgs.ags}/bin/ags"
     ];
   };
 }
