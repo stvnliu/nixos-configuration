@@ -23,6 +23,7 @@
     ./gtk.nix
     ./ags
     ./xdg.nix
+    ./stylix.nix
   ];
 
   nixpkgs = {

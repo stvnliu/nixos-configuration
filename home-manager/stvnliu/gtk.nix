@@ -5,19 +5,6 @@
 }: {
   gtk = {
     enable = true;
-    cursorTheme = {
-      package = pkgs.vanilla-dmz;
-      name = "Vanilla-DMZ";
-      size = 24;
-    };
-    font = {
-      name = "Aileron";
-      size = 10;
-    };
-    theme = {
-      package = pkgs.gruvbox-gtk-theme;
-      name = "Gruvbox-Dark-BL";
-    };
     iconTheme = {
       package = pkgs.gruvbox-plus-icons;
       name = "Gruvbox-Plus-Dark";

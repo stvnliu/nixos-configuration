@@ -15,12 +15,11 @@
     ./fonts.nix
     ./services/laptop.preset.nix
     ./hardware-configuration.nix
-    #./ags.nix
-    ./xdg.nix
   ];
   environment.variables = {
     GDK_SCALE = config.displayScale;
     FLAKE = config.myConfigLocation;
+    GTK_IM_MODULE = lib.mkForce "";
   };
   security.pam.services.hyprlock = {};
   i18n.inputMethod = {

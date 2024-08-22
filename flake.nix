@@ -33,7 +33,6 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./nixos/configuration.nix
-          inputs.stylix.nixosModules.stylix
         ];
       };
     };
@@ -47,6 +46,7 @@
         modules = [
           ./home-manager/${stevenUserName}/home.nix
           inputs.nixvim.homeManagerModules.nixvim
+          inputs.stylix.homeManagerModules.stylix
         ];
       };
     };
