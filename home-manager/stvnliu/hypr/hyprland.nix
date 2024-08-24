@@ -24,8 +24,7 @@
       exec-once =
         config.myAutostartCommands
         ++ [
-          ''
-            [workspace special silent] ${pkgs.foot}/bin/foot -f 'BlexMono Nerd Font:size=12' -o colors.alpha=0.85 ${config.myShells.defaultShell}''
+          "[workspace special silent] ${pkgs.foot}/bin/foot -f 'BlexMono Nerd Font:size=12' -o colors.alpha=0.85 ${config.myShells.defaultShell}"
         ];
       misc = {
         disable_hyprland_logo = true;
@@ -33,20 +32,29 @@
         font_family = "monospace";
       };
       "$mod" = "SUPER";
+      binde = [
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+"
+
+        # Example volume button that will activate even while an input inhibitor is active
+        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+      ];
       bind =
         [
           ", Print, exec, ${pkgs.grimblast}/bin/grimblast copy area"
+
+          # special workspace keybinds
           "$mod, S, togglespecialworkspace"
-          "$mod, F10, exec, ${pkgs.pamixer} --increase 10"
-          "$mod, F9, exec, ${pkgs.pamixer} --decrease 10"
+          "$mod SHIFT, S, movetoworkspace, special"
+
+          # keysyms for util functions
+          # Example volume button that allows press and hold, volume limited to 150%
           "$mod, Q, killactive"
           "$mod, D, exec, ${pkgs.fuzzel}/bin/fuzzel"
           # firefox quickstart
           "$mod, F, exec, ${pkgs.firefox}/bin/firefox"
           "$mod, E, exec, ${pkgs.pcmanfm}/bin/pcmanfm"
           # foot terminal
-          ''
-            $mod, Return, exec, ${pkgs.foot}/bin/foot -f 'BlexMono Nerd Font:size=12' -o colors.alpha=0.85 ${config.myShells.defaultShell}''
+          "$mod, Return, exec, ${pkgs.foot}/bin/foot -f 'BlexMono Nerd Font:size=12' -o colors.alpha=0.85 ${config.myShells.defaultShell}"
         ]
         ++ (
           # workspaces
