@@ -14,7 +14,7 @@ in
         default = ./presets/default.toml;
       };
     };
-    config = {
+    config = mkIf cfg.enable {
       programs.starship = {
         enable = true;
         enableZshIntegration = config.myShells.zsh.enable;

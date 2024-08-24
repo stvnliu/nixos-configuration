@@ -1,13 +1,14 @@
 const hyprland = await Service.import("hyprland")
+const network = await Service.import("network")
 // const notifications = await Service.import("notifications")
 const mpris = await Service.import("mpris")
 const audio = await Service.import("audio")
 const battery = await Service.import("battery")
 const systemtray = await Service.import("systemtray")
+const dataPollingInterval = 1000;
 const date = Variable("", {
-  poll: [1000, 'date "+%H:%M:%S %b %e."'],
+  poll: [dataPollingInterval, 'date "+%H:%M:%S %b %e."'],
 })
-
 // widgets can be only assigned as a child in one container
 // so to make a reuseable widget, make it a function
 // then you can simply instantiate one by calling it
@@ -43,12 +44,54 @@ function ClientTitle() {
     label: hyprland.active.client.bind("title"),
   })
 }
+const WifiIndicator = () => Widget.Box({
+    children: [
+        Widget.Icon({
+            icon: network.wifi.bind('icon_name'),
+        }),
+        Widget.Label({
+            label: network.wifi.bind('ssid')
+                .as(ssid => ssid || 'Unknown'),
+        }),
+    ],
+})
 
+const WiredIndicator = () => Widget.Icon({
+    icon: network.wired.bind('icon_name'),
+})
 
+const NetworkIndicator = () => Widget.Stack({
+    children: {
+        wifi: WifiIndicator(),
+        wired: WiredIndicator(),
+    },
+    shown: network.bind('primary').as(p => p || 'wifi'),
+})
 function Clock() {
-  return Widget.Label({
-    class_name: "clock",
-    label: date.bind(),
+  const calendar = Widget.Calendar({
+    showDayNames: true,
+    showDetails: true,
+    showHeading: true,
+    showWeekNumbers: true,
+    detail: (self, y, m, d) => {
+      return `<span color="white">${y}. ${m}. ${d}.</span>`
+    },
+    onDaySelected: ({ date: [y, m, d] }) => {
+      print(`${y}. ${m}. ${d}.`)
+    },
+  })
+  return Widget.EventBox({
+    onPrimaryClick: () => {
+      calendar.show()
+    },
+    onSecondaryClick: () => {
+      calendar.hide()
+    },
+    child: Widget.Label({
+      class_name: "clock",
+      label: date.bind(),
+    })
+
   })
 }
 
@@ -174,7 +217,6 @@ function Left() {
     ],
   })
 }
-
 function Center() {
   return Widget.Box({
     spacing: 8,
@@ -189,6 +231,8 @@ function Right() {
     hpack: "end",
     spacing: 8,
     children: [
+      ResourceMonitor(),
+      NetworkIndicator(),
       Volume(),
       BatteryLabel(),
       SysTray(),
@@ -210,7 +254,39 @@ function Bar(monitor = 0) {
     }),
   })
 }
+const divide = ([total, free]) => free / total
 
+const cpu = Variable(0, {
+    poll: [dataPollingInterval, 'top -b -n 1', out => divide([100, out.split('\n')
+        .find(line => line.includes('Cpu(s)'))
+        .split(/\s+/)[1]
+        .replace(',', '.')])],
+})
+
+const ram = Variable(0, {
+    poll: [dataPollingInterval, 'free', out => divide(out.split('\n')
+        .find(line => line.includes('Mem:'))
+        .split(/\s+/)
+        .splice(1, 2))],
+})
+const ResourceMonitor = () => {
+  return Widget.Box({
+    spacing: 8,
+    children: [
+      Widget.Label({ label: "CPU:" }),
+      cpuProgress,
+      Widget.Label({ label: "RAM:" }),
+      ramProgress,
+    ]
+  })
+}
+const cpuProgress = Widget.Label({
+    label: cpu.bind().as(usage => `${(usage * 100).toPrecision(4)}%`)
+})
+
+const ramProgress = Widget.Label({
+    label: ram.bind().as(usage => `${(usage * 100).toPrecision(4)}%`)
+})
 App.config({
   style: "./style.css",
   windows: [
