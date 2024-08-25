@@ -24,6 +24,8 @@
     ./ags
     ./xdg.nix
     ./stylix.nix
+    ./spicetify.nix
+    ./scripts
   ];
 
   nixpkgs = {
@@ -57,7 +59,7 @@
     username = "${config.myUserName}";
     homeDirectory = "/home/${config.myUserName}";
     # copy wallpaper from assets
-    file = {"wallpaper.png".source = ./assets/gruvbox-wallpaper.png;};
+    file = {"wallpaper.jpg".source = ./assets/nixos-wallpaper.jpg;};
   };
   home.packages = with pkgs; [
     protonvpn-gui
@@ -91,6 +93,10 @@
   ];
 
   programs = {
+    obs-studio = {
+      enable = true;
+      plugins = [pkgs.obs-studio-plugins.wlrobs];
+    };
     home-manager.enable = true;
     firefox.enable = true;
     thunderbird = {

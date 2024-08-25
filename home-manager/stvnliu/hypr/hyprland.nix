@@ -38,8 +38,12 @@
         # Example volume button that will activate even while an input inhibitor is active
         ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
       ];
-      bind =
+      bind = let
+        terminalCmd = "${pkgs.foot}/bin/foot -f 'BlexMono Nerd Font:size=12' -o colors.alpha=0.85 ${config.myShells.defaultShell}";
+      in
         [
+          "$mod SHIFT, L, exec, ${pkgs.hyprlock}/bin/hyprlock --immediate"
+
           ", Print, exec, ${pkgs.grimblast}/bin/grimblast copy area"
 
           # special workspace keybinds
@@ -54,7 +58,14 @@
           "$mod, F, exec, ${pkgs.firefox}/bin/firefox"
           "$mod, E, exec, ${pkgs.pcmanfm}/bin/pcmanfm"
           # foot terminal
-          "$mod, Return, exec, ${pkgs.foot}/bin/foot -f 'BlexMono Nerd Font:size=12' -o colors.alpha=0.85 ${config.myShells.defaultShell}"
+          "$mod, Return, exec, ${terminalCmd}"
+          "$mod SHIFT, Return, exec, [float] ${terminalCmd}"
+
+          # vimkeys navigation
+          "$mod, H, movefocus, l"
+          "$mod, J, movefocus, d"
+          "$mod, K, movefocus, u"
+          "$mod, L, movefocus, r"
         ]
         ++ (
           # workspaces

@@ -13,6 +13,10 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     stylix.url = "github:danth/stylix";
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -20,6 +24,7 @@
     nixpkgs,
     home-manager,
     stylix,
+    spicetify-nix,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -47,6 +52,7 @@
           ./home-manager/${stevenUserName}/home.nix
           inputs.nixvim.homeManagerModules.nixvim
           inputs.stylix.homeManagerModules.stylix
+          inputs.spicetify-nix.homeManagerModules.default
         ];
       };
     };

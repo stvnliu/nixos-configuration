@@ -22,7 +22,7 @@
     myUserName = "stvnliu";
     myHostName = "nixos-msi";
     displayScale = 1;
-    myWallPaperPathString = "/home/${myUserName}/wallpaper.png";
+    myWallPaperPathString = "/home/${myUserName}/wallpaper.jpg";
     myDisplayName = "Zhongheng Liu";
     myEmail = "z.liu@outlook.com.gr";
     myAutostartCommands = [
