@@ -71,7 +71,8 @@
     libsForQt5.qt5.qtquickcontrols2
     libsForQt5.qt5.qtgraphicaleffects
   ];
-  time.hardwareClockInLocalTime = true;
+  # turned off because timedatectl doesn't like it
+  time.hardwareClockInLocalTime = false;
   services = {
     #displayManager.sddm = {
     #  enable = true;
