@@ -15,6 +15,7 @@
       };
     };
   };
+  boot.kernelModules = ["nvidia_uvm"];
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
