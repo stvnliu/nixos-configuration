@@ -40,10 +40,13 @@
       ];
       bind = let
         terminalCmd = "${pkgs.foot}/bin/foot -f 'BlexMono Nerd Font:size=12' -o colors.alpha=0.85 ${config.myShells.defaultShell}";
+        screenshotLocation = "/home/${config.myUserName}/Screenshots/$(date '+%Y-%m-%d-%H-%M-%S').png";
       in
         [
           "$mod SHIFT, L, exec, ${pkgs.hyprlock}/bin/hyprlock --immediate"
 
+          "$mod SHIFT, Print, exec, ${pkgs.grimblast}/bin/grimblast copysave output ${screenshotLocation}"
+          "$mod, Print, exec, ${pkgs.grimblast}/bin/grimblast copysave area ${screenshotLocation}"
           ", Print, exec, ${pkgs.grimblast}/bin/grimblast copy area"
 
           # special workspace keybinds

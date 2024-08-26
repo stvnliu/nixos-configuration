@@ -62,6 +62,7 @@
     file = {"wallpaper.jpg".source = ./assets/nixos-wallpaper.jpg;};
   };
   home.packages = with pkgs; [
+    prismlauncher
     protonvpn-gui
     devenv
     vlc

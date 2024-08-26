@@ -14,6 +14,7 @@
     ./nvidia.nix
     ./fonts.nix
     ./services/laptop.preset.nix
+    ./virtualisation.nix
     ./hardware-configuration.nix
   ];
   environment.variables = {

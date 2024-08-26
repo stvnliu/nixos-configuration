@@ -28,6 +28,7 @@
     myAutostartCommands = [
       "fcitx5"
       "${pkgs.udiskie}/bin/udiskie"
+      "${pkgs.pa-notify}/bin/pa-notify"
     ];
     myConfigLocation = "/home/${myUserName}/nix-conf";
   };
