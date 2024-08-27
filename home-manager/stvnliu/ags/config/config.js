@@ -17,7 +17,7 @@ const focusedTitle = Widget.Label({
   visible: hyprland.active.client.bind('address')
     .as(addr => addr !== "0x"),
 })
-
+const wsSymbols = ["壹", "貳", "叁", "肆", "伍", "陸", "柒", "捌", "玖", "拾"]
 const dispatch = ws => hyprland.messageAsync(`dispatch workspace ${ws}`);
 
 const Workspaces = () => Widget.EventBox({
@@ -26,7 +26,7 @@ const Workspaces = () => Widget.EventBox({
   child: Widget.Box({
     children: Array.from({ length: 10 }, (_, i) => i + 1).map(i => Widget.Button({
       attribute: i,
-      label: `${i}`,
+      label: `${wsSymbols[i - 1]}`,
       onClicked: () => dispatch(i),
 
       class_name: i === hyprland.active.workspace.id ? "focused" : ""

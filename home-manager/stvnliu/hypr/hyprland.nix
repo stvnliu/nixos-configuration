@@ -39,7 +39,7 @@
         ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
       ];
       bind = let
-        terminalCmd = "${pkgs.foot}/bin/foot -f 'BlexMono Nerd Font:size=12' -o colors.alpha=0.85 ${config.myShells.defaultShell}";
+        terminalCmd = "${pkgs.foot}/bin/foot -f 'BlexMono Nerd Font:size=12' -o colors.alpha=0.85";
         screenshotLocation = "/home/${config.myUserName}/Screenshots/$(date '+%Y-%m-%d-%H-%M-%S').png";
       in
         [
@@ -61,8 +61,10 @@
           "$mod, F, exec, ${pkgs.firefox}/bin/firefox"
           "$mod, E, exec, ${pkgs.pcmanfm}/bin/pcmanfm"
           # foot terminal
-          "$mod, Return, exec, ${terminalCmd}"
-          "$mod SHIFT, Return, exec, [float] ${terminalCmd}"
+          "$mod, Return, exec, ${terminalCmd} ${config.myShells.defaultShell}"
+          "$mod SHIFT, Return, exec, [float] ${terminalCmd} ${config.myShells.defaultShell}"
+
+          "$mod, N, exec, [float] ${terminalCmd} ${pkgs.networkmanager}/bin/nmtui"
 
           # vimkeys navigation
           "$mod, H, movefocus, l"
