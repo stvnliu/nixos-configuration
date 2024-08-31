@@ -6,5 +6,6 @@
     ./misc.service.nix
     ./avahi.service.nix
     ./printing.service.nix
+    ./tailscale.service.nix
   ];
 }
