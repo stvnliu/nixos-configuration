@@ -9,12 +9,18 @@
     enable = true;
     # The hyprland package to use
     package = pkgs.hyprland;
-    plugins = with pkgs.hyprlandPlugins; [hyprfocus csgo-vulkan-fix];
+    plugins = with pkgs.hyprlandPlugins; [
+      hyprfocus
+      csgo-vulkan-fix
+    ];
     # Whether to enable XWayland
     xwayland.enable = true;
     settings = {
       xwayland = {force_zero_scaling = true;};
-      monitor = ",preferred,auto,${builtins.toString config.displayScale}";
+      monitor = [
+        #"eDP-1, 1920x1080@165,0x0,1"
+        ",preferred, auto, ${builtins.toString config.displayScale}"
+      ];
       input = {
         # xset rate 250 50 replacement on wayland...
         # FAST MODE LET'S GOOO

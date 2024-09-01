@@ -46,7 +46,15 @@
       };
     };
   };
-
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+    ];
+    config = {
+      common.default = ["gtk"];
+    };
+  };
   systemd.user.services.mpris-proxy = {
     description = "Mpris proxy";
     after = ["network.target" "sound.target"];
@@ -74,13 +82,14 @@
   ];
   # turned off because timedatectl doesn't like it
   time.hardwareClockInLocalTime = false;
+  time.timeZone = "Europe/Athens";
   services = {
     #displayManager.sddm = {
     #  enable = true;
     #  wayland.enable = true;
     #  theme = "${import ./sddm-theme.nix {inherit pkgs;}}";
     #};
-    automatic-timezoned.enable = true;
+    #automatic-timezoned.enable = true;
     openssh = {
       enable = true;
       settings = {

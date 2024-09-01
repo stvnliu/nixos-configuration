@@ -41,7 +41,7 @@ const Workspaces = () => Widget.EventBox({
 function ClientTitle() {
   return Widget.Label({
     class_name: "client-title",
-    label: hyprland.active.client.bind("title"),
+    label: hyprland.active.client.bind("title").as(title => title.length <= 30 ? title : `${title.substring(0, 29)}...`),
   })
 }
 const WifiIndicator = () => Widget.Box({
