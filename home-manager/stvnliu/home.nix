@@ -69,7 +69,7 @@
     tree
     zed-editor
     rhythmbox
-    clash-verge-rev
+    #clash-verge-rev
     qq
     libreoffice
     discord
@@ -86,9 +86,10 @@
     mtpfs
     teams-for-linux
     sxiv
+    heroic
   ];
   myAutostartCommands = [
-    "${pkgs.clash-verge-rev}/bin/clash-verge"
+    #"${pkgs.clash-verge-rev}/bin/clash-verge"
     "${pkgs.firefox}/bin/firefox"
     "${pkgs.thunderbird}/bin/thunderbird"
   ];
@@ -121,35 +122,6 @@
   };
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
-  services.kanshi = {
-    enable = true;
-    profiles = {
-      undocked = {
-        outputs = [
-          {
-            criteria = "eDP-1";
-            scale = 1.0;
-            status = "enable";
-          }
-        ];
-      };
-      docked_office_cn = {
-        outputs = [
-          {
-            criteria = "AOC 2619 M1194JA002428";
-            position = "0,0";
-            mode = "1920x1200@59.94Hz";
-          }
-          {
-            criteria = "eDP-1";
-            position = "0,0";
-            status = "disable";
-          }
-        ];
-      };
-    };
-    systemdTarget = "hyprland-session.target";
-  };
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "24.05";
 }
