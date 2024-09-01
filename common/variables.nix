@@ -21,7 +21,7 @@
   config = rec {
     myUserName = "stvnliu";
     myHostName = "nixos-msi";
-    displayScale = 1;
+    displayScale = 2;
     myWallPaperPathString = "/home/${myUserName}/wallpaper.jpg";
     myDisplayName = "Zhongheng Liu";
     myEmail = "z.liu@outlook.com.gr";
