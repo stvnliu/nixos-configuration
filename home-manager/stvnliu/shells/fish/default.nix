@@ -16,6 +16,7 @@ in
         shellInit = ''
           ${builtins.readFile ./init/zoxide.fish}
           ${builtins.readFile ./init/nh.fish}
+          ${builtins.readFile ./init/tailscale.fish}
           function fish_greeting
             ${pkgs.fortune}/bin/fortune -a
           end
