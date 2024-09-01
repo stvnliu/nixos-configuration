@@ -52,8 +52,8 @@
           "$mod SHIFT, L, exec, ${pkgs.hyprlock}/bin/hyprlock --immediate"
 
           "$mod SHIFT, Print, exec, ${pkgs.grimblast}/bin/grimblast copysave output ${screenshotLocation}"
-          "$mod, Print, exec, ${pkgs.grimblast}/bin/grimblast copysave area ${screenshotLocation}"
-          ", Print, exec, ${pkgs.grimblast}/bin/grimblast copy area"
+          ", Print, exec, ${pkgs.grimblast}/bin/grimblast copysave area ${screenshotLocation}"
+          "$mod, Print, exec, ${pkgs.grimblast}/bin/grimblast copy area"
 
           # special workspace keybinds
           "$mod, S, togglespecialworkspace"
