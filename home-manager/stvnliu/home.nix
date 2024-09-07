@@ -62,6 +62,8 @@
     file = {"wallpaper.jpg".source = ./assets/nixos-wallpaper.jpg;};
   };
   home.packages = with pkgs; [
+    bottom
+    libnotify
     prismlauncher
     protonvpn-gui
     devenv

@@ -21,11 +21,20 @@
         #"eDP-1, 1920x1080@165,0x0,1"
         ",preferred, auto, ${builtins.toString config.displayScale}"
       ];
+      general = {
+        border_size = 3;
+        gaps_in = 2.5;
+        gaps_out = 5;
+      };
+      decoration = {
+        rounding = 5;
+      };
       input = {
         # xset rate 250 50 replacement on wayland...
         # FAST MODE LET'S GOOO
         repeat_rate = 50;
         repeat_delay = 250;
+        accel_profile = "flat";
       };
       exec-once =
         config.myAutostartCommands
@@ -36,6 +45,7 @@
         disable_hyprland_logo = true;
         disable_splash_rendering = true;
         font_family = "monospace";
+        focus_on_activate = true; # see if fixes mako daemon not focusing
       };
       "$mod" = "SUPER";
       binde = [
@@ -64,7 +74,7 @@
           "$mod, Q, killactive"
           "$mod, D, exec, ${pkgs.fuzzel}/bin/fuzzel"
           # firefox quickstart
-          "$mod, F, exec, ${pkgs.firefox}/bin/firefox"
+          "$mod, F, fullscreen"
           "$mod, E, exec, ${pkgs.pcmanfm}/bin/pcmanfm"
           # foot terminal
           "$mod, Return, exec, ${terminalCmd}"
