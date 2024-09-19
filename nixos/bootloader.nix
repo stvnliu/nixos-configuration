@@ -73,9 +73,12 @@ in {
         fsIdentifier = "label";
         devices = ["nodev"];
         extraEntries = ''
-          	menuentry "Reboot" {
-          		reboot
-          	}
+          menuentry "UEFI Firmware Settings" {
+            fwsetup
+          }
+          menuentry "Reboot" {
+          	reboot
+          }
           menuentry "Poweroff" {
           	halt
           }

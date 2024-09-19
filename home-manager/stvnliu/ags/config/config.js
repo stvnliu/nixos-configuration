@@ -1,5 +1,6 @@
+import { Workspaces } from "./hyprworkspaces.js";
+import { NetworkIndicator } from "./indicators.js";
 const hyprland = await Service.import("hyprland")
-const network = await Service.import("network")
 // const notifications = await Service.import("notifications")
 const mpris = await Service.import("mpris")
 const audio = await Service.import("audio")
@@ -17,56 +18,12 @@ const focusedTitle = Widget.Label({
   visible: hyprland.active.client.bind('address')
     .as(addr => addr !== "0x"),
 })
-const wsSymbols = ["壹", "貳", "叁", "肆", "伍", "陸", "柒", "捌", "玖", "拾"]
-const dispatch = ws => hyprland.messageAsync(`dispatch workspace ${ws}`);
-
-const Workspaces = () => Widget.EventBox({
-  onScrollUp: () => dispatch('+1'),
-  onScrollDown: () => dispatch('-1'),
-  child: Widget.Box({
-    children: Array.from({ length: 10 }, (_, i) => i + 1).map(i => Widget.Button({
-      attribute: i,
-      label: `${wsSymbols[i - 1]}`,
-      onClicked: () => dispatch(i),
-
-      class_name: i === hyprland.active.workspace.id ? "focused" : ""
-    })),
-
-    // remove this setup hook if you want fixed number of buttons
-    setup: self => self.hook(hyprland, () => self.children.forEach(btn => {
-      btn.visible = hyprland.workspaces.some(ws => ws.id === btn.attribute);
-    })),
-  }),
-})
 function ClientTitle() {
   return Widget.Label({
     class_name: "client-title",
     label: hyprland.active.client.bind("title").as(title => title.length <= 30 ? title : `${title.substring(0, 29)}...`),
   })
 }
-const WifiIndicator = () => Widget.Box({
-    children: [
-        Widget.Icon({
-            icon: network.wifi.bind('icon_name'),
-        }),
-        Widget.Label({
-            label: network.wifi.bind('ssid')
-                .as(ssid => ssid || 'Unknown'),
-        }),
-    ],
-})
-
-const WiredIndicator = () => Widget.Icon({
-    icon: network.wired.bind('icon_name'),
-})
-
-const NetworkIndicator = () => Widget.Stack({
-    children: {
-        wifi: WifiIndicator(),
-        wired: WiredIndicator(),
-    },
-    shown: network.bind('primary').as(p => p || 'wifi'),
-})
 function Clock() {
   const calendar = Widget.Calendar({
     showDayNames: true,
@@ -287,15 +244,13 @@ const cpuProgress = Widget.Label({
 const ramProgress = Widget.Label({
     label: ram.bind().as(usage => `${(usage * 100).toPrecision(4)}%`)
 })
+
+const bars = hyprland.monitors.map((value, index, arr) => {
+  return Bar(value.id);
+})
 App.config({
   style: "./style.css",
-  windows: [
-    Bar(),
-
-    // you can call it, for each monitor
-    // Bar(0),
-    // Bar(1)
-  ],
+  windows: bars,
 })
 
 export { }
