@@ -19,23 +19,34 @@
       xwayland = {force_zero_scaling = true;};
       monitor = [
         #"eDP-1, 1920x1080@165,0x0,1"
-        ",preferred, auto, ${builtins.toString config.displayScale}"
+        "HDMI-A-1, 1920x1080@75, 2560x0, 1"
+        "eDP-1,preferred, auto, ${builtins.toString config.displayScale}"
       ];
+      general = {
+        border_size = 1;
+        gaps_in = 2.5;
+        gaps_out = 5;
+      };
+      decoration = {
+        rounding = 5;
+      };
       input = {
         # xset rate 250 50 replacement on wayland...
         # FAST MODE LET'S GOOO
         repeat_rate = 50;
         repeat_delay = 250;
+        accel_profile = "flat";
       };
       exec-once =
         config.myAutostartCommands
         ++ [
-          "[workspace special silent] ${pkgs.foot}/bin/foot -f 'BlexMono Nerd Font:size=12' -o colors.alpha=0.85 ${config.myShells.defaultShell}"
+          "[workspace special silent] ${pkgs.foot}/bin/foot -f 'BlexMono Nerd Font:size=16' -o colors.alpha=0.85 ${config.myShells.defaultShell}"
         ];
       misc = {
         disable_hyprland_logo = true;
         disable_splash_rendering = true;
         font_family = "monospace";
+        focus_on_activate = true; # see if fixes mako daemon not focusing
       };
       "$mod" = "SUPER";
       binde = [
@@ -45,15 +56,15 @@
         ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
       ];
       bind = let
-        terminalCmd = "${pkgs.foot}/bin/foot -f 'BlexMono Nerd Font:size=12' -o colors.alpha=0.85";
+        terminalCmd = "${pkgs.foot}/bin/foot -f 'BlexMono Nerd Font:size=16' -o colors.alpha=0.85 ${config.myShells.defaultShell}";
         screenshotLocation = "/home/${config.myUserName}/Screenshots/$(date '+%Y-%m-%d-%H-%M-%S').png";
       in
         [
-          "$mod SHIFT, L, exec, ${pkgs.hyprlock}/bin/hyprlock --immediate"
+          "$mod SHIFT, L, exec, ${pkgs.wlogout}/bin/wlogout"
 
           "$mod SHIFT, Print, exec, ${pkgs.grimblast}/bin/grimblast copysave output ${screenshotLocation}"
-          "$mod, Print, exec, ${pkgs.grimblast}/bin/grimblast copysave area ${screenshotLocation}"
-          ", Print, exec, ${pkgs.grimblast}/bin/grimblast copy area"
+          ", Print, exec, ${pkgs.grimblast}/bin/grimblast copysave area ${screenshotLocation}"
+          "$mod, Print, exec, ${pkgs.grimblast}/bin/grimblast copy area"
 
           # special workspace keybinds
           "$mod, S, togglespecialworkspace"
@@ -64,7 +75,7 @@
           "$mod, Q, killactive"
           "$mod, D, exec, ${pkgs.fuzzel}/bin/fuzzel"
           # firefox quickstart
-          "$mod, F, exec, ${pkgs.firefox}/bin/firefox"
+          "$mod, F, fullscreen"
           "$mod, E, exec, ${pkgs.pcmanfm}/bin/pcmanfm"
           # foot terminal
           "$mod, Return, exec, ${terminalCmd} ${config.myShells.defaultShell}"

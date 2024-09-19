@@ -33,13 +33,8 @@
         outputs = [
           {
             criteria = "HDMI-A-1";
-            position = "0,0";
-            mode = "1920x1080@60.00Hz";
-          }
-          {
-            criteria = "eDP-1";
-            position = "0,0";
-            status = "disable";
+            position = "2560,0";
+            mode = "1920x1080@75.00Hz";
           }
         ];
       };

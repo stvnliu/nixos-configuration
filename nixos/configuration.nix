@@ -10,7 +10,7 @@
   imports = [
     ../common/variables.nix
     ./greetd.nix
-    ./grub.nix
+    ./bootloader.nix
     ./nvidia.nix
     ./fonts.nix
     ./services/laptop.preset.nix
@@ -48,12 +48,8 @@
   };
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-    ];
-    config = {
-      common.default = ["gtk"];
-    };
+    extraPortals = with pkgs; [xdg-desktop-portal-gtk];
+    config = {common.default = ["gtk"];};
   };
   systemd.user.services.mpris-proxy = {
     description = "Mpris proxy";
@@ -69,8 +65,11 @@
       true; # Open ports in the firewall for Source Dedicated Server
     localNetworkGameTransfers.openFirewall =
       true; # Open ports in the firewall for Steam Local Network Game Transfers
+    gamescopeSession = {
+      enable = true;
+    };
   };
-
+  programs.gamemode.enable = true;
   boot = {
     kernelPackages = pkgs.linuxPackages_zen;
     supportedFilesystems = ["ntfs"];
@@ -131,7 +130,10 @@
       initialPassword = "stevenpassword";
       isNormalUser = true;
       openssh.authorizedKeys.keys = [];
-      packages = with pkgs; [nh gparted];
+      packages = with pkgs; [
+        nh
+        gparted
+      ];
       extraGroups = ["wheel" "input" "networkmanager"];
     };
   };
