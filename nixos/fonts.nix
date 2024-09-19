@@ -11,6 +11,7 @@
     liberation_ttf
     mplus-outline-fonts.githubRelease
     dina-font
+
     #proggyfonts
     #glasstty-ttf
     (
@@ -22,6 +23,7 @@
           "CascadiaMono"
           "CommitMono"
           "JetBrainsMono"
+          "ProggyClean"
         ];
       }
     )

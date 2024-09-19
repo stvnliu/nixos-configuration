@@ -10,7 +10,7 @@
   imports = [
     ../common/variables.nix
     ./greetd.nix
-    ./grub.nix
+    ./bootloader.nix
     ./nvidia.nix
     ./fonts.nix
     ./services/laptop.preset.nix

@@ -72,6 +72,7 @@
     zed-editor
     rhythmbox
     #clash-verge-rev
+    vesktop
     qq
     libreoffice
     discord

@@ -15,6 +15,7 @@
     displayScale = mkOption {type = int;};
     myAutostartCommands = mkOption {type = listOf str;};
     myConfigLocation = mkOption {type = str;};
+    desktopFontFullName = mkOption {type = str;};
   };
 
   # Default values for this configuration
@@ -30,6 +31,12 @@
       "${pkgs.udiskie}/bin/udiskie"
       "${pkgs.pa-notify}/bin/pa-notify"
     ];
+    specialisation."powersave".configuration = {
+      myAutostartCommands = [
+        "${pkgs.brightnessctl}/bin/brightnessctl s 64"
+      ];
+    };
     myConfigLocation = "/home/${myUserName}/nix-conf";
+    desktopFontFullName = "BlexMono Nerd Font";
   };
 }
