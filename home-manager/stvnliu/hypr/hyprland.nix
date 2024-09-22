@@ -74,7 +74,6 @@
           # Example volume button that allows press and hold, volume limited to 150%
           "$mod, Q, killactive"
           "$mod, D, exec, ${pkgs.fuzzel}/bin/fuzzel"
-          # firefox quickstart
           "$mod, F, fullscreen"
           "$mod, E, exec, ${pkgs.pcmanfm}/bin/pcmanfm"
           # foot terminal

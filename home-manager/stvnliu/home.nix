@@ -1,5 +1,3 @@
-# his is your home-manager configuration file
-# Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 {
   inputs,
   lib,
@@ -7,13 +5,7 @@
   pkgs,
   ...
 }: {
-  # You can import other home-manager modules here
   imports = [
-    # If you want to use home-manager modules from other flakes (such as nix-colors):
-    # inputs.nix-colors.homeManagerModule
-
-    # You can also split up your configuration and import pieces of it here:
-    #./swaywm.nix
     ./hypr
     ./shells
     ../../common/variables.nix
@@ -26,20 +18,12 @@
     ./stylix.nix
     ./spicetify.nix
     ./scripts
+    ./programs
   ];
 
   nixpkgs = {
     # You can add overlays here
     overlays = [
-      # If you want to use overlays exported from other flakes:
-      # neovim-nightly-overlay.overlays.default
-
-      # Or define it inline, for example:
-      # (final: prev: {
-      #   hi = final.hello.overrideAttrs (oldAttrs: {
-      #     patches = [ ./change-hello-to-hi.patch ];
-      #   });
-      # })
       (final: prev: {
         ags = prev.ags.overrideAttrs (old: {
           buildInputs = old.buildInputs ++ [pkgs.libdbusmenu-gtk3];
@@ -71,12 +55,10 @@
     tree
     zed-editor
     rhythmbox
-    #clash-verge-rev
     vesktop
     qq
-    libreoffice
+    libreoffice-fresh
     discord
-    #zathura
     kdePackages.okular
     shotwell
     mpv
@@ -93,7 +75,7 @@
   ];
   myAutostartCommands = [
     #"${pkgs.clash-verge-rev}/bin/clash-verge"
-    "${pkgs.firefox}/bin/firefox"
+    "${config.programs.firefox.package}/bin/firefox"
     "${pkgs.thunderbird}/bin/thunderbird"
   ];
 
@@ -103,24 +85,13 @@
       plugins = [pkgs.obs-studio-plugins.wlrobs];
     };
     home-manager.enable = true;
-    firefox.enable = true;
+    firefox = {
+      enable = true;
+      package = pkgs.firefox-devedition;
+    };
     thunderbird = {
       enable = true;
       profiles.default = {isDefault = true;};
-    };
-    git = {
-      enable = true;
-      package = pkgs.gitFull;
-      userName = config.myDisplayName;
-      userEmail = config.myEmail;
-      extraConfig = {
-        push.autoSetupRemote = true;
-        commit.gpgsign = true;
-        gpg.format = "ssh";
-        gpg.ssh.allowedSignersFile = "/home/${config.myUserName}/.ssh/allowed_signers";
-        user.signingkey = "/home/${config.myUserName}/.ssh/id_ed25519.pub";
-        credential.helper = "libsecret";
-      };
     };
   };
   # Nicely reload system units when changing configs
