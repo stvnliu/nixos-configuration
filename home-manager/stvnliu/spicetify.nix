@@ -15,7 +15,9 @@ in {
     enable = true;
     theme = spicePkgs.themes.onepunch;
     colorScheme = "Dark";
-
+    enabledCustomApps = with spicePkgs.apps; [
+      lyricsPlus
+    ];
     enabledExtensions = with spicePkgs.extensions; [
       adblock
       fullAppDisplay
