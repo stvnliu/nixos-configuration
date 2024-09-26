@@ -1,8 +1,8 @@
 import { Workspaces } from "./hyprworkspaces.js";
 import { NetworkIndicator } from "./indicators.js";
-const hyprland = await Service.import("hyprland")
 // const notifications = await Service.import("notifications")
-const mpris = await Service.import("mpris")
+// const mpris = await Service.import("mpris")
+const hyprland = await Service.import("hyprland");
 const audio = await Service.import("audio")
 const battery = await Service.import("battery")
 const systemtray = await Service.import("systemtray")
@@ -13,17 +13,6 @@ const date = Variable("", {
 // widgets can be only assigned as a child in one container
 // so to make a reuseable widget, make it a function
 // then you can simply instantiate one by calling it
-const focusedTitle = Widget.Label({
-  label: hyprland.active.client.bind('title'),
-  visible: hyprland.active.client.bind('address')
-    .as(addr => addr !== "0x"),
-})
-function ClientTitle() {
-  return Widget.Label({
-    class_name: "client-title",
-    label: hyprland.active.client.bind("title").as(title => title.length <= 30 ? title : `${title.substring(0, 29)}...`),
-  })
-}
 function Clock() {
   const calendar = Widget.Calendar({
     showDayNames: true,
@@ -52,27 +41,7 @@ function Clock() {
   })
 }
 
-
-// we don't need dunst or any other notification daemon
-// because the Notifications module is a notification daemon itself
-/*function Notification() {
-  const popups = notifications.bind("popups")
-  return Widget.Box({
-    class_name: "notification",
-    visible: popups.as(p => p.length > 0),
-    children: [
-      Widget.Icon({
-        icon: "preferences-system-notifications-symbolic",
-      }),
-      Widget.Label({
-        label: popups.as(p => p[0]?.summary || ""),
-      }),
-    ],
-  })
-}*/
-
-
-function Media() {
+/* function Media() {
   const label = Utils.watch("", mpris, "player-changed", () => {
     if (mpris.players[0]) {
       const { track_artists, track_title } = mpris.players[0]
@@ -90,7 +59,7 @@ function Media() {
     child: Widget.Label({ label }),
   })
 }
-
+*/
 
 function Volume() {
   const icons = {
@@ -170,7 +139,6 @@ function Left() {
     spacing: 8,
     children: [
       Workspaces(),
-      ClientTitle(),
     ],
   })
 }
@@ -245,7 +213,7 @@ const ramProgress = Widget.Label({
     label: ram.bind().as(usage => `${(usage * 100).toPrecision(4)}%`)
 })
 
-const bars = hyprland.monitors.map((value, index, arr) => {
+const bars = hyprland.monitors.map((value, _index, _arr) => {
   return Bar(value.id);
 })
 App.config({
