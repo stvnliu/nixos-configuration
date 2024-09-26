@@ -19,6 +19,7 @@
     ./spicetify.nix
     ./scripts
     ./programs
+    ./packages
   ];
 
   nixpkgs = {
@@ -46,29 +47,19 @@
     file = {"wallpaper.jpg".source = ./assets/nixos-wallpaper.jpg;};
   };
   home.packages = with pkgs; [
-    bottom
-    libnotify
     prismlauncher
     protonvpn-gui
     devenv
     vlc
-    tree
     zed-editor
     rhythmbox
-    vesktop
     qq
-    libreoffice-fresh
-    discord
-    kdePackages.okular
     shotwell
     mpv
     kdenlive
     obsidian
     pcmanfm
     udiskie
-    android-file-transfer
-    usbutils
-    mtpfs
     teams-for-linux
     sxiv
     heroic
