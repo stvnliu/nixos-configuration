@@ -44,7 +44,7 @@
     username = "${config.myUserName}";
     homeDirectory = "/home/${config.myUserName}";
     # copy wallpaper from assets
-    file = {"wallpaper.jpg".source = ./assets/nixos-wallpaper.jpg;};
+    file = {"wallpaper.jpg".source = config.myWallPaperPath;};
   };
   home.packages = with pkgs; [
     prismlauncher

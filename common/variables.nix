@@ -7,6 +7,7 @@
   # Type definitions for nix variables used in this configuration
   options = with lib;
   with types; {
+    myWallPaperPath = mkOption {type = path;};
     myUserName = mkOption {type = str;};
     myHostName = mkOption {type = str;};
     myWallPaperPathString = mkOption {type = str;};
@@ -21,6 +22,7 @@
   # Default values for this configuration
   config = rec {
     myUserName = "stvnliu";
+    myWallPaperPath = ../home-manager/${myUserName}/assets/road-wallpaper.jpg;
     myHostName = "nixos-msi";
     displayScale = 2;
     myWallPaperPathString = "/home/${myUserName}/wallpaper.jpg";
