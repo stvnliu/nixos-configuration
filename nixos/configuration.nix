@@ -22,9 +22,14 @@
     FLAKE = config.myConfigLocation;
     GTK_IM_MODULE = lib.mkForce "";
   };
+  programs.gamescope = {
+    enable = true;
+    capSysNice = true;
+  };
   security.pam.services.hyprlock = {};
   i18n.inputMethod = {
-    enabled = "fcitx5";
+    type = "fcitx5";
+    enable = true;
     fcitx5.addons = with pkgs; [
       fcitx5-mozc
       fcitx5-gtk
@@ -65,9 +70,7 @@
       true; # Open ports in the firewall for Source Dedicated Server
     localNetworkGameTransfers.openFirewall =
       true; # Open ports in the firewall for Steam Local Network Game Transfers
-    gamescopeSession = {
-      enable = true;
-    };
+    extraCompatPackages = with pkgs; [proton-ge-bin];
   };
   programs.gamemode.enable = true;
   boot = {

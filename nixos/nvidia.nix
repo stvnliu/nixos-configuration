@@ -24,18 +24,20 @@
   };
   services.xserver.videoDrivers = ["nvidia"];
   hardware.nvidia = {
+    dynamicBoost.enable = true;
     prime = {
       offload.enable = false;
       sync = {
         enable = true;
       };
-      amdgpuBusId = "PCI:5:0:0";
+      amdgpuBusId = "PCI:6:0:0";
       nvidiaBusId = "PCI:1:0:0";
     };
     forceFullCompositionPipeline = true;
+    powerManagement.enable = true;
     modesetting.enable = true;
     open = true;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
+    package = config.boot.kernelPackages.nvidiaPackages.latest;
   };
 }
