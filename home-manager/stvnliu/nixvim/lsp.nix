@@ -8,13 +8,14 @@
         clangd.enable = true;
         fsautocomplete.enable = true;
         gopls.enable = true;
-        nil_ls.enable = true;
+        nil-ls.enable = true;
         #nixd.enable = true;
         rust-analyzer = {
           enable = true;
           installRustc = true;
+          installCargo = true;
         };
-        tsserver.enable = true;
+        ts-ls.enable = true;
       };
       keymaps.lspBuf = {
         "gd" = "definition";
@@ -24,10 +25,8 @@
         "K" = "hover";
       };
     };
-    lsp-lines = {
-      enable = true;
-      currentLine = true;
-    };
+    lsp-lines.enable = true;
     rust-tools.enable = true;
   };
+  diagnostics.virtual_lines.only_current_line = true;
 }

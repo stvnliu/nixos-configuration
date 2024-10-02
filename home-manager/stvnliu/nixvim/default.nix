@@ -23,6 +23,7 @@
     ./which_key.nix
     ./wilder.nix
     ./virt-column.nix
+    ./devicons.nix
   ];
   enable = true;
   enableMan = true;
