@@ -13,8 +13,8 @@ in {
     ];
   programs.spicetify = {
     enable = true;
-    theme = spicePkgs.themes.onepunch;
-    colorScheme = "Dark";
+    #theme = spicePkgs.themes.onepunch;
+    #colorScheme = "Dark";
     enabledCustomApps = with spicePkgs.apps; [
       lyricsPlus
     ];
