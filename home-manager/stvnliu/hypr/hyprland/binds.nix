@@ -2,7 +2,7 @@
   config,
   pkgs,
 }: let
-  terminalCmd = "${pkgs.foot}/bin/foot -f '${config.desktopFontFullName}:size=16' -o colors.alpha=0.80";
+  terminalCmd = "${pkgs.foot}/bin/footclient";
   screenshotLocation = "/home/${config.myUserName}/Screenshots/$(date '+%Y-%m-%d-%H-%M-%S').png";
 in
   [

@@ -28,17 +28,16 @@
     myWallPaperPathString = "/home/${myUserName}/wallpaper.jpg";
     myDisplayName = "Zhongheng Liu";
     myEmail = "z.liu@outlook.com.gr";
-    myAutostartCommands = [
-      "fcitx5"
-      "${pkgs.udiskie}/bin/udiskie"
-      "${pkgs.pa-notify}/bin/pa-notify"
-    ];
     specialisation."powersave".configuration = {
-      myAutostartCommands = [
-        "${pkgs.brightnessctl}/bin/brightnessctl s 64"
-      ];
+      myAutostartCommands = ["${pkgs.brightnessctl}/bin/brightnessctl s 64"];
     };
     myConfigLocation = "/home/${myUserName}/nix-conf";
     desktopFontFullName = "BlexMono Nerd Font";
+    myAutostartCommands = [
+      "fcitx5"
+      "${pkgs.foot}/bin/foot --server -f \"${desktopFontFullName}:size=12\" -o colors.alpha=0.85"
+      "${pkgs.udiskie}/bin/udiskie"
+      "${pkgs.pa-notify}/bin/pa-notify"
+    ];
   };
 }

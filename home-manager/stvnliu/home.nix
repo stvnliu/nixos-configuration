@@ -51,7 +51,6 @@
     protonvpn-gui
     devenv
     vlc
-    zed-editor
     rhythmbox
     qq
     shotwell
@@ -78,7 +77,20 @@
     home-manager.enable = true;
     firefox = {
       enable = true;
-      package = pkgs.firefox-devedition;
+      package = with pkgs; (firefox-devedition.override {
+        nativeMessagingHosts = [
+          (passff-host.overrideAttrs (old: {
+            dontStrip = true;
+            patchPhase = ''sed -i 's#COMMAND = "pass"#COMMAND = "${
+                pass.withExtensions (ext:
+                  with ext; [
+                    pass-otp
+                    pass-import
+                  ])
+              }/bin/pass"#' src/passff.py'';
+          }))
+        ];
+      });
     };
     thunderbird = {
       enable = true;

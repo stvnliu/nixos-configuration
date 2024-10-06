@@ -22,6 +22,13 @@
     FLAKE = config.myConfigLocation;
     GTK_IM_MODULE = lib.mkForce "";
   };
+
+  services.pcscd.enable = true;
+  programs.gnupg.agent = {
+    enable = true;
+    pinentryPackage = pkgs.pinentry-curses;
+    enableSSHSupport = true;
+  };
   programs.gamescope = {
     enable = true;
     capSysNice = true;
@@ -82,6 +89,12 @@
   };
   security.polkit.enable = true;
   environment.systemPackages = with pkgs; [
+    (pass-wayland.withExtensions (exts: [
+      exts.pass-otp
+      exts.pass-import
+    ]))
+    gparted
+    zed-editor
     libsForQt5.qt5.qtquickcontrols2
     libsForQt5.qt5.qtgraphicaleffects
   ];
@@ -138,7 +151,7 @@
       initialPassword = "stevenpassword";
       isNormalUser = true;
       openssh.authorizedKeys.keys = [];
-      packages = with pkgs; [nh gparted];
+      packages = with pkgs; [nh];
       extraGroups = ["wheel" "input" "networkmanager"];
     };
   };

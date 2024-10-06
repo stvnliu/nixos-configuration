@@ -17,8 +17,9 @@
       xwayland = {force_zero_scaling = true;};
       monitor = [
         #"eDP-1, 1920x1080@165,0x0,1"
-        "HDMI-A-1, 1920x1080@75, 2560x0, 1"
-        "eDP-2,preferred, auto, ${builtins.toString config.displayScale}"
+        "desc:XMI Mi 27 NFGL 3215000032603, 1920x1080@75, 2560x0, 1"
+        "desc:BOE 0x0B40,preferred, auto, ${builtins.toString config.displayScale}"
+        ", preferred, auto, 1" # wildcard definition
       ];
       general = {
         border_size = 1;
@@ -40,7 +41,7 @@
       exec-once =
         config.myAutostartCommands
         ++ [
-          "[workspace special silent] ${pkgs.foot}/bin/foot -f '${config.desktopFontFullName}:size=16' -o colors.alpha=0.80 ${config.myShells.defaultShell}"
+          "[workspace special silent] ${pkgs.foot}/bin/footclient ${config.myShells.defaultShell}"
         ];
       misc = {
         disable_hyprland_logo = true;
