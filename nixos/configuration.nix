@@ -62,17 +62,20 @@
     wantedBy = ["default.target"];
     serviceConfig.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
   };
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall =
-      true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall =
-      true; # Open ports in the firewall for Source Dedicated Server
-    localNetworkGameTransfers.openFirewall =
-      true; # Open ports in the firewall for Steam Local Network Game Transfers
-    extraCompatPackages = with pkgs; [proton-ge-bin];
+  programs = {
+    hyprland.enable = true; # enables Hyprland DM.
+    steam = {
+      enable = true;
+      remotePlay.openFirewall =
+        true; # Open ports in the firewall for Steam Remote Play
+      dedicatedServer.openFirewall =
+        true; # Open ports in the firewall for Source Dedicated Server
+      localNetworkGameTransfers.openFirewall =
+        true; # Open ports in the firewall for Steam Local Network Game Transfers
+      extraCompatPackages = with pkgs; [proton-ge-bin];
+    };
+    gamemode.enable = true;
   };
-  programs.gamemode.enable = true;
   boot = {
     kernelPackages = pkgs.linuxPackages_zen;
     supportedFilesystems = ["ntfs"];
@@ -106,7 +109,6 @@
   #	enable = true;
   #	wrapperFeatures.gtk = true;
   #};
-  programs.hyprland.enable = true; # enables Hyprland DM.
   nixpkgs = {
     overlays = [];
     config = {allowUnfree = true;};
@@ -120,6 +122,9 @@
       flake-registry = "";
       nix-path = config.nix.nixPath;
     };
+    extraOptions = ''
+      trusted-users = root stvnliu
+    '';
     channel.enable = false;
     registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
@@ -133,10 +138,7 @@
       initialPassword = "stevenpassword";
       isNormalUser = true;
       openssh.authorizedKeys.keys = [];
-      packages = with pkgs; [
-        nh
-        gparted
-      ];
+      packages = with pkgs; [nh gparted];
       extraGroups = ["wheel" "input" "networkmanager"];
     };
   };
