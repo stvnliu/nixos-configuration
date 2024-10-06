@@ -9,7 +9,7 @@
     enable = true;
     # The hyprland package to use
     package = pkgs.hyprland;
-    plugins = with pkgs.hyprlandPlugins; [hyprfocus csgo-vulkan-fix];
+    plugins = with pkgs.hyprlandPlugins; [hyprfocus];
     # Whether to enable XWayland
     xwayland.enable = true;
     settings = {
@@ -18,13 +18,17 @@
       monitor = [
         #"eDP-1, 1920x1080@165,0x0,1"
         "HDMI-A-1, 1920x1080@75, 2560x0, 1"
-        "eDP-1,preferred, auto, ${builtins.toString config.displayScale}"
+        "eDP-2,preferred, auto, ${builtins.toString config.displayScale}"
       ];
       general = {
         border_size = 1;
         gaps_in = 2.5;
         gaps_out = 5;
+        allow_tearing = true;
       };
+      windowrulev2 = [
+        "immediate, class:^(cs2)$"
+      ];
       decoration = {rounding = 5;};
       input = {
         # xset rate 250 50 replacement on wayland...
