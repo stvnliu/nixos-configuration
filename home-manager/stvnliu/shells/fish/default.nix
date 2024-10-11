@@ -17,6 +17,7 @@ in
           ${builtins.readFile ./init/zoxide.fish}
           ${builtins.readFile ./init/nh.fish}
           ${builtins.readFile ./init/tailscale.fish}
+          ${builtins.readFile ./init/pass.fish}
           function fish_greeting
             ${pkgs.fortune}/bin/fortune -a
           end
