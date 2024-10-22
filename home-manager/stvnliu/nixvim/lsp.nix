@@ -8,14 +8,14 @@
         clangd.enable = true;
         fsautocomplete.enable = true;
         gopls.enable = true;
-        nil-ls.enable = true;
+        nil_ls.enable = true;
         #nixd.enable = true;
-        rust-analyzer = {
+        rust_analyzer = {
           enable = true;
           installRustc = true;
           installCargo = true;
         };
-        ts-ls.enable = true;
+        ts_ls.enable = true;
       };
       keymaps.lspBuf = {
         "gd" = "definition";
