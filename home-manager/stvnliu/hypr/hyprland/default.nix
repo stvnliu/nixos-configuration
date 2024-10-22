@@ -17,7 +17,7 @@
       xwayland = {force_zero_scaling = true;};
       monitor = [
         #"eDP-1, 1920x1080@165,0x0,1"
-        "desc:XMI Mi 27 NFGL 3215000032603, 1920x1080@75, 2560x0, 1"
+        "desc:Xiaomi Corporation Mi 27 NFGL 3215000032603, 1920x1080@75, 2560x0, 1"
         "desc:BOE 0x0B40,preferred, auto, ${builtins.toString config.displayScale}"
         ", preferred, auto, 1" # wildcard definition
       ];
