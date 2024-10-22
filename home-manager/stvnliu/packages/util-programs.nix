@@ -11,5 +11,8 @@
     android-file-transfer
     mtpfs
     usbutils
+    glow
+    tmux
+    ranger
   ];
 }
