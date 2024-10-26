@@ -13,12 +13,7 @@
   qt = {
     enable = true;
     platformTheme.name = "gtk";
-    style = {
-      package = pkgs.libsForQt5.breeze-qt5;
-      name = "breeze";
-    };
+    style = {name = "Fusion";};
   };
-  home.packages = with pkgs; [
-    libsForQt5.breeze-qt5
-  ];
+  home.packages = with pkgs; [libsForQt5.breeze-qt5];
 }

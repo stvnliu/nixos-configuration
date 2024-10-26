@@ -32,10 +32,10 @@
       myAutostartCommands = ["${pkgs.brightnessctl}/bin/brightnessctl s 64"];
     };
     myConfigLocation = "/home/${myUserName}/nix-conf";
-    desktopFontFullName = "Monocraft Nerd Font";
+    desktopFontFullName = "JetBrainsMono Nerd Font";
     myAutostartCommands = [
       "fcitx5"
-      "${pkgs.foot}/bin/foot --server -f \"${desktopFontFullName}:size=12\" -o colors.alpha=0.85"
+      # "${pkgs.foot}/bin/foot --server -f \"${desktopFontFullName}:size=12\" -o colors.alpha=0.85"
       "${pkgs.udiskie}/bin/udiskie"
       "${pkgs.pa-notify}/bin/pa-notify"
     ];

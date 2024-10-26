@@ -16,8 +16,8 @@ in {
         package = pkgs.aileron;
       };
       monospace = {
-        name = "BlexMono Nerd Font";
-        package = pkgs.nerdfonts.override {fonts = ["IBMPlexMono"];};
+        name = config.desktopFontFullName;
+        package = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
       };
     };
     opacity = {

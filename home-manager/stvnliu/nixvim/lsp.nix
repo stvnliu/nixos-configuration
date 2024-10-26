@@ -1,4 +1,4 @@
-{
+{config, ...}: {
   plugins = {
     lsp = {
       enable = true;
@@ -8,8 +8,15 @@
         clangd.enable = true;
         fsautocomplete.enable = true;
         gopls.enable = true;
-        nil_ls.enable = true;
-        #nixd.enable = true;
+        #nil_ls.enable = true;
+        nixd = {
+          enable = true;
+          extraOptions = {
+            home-manager = {
+              expr = "(builtins.getFlake \"/home/stvnliu/nix-conf/\").homeConfigurations.\"stvnliu@nixos-msi\".options";
+            };
+          };
+        };
         rust_analyzer = {
           enable = true;
           installRustc = true;

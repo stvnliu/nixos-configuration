@@ -22,7 +22,6 @@
     FLAKE = config.myConfigLocation;
     GTK_IM_MODULE = lib.mkForce "";
   };
-
   services.pcscd.enable = true;
   services.keyd = {
     enable = true;
@@ -35,8 +34,7 @@
             esc = "capslock";
           };
         };
-        extraConfig = ''
-        '';
+        extraConfig = "";
       };
     };
   };
@@ -105,10 +103,7 @@
   };
   security.polkit.enable = true;
   environment.systemPackages = with pkgs; [
-    (pass-wayland.withExtensions (exts: [
-      exts.pass-otp
-      exts.pass-import
-    ]))
+    (pass-wayland.withExtensions (exts: [exts.pass-otp exts.pass-import]))
     gparted
     zed-editor
     libsForQt5.qt5.qtquickcontrols2
