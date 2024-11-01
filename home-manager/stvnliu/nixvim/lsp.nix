@@ -13,14 +13,10 @@
           enable = true;
           extraOptions = {
             home-manager = {
-              expr = "(builtins.getFlake \"/home/stvnliu/nix-conf/\").homeConfigurations.\"stvnliu@nixos-msi\".options";
+              expr = ''
+                (builtins.getFlake "/home/stvnliu/nix-conf/").homeConfigurations."stvnliu@nixos-msi".options'';
             };
           };
-        };
-        rust_analyzer = {
-          enable = true;
-          installRustc = true;
-          installCargo = true;
         };
         ts_ls.enable = true;
       };
@@ -33,7 +29,11 @@
       };
     };
     lsp-lines.enable = true;
-    rust-tools.enable = true;
+
+    rustaceanvim = {
+      enable = true;
+      # rust-tools.enable = true;
+    };
   };
   diagnostics.virtual_lines.only_current_line = true;
 }

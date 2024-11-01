@@ -14,5 +14,6 @@
     glow
     tmux
     ranger
+    lazygit
   ];
 }

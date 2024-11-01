@@ -1,4 +1,5 @@
 {pkgs}: {
+  gil = "${pkgs.lazygit}/bin/lazygit";
   cd = "z";
   cdi = "zi";
   ls = "${pkgs.lsd}/bin/lsd";

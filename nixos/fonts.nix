@@ -6,7 +6,7 @@
     vistafonts
     vistafonts-chs
     noto-fonts
-    noto-fonts-cjk
+    noto-fonts-cjk-sans
     noto-fonts-emoji
     liberation_ttf
     mplus-outline-fonts.githubRelease
