@@ -10,6 +10,7 @@
   imports = [
     ../common/variables.nix
     ./greetd.nix
+    #./ly.nix
     ./bootloader.nix
     ./nvidia.nix
     ./fonts.nix
