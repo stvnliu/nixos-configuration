@@ -19,7 +19,7 @@ in
     # keysyms for util functions
     # Example volume button that allows press and hold, volume limited to 150%
     "$mod, Q, killactive"
-    "$mod, D, exec, ${pkgs.rofi}/bin/rofi -show drun"
+    "$mod, D, exec, ${pkgs.fuzzel}/bin/fuzzel"
     "$mod, F, fullscreen"
     "$mod, E, exec, ${pkgs.pcmanfm}/bin/pcmanfm"
     # foot terminal

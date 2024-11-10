@@ -9,5 +9,6 @@
     ./office-programs.nix
     ./discord.nix
     ./wayland-utils.nix
+    ./pentesting.nix
   ];
 }
