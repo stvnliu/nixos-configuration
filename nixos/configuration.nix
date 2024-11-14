@@ -18,10 +18,10 @@
     ./virtualisation.nix
     ./hardware-configuration.nix
   ];
-  environment.variables = {
+  environment.sessionVariables = {
     GDK_SCALE = config.displayScale;
     FLAKE = config.myConfigLocation;
-    GTK_IM_MODULE = lib.mkForce "";
+    # GTK_IM_MODULE = lib.mkForce "";
   };
   services.pcscd.enable = true;
   services.keyd = {
