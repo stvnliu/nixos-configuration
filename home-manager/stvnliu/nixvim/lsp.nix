@@ -1,13 +1,23 @@
-{config, ...}: {
+{...}: {
   plugins = {
     lsp = {
       enable = true;
       servers = {
-        pylsp.enable = true;
-        bashls.enable = true;
+        # For Python
+        #pylsp.enable = true;
+        pylyzer.enable = true;
+        #ruff.enable = true;
+        #ruff_lsp.enable = true;
+
+        # For CXX
         clangd.enable = true;
+
+        # Misc
+        bashls.enable = true;
         fsautocomplete.enable = true;
         gopls.enable = true;
+
+        # For Nix
         #nil_ls.enable = true;
         nixd = {
           enable = true;
@@ -18,6 +28,8 @@
             };
           };
         };
+
+        # For TypeScript
         ts_ls.enable = true;
       };
       keymaps.lspBuf = {
