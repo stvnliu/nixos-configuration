@@ -50,6 +50,6 @@ in {
           }
         '')
     ];
-    extraConfig.pipewire."99-input-denoising" = pw_rnnoise_config;
+    #extraConfig.pipewire."99-input-denoising" = pw_rnnoise_config;
   };
 }
