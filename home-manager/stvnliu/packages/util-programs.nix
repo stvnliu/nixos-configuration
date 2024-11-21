@@ -15,5 +15,7 @@
     tmux
     ranger
     lazygit
+
+    transmission_4-gtk
   ];
 }

@@ -1,5 +1,7 @@
 {...}: {
   plugins = {
+    lsp-signature.enable = true;
+    lsp-status.enable = true;
     lsp = {
       enable = true;
       servers = {
@@ -28,6 +30,9 @@
             };
           };
         };
+
+        # Haskell
+        hls.enable = true;
 
         # For TypeScript
         ts_ls.enable = true;

@@ -3,7 +3,10 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  monitorMaxBrightness = "255";
+  monitorMinBrightness = "32";
+in {
   # Type definitions for nix variables used in this configuration
   options = with lib;
   with types; {
@@ -29,11 +32,12 @@
     myDisplayName = "Zhongheng Liu";
     myEmail = "z.liu@outlook.com.gr";
     specialisation."powersave".configuration = {
-      myAutostartCommands = ["${pkgs.brightnessctl}/bin/brightnessctl s 64"];
+      myAutostartCommands = ["${pkgs.brightnessctl}/bin/brightnessctl s ${monitorMinBrightness}"];
     };
     myConfigLocation = "/home/${myUserName}/nix-conf";
     desktopFontFullName = "JetBrainsMono Nerd Font";
     myAutostartCommands = [
+      "${pkgs.brightnessctl}/bin/brightnessctl s ${monitorMaxBrightness}"
       "fcitx5"
       # "${pkgs.foot}/bin/foot --server -f \"${desktopFontFullName}:size=12\" -o colors.alpha=0.85"
       "${pkgs.udiskie}/bin/udiskie"
