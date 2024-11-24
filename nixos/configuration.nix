@@ -21,6 +21,7 @@
   environment.sessionVariables = {
     GDK_SCALE = config.displayScale;
     FLAKE = config.myConfigLocation;
+    MANPAGER = "$EDITOR +Man!";
     # GTK_IM_MODULE = lib.mkForce "";
   };
   services.pcscd.enable = true;
@@ -151,7 +152,7 @@
   in {
     settings = {
       experimental-features = "nix-command flakes";
-      flake-registry = "";
+      # flake-registry = "";
       nix-path = config.nix.nixPath;
     };
     extraOptions = ''
@@ -161,9 +162,13 @@
     registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
     nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
   };
+
+  systemd.network.wait-online.enable = false;
   networking = {
     hostName = "${config.myHostName}";
     networkmanager.enable = true;
+    useNetworkd = lib.mkDefault true;
+    useDHCP = lib.mkDefault true;
   };
   users.users = {
     "${config.myUserName}" = {

@@ -32,7 +32,10 @@
         };
 
         # Haskell
-        hls.enable = true;
+        hls = {
+          enable = true;
+          installGhc = false;
+        };
 
         # For TypeScript
         ts_ls.enable = true;

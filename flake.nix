@@ -3,7 +3,9 @@
 
   inputs = {
     # Nixpkgs
+    nixpkgs-master.url = "github:nixos/nixpkgs/master";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.11";
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -13,10 +15,13 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    /*
     lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
+      url =
+        "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    */
     stylix = {url = "github:danth/stylix";};
     spicetify-nix = {
       url = "github:Gerg-L/spicetify-nix";
@@ -30,7 +35,6 @@
     home-manager,
     stylix,
     spicetify-nix,
-    lix-module,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -42,7 +46,10 @@
     nixosConfigurations = {
       "${myHostName}" = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
-        modules = [./nixos/configuration.nix lix-module.nixosModules.default];
+        modules = [
+          ./nixos/configuration.nix
+          #lix-module.nixosModules.default
+        ];
       };
     };
 
@@ -56,8 +63,8 @@
         modules = [
           ./home-manager/${stevenUserName}/home.nix
           inputs.nixvim.homeManagerModules.nixvim
-          inputs.stylix.homeManagerModules.stylix
-          inputs.spicetify-nix.homeManagerModules.default
+          stylix.homeManagerModules.stylix
+          spicetify-nix.homeManagerModules.default
         ];
       };
     };
