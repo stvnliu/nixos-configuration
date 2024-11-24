@@ -16,6 +16,9 @@
     ranger
     lazygit
 
+    cheat
+    thefuck
+
     transmission_4-gtk
   ];
 }

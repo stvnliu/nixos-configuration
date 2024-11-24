@@ -22,6 +22,8 @@ in
             ${pkgs.fortune}/bin/fortune -a
           end
           funcsave -q fish_greeting
+
+          ${pkgs.thefuck}/bin/thefuck --alias | source
         '';
         shellAliases = import ../aliases {inherit pkgs;};
         plugins = with pkgs.fishPlugins; [

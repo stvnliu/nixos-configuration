@@ -21,7 +21,7 @@
   environment.sessionVariables = {
     GDK_SCALE = config.displayScale;
     FLAKE = config.myConfigLocation;
-    MANPAGER = "$EDITOR +Man!";
+    MANPAGER = "nvim +Man!";
     # GTK_IM_MODULE = lib.mkForce "";
   };
   services.pcscd.enable = true;
