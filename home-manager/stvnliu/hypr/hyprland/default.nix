@@ -18,7 +18,9 @@
       monitor = [
         #"eDP-1, 1920x1080@165,0x0,1"
         "desc:Xiaomi Corporation Mi 27 NFGL 3215000032603, 1920x1080@75, 2560x0, 1"
-        "desc:BOE 0x0B40,preferred, auto, ${builtins.toString config.displayScale}"
+        "desc:BOE 0x0B40,preferred, auto, ${
+          builtins.toString config.displayScale
+        }"
         ", preferred, auto, 1" # wildcard definition
       ];
       general = {
@@ -27,9 +29,7 @@
         gaps_out = 5;
         allow_tearing = true;
       };
-      windowrulev2 = [
-        "immediate, class:^(cs2)$"
-      ];
+      windowrulev2 = ["immediate, class:^(cs2)$"];
       decoration = {rounding = 5;};
       input = {
         # xset rate 250 50 replacement on wayland...
@@ -41,7 +41,9 @@
       exec-once =
         config.myAutostartCommands
         ++ [
-          "[workspace special silent] ${pkgs.foot}/bin/footclient ${config.myShells.defaultShell}"
+          # future hyprland-specific exec commands
+          "${config.programs.firefox.package}/bin/firefox"
+          "${pkgs.thunderbird}/bin/thunderbird"
         ];
       misc = {
         disable_hyprland_logo = true;

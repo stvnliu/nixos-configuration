@@ -33,6 +33,12 @@
     ];
     # Configure your nixpkgs instance
     config = {
+      permittedInsecurePackages = [
+        "dotnet-core-combined"
+        "dotnet-sdk-6.0.428"
+        "dotnet-sdk-7.0.410"
+        "dotnet-sdk-wrapped-6.0.428"
+      ];
       # Disable if you don't want unfree packages
       allowUnfree = true;
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
@@ -65,17 +71,12 @@
   ];
   myAutostartCommands = [
     #"${pkgs.clash-verge-rev}/bin/clash-verge"
-    "${config.programs.firefox.package}/bin/firefox"
-    "${pkgs.thunderbird}/bin/thunderbird"
   ];
 
   programs = {
     obs-studio = {
       enable = true;
-      plugins = with pkgs.obs-studio-plugins; [
-        wlrobs
-        input-overlay
-      ];
+      plugins = with pkgs.obs-studio-plugins; [wlrobs input-overlay];
     };
     home-manager.enable = true;
     firefox = {
@@ -84,12 +85,9 @@
         nativeMessagingHosts = [
           (passff-host.overrideAttrs (old: {
             dontStrip = true;
-            patchPhase = ''sed -i 's#COMMAND = "pass"#COMMAND = "${
-                pass.withExtensions (ext:
-                  with ext; [
-                    pass-otp
-                    pass-import
-                  ])
+            patchPhase = ''
+              sed -i 's#COMMAND = "pass"#COMMAND = "${
+                pass.withExtensions (ext: with ext; [pass-otp pass-import])
               }/bin/pass"#' src/passff.py'';
           }))
         ];
