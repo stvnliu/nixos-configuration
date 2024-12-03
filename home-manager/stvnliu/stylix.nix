@@ -3,12 +3,12 @@
   config,
   ...
 }: let
-  globalOpacity = 0.8;
+  globalOpacity = 1.0;
 in {
   stylix = {
     enable = true;
     autoEnable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-material-dark-medium.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
     image = config.myWallPaperPath;
     fonts = {
       sansSerif = {
@@ -17,7 +17,7 @@ in {
       };
       monospace = {
         name = config.desktopFontFullName;
-        package = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
+        package = pkgs.nerd-fonts.jetbrains-mono;
       };
     };
     opacity = {

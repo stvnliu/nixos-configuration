@@ -25,7 +25,7 @@ in {
   # Default values for this configuration
   config = rec {
     myUserName = "stvnliu";
-    myWallPaperPath = ../home-manager/${myUserName}/assets/road-wallpaper.jpg;
+    myWallPaperPath = ../home-manager/${myUserName}/assets/deer-wallpaper.jpg;
     myHostName = "nixos-msi";
     displayScale = 2;
     myWallPaperPathString = "/home/${myUserName}/wallpaper.jpg";
