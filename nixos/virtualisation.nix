@@ -4,7 +4,10 @@
   config,
   ...
 }: {
-  virtualisation.libvirtd.enable = true;
+  virtualisation = {
+    libvirtd.enable = true;
+    waydroid.enable = true;
+  };
   programs.virt-manager.enable = true;
   #virtualisation.vmware.host.enable = true;
   #virtualisation.virtualbox.host = {

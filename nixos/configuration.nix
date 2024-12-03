@@ -65,11 +65,7 @@
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
-    settings = {
-      General = {
-        Disable = "Headset";
-      };
-    };
+    settings = {General = {Disable = "Handsfree,Headset";};};
   };
   specialisation = {
     in-china.configuration = {
@@ -116,6 +112,7 @@
     libsForQt5.qt5.qtquickcontrols2
     libsForQt5.qt5.qtgraphicaleffects
     blender
+    trash-cli
     #inputs.hyprswitch.packages.x86_64-linux.default
   ];
   # turned off because timedatectl doesn't like it
@@ -144,7 +141,10 @@
   #};
   nixpkgs = {
     overlays = [];
-    config = {allowUnfree = true;};
+    config = {
+      allowUnfree = true;
+      permittedInsecurePackages = ["dotnet-core-combined"];
+    };
   };
 
   nix = let
