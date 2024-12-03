@@ -2,31 +2,37 @@
 {
   plugins = {
     luasnip.enable = true;
+    /*
     copilot-lua = {
       enable = true;
       suggestion.enabled = false;
       panel.enabled = false;
     };
-
-    cmp-buffer = {enable = true;};
-
-    cmp-emoji = {enable = true;};
-
-    cmp-nvim-lsp = {enable = true;};
-
-    cmp-path = {enable = true;};
-
-    cmp_luasnip = {enable = true;};
-
+    */
     cmp = {
       enable = true;
-
       settings = {
+        autoEnableSources = true;
+        experimental = {ghost_text = false;};
+        performance = {
+          debounce = 60;
+          fetchingTimeout = 200;
+          maxViewEntries = 30;
+        };
+        snippet = {expand = "luasnip";};
+        cmp-buffer = {enable = true;};
+        cmp-emoji = {enable = true;};
+        cmp-nvim-lsp = {enable = true;};
+        cmp-path = {enable = true;};
+        cmp_luasnip = {enable = true;};
+
+        /*
         snippet.expand = ''
           function(args)
             require('luasnip').lsp_expand(args.body)
           end
         '';
+        */
         sources = [
           {name = "nvim_lsp";}
           {name = "luasnip";}
@@ -36,9 +42,7 @@
           }
           {name = "nvim_lua";}
           {name = "path";}
-          {name = "copilot";}
         ];
-
         formatting = {
           fields = ["abbr" "kind" "menu"];
           format =

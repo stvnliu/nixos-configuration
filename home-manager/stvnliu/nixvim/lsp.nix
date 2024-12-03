@@ -6,8 +6,8 @@
       enable = true;
       servers = {
         # For Python
-        #pylsp.enable = true;
-        pylyzer.enable = true;
+        pylsp.enable = true;
+        #pylyzer.enable = true;
         #ruff.enable = true;
         #ruff_lsp.enable = true;
 

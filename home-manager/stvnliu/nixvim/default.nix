@@ -4,6 +4,7 @@
     ./autosave.nix
     ./bufferline.nix
     ./cmp.nix
+    #./coq.nix
     ./git.nix
     ./ionide.nix
     ./lualine.nix
