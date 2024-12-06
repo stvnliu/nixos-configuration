@@ -1,7 +1,7 @@
 const hyprland = await Service.import("hyprland")
 
 const dispatch = ws => hyprland.messageAsync(`dispatch workspace ${ws}`);
-const wsSymbols = ["壹", "貳", "叁", "肆", "伍", "陸", "柒", "捌", "玖", "拾"]
+const wsSymbols = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
 const Workspaces = () => Widget.EventBox({
   onScrollUp: () => dispatch('+1'),
   onScrollDown: () => dispatch('-1'),

@@ -2,11 +2,11 @@
   imports = [
     ./auto-pairs.nix
     ./autosave.nix
-    ./bufferline.nix
+    #./bufferline.nix
     ./cmp.nix
     #./coq.nix
     ./git.nix
-    ./ionide.nix
+    #./ionide.nix
     ./lualine.nix
     ./lsp.nix
     ./none-ls.nix
