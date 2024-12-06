@@ -22,6 +22,7 @@
     GDK_SCALE = config.displayScale;
     FLAKE = config.myConfigLocation;
     MANPAGER = "nvim +Man!";
+    NVD_BACKEND = "direct";
     # GTK_IM_MODULE = lib.mkForce "";
   };
   services.pcscd.enable = true;
@@ -104,14 +105,24 @@
     kernelPackages = pkgs.linuxPackages_zen;
     supportedFilesystems = ["ntfs"];
   };
+  documentation = {
+    enable = true;
+    dev.enable = true;
+    doc.enable = true;
+    man.enable = true;
+  };
   security.polkit.enable = true;
   environment.systemPackages = with pkgs; [
+    man-pages-posix
+    man-pages
     (pass-wayland.withExtensions (exts: [exts.pass-otp exts.pass-import]))
     gparted
     zed-editor
     libsForQt5.qt5.qtquickcontrols2
     libsForQt5.qt5.qtgraphicaleffects
-    blender
+    (blender.override {
+      cudaSupport = true;
+    })
     trash-cli
     #inputs.hyprswitch.packages.x86_64-linux.default
   ];

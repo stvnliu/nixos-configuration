@@ -3,7 +3,7 @@
   config,
   ...
 }: let
-  globalOpacity = 1.0;
+  globalOpacity = 0.75;
 in {
   stylix = {
     enable = true;
