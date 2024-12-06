@@ -25,7 +25,6 @@
     NVD_BACKEND = "direct";
     # GTK_IM_MODULE = lib.mkForce "";
   };
-  services.pcscd.enable = true;
   services.keyd = {
     enable = true;
     keyboards = {
@@ -43,7 +42,7 @@
   };
   programs.gnupg.agent = {
     enable = true;
-    pinentryPackage = pkgs.pinentry-gtk2;
+    pinentryPackage = pkgs.pinentry-gnome3;
     enableSSHSupport = true;
   };
   programs.gamescope = {
@@ -136,6 +135,8 @@
     #  theme = "${import ./sddm-theme.nix {inherit pkgs;}}";
     #};
     #automatic-timezoned.enable = true;
+    pcscd.enable = true;
+
     openssh = {
       enable = true;
       settings = {
