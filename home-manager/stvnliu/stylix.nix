@@ -21,7 +21,7 @@ in {
       };
       sizes = {
         terminal = 24;
-        applications = 16;
+        applications = 12;
       };
     };
     cursor.size = 24;
