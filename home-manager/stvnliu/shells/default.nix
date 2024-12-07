@@ -10,6 +10,7 @@ in
     imports = [
       ./zsh.nix
       ./fish
+      ./nushell
       ./zoxide.nix
       ./direnv.nix
       ./starship
@@ -22,8 +23,9 @@ in
     config = {
       myShells = {
         zsh.enable = false;
-        fish.enable = true;
-        defaultShell = "fish";
+        fish.enable = false;
+        nushell.enable = true;
+        defaultShell = "${config.programs.nushell.package}/bin/nu";
         prompts.starship.enable = true;
       };
     };
