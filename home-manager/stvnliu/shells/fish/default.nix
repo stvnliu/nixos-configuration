@@ -19,7 +19,7 @@ in
           ${builtins.readFile ./init/tailscale.fish}
           ${builtins.readFile ./init/pass.fish}
           function fish_greeting
-            ${pkgs.fortune}/bin/fortune -a
+            ${(pkgs.fortune.override {withOffensive = true;})}/bin/fortune -as
           end
           funcsave -q fish_greeting
 

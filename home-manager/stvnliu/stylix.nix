@@ -19,7 +19,12 @@ in {
         name = config.desktopFontFullName;
         package = pkgs.nerd-fonts.jetbrains-mono;
       };
+      sizes = {
+        terminal = 24;
+        applications = 16;
+      };
     };
+    cursor.size = 24;
     opacity = {
       applications = globalOpacity;
       desktop = globalOpacity;
