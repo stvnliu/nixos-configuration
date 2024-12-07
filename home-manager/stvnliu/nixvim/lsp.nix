@@ -19,6 +19,8 @@
         fsautocomplete.enable = true;
         gopls.enable = true;
 
+        nushell.enable = true;
+
         # For Nix
         #nil_ls.enable = true;
         nixd = {
