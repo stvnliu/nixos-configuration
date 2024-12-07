@@ -11,7 +11,7 @@ in
     if [ $? != 0 ]; then
       # setting up session
       ${tmux}/bin/tmux new -s ${windowName} -d
-      ${tmux}/bin/tmux send-keys -t ${windowName} nvim C-m
+      ${tmux}/bin/tmux send-keys -t ${windowName} 'nvim' Enter
       ${tmux}/bin/tmux split-window -h
     fi
     ${tmux}/bin/tmux attach -t ${windowName}
