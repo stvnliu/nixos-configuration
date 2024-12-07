@@ -6,7 +6,7 @@
 }: {
   programs.tmux = {
     enable = true;
-    shell = "${pkgs.fish}/bin/fish";
+    shell = config.myShells.defaultShell;
     terminal = "screen-256color"; # Fix for apps not recognising full color
     mouse = true;
     plugins = with pkgs; [
