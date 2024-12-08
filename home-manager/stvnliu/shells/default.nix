@@ -23,9 +23,9 @@ in
     config = {
       myShells = {
         zsh.enable = false;
-        fish.enable = false;
-        nushell.enable = true;
-        defaultShell = "${config.programs.nushell.package}/bin/nu";
+        fish.enable = true;
+        #nushell.enable = true;
+        defaultShell = "${config.programs.fish.package}/bin/fish";
         prompts.starship.enable = true;
       };
     };

@@ -17,10 +17,10 @@ in {
       };
       monospace = {
         name = config.desktopFontFullName;
-        package = pkgs.nerd-fonts.jetbrains-mono;
+        package = pkgs.nerd-fonts.intone-mono;
       };
       sizes = {
-        terminal = 24;
+        terminal = 18;
         applications = 12;
       };
     };
