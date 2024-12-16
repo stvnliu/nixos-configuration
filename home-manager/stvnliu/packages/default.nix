@@ -10,5 +10,6 @@
     ./discord.nix
     ./wayland-utils.nix
     ./pentesting.nix
+    ./dev.nix
   ];
 }

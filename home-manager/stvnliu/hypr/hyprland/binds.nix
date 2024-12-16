@@ -1,6 +1,8 @@
 {
   config,
   pkgs,
+  lib,
+  ...
 }: let
   terminalCmd = "${pkgs.foot}/bin/footclient";
   screenshotLocation = "/home/${config.myUserName}/Screenshots/$(date '+%Y-%m-%d-%H-%M-%S').png";
@@ -21,13 +23,18 @@ in
     "$mod, Q, killactive"
     "$mod, D, exec, ${pkgs.fuzzel}/bin/fuzzel"
     "$mod, F, fullscreen"
-    "$mod, E, exec, ${pkgs.pcmanfm}/bin/pcmanfm"
+    "$mod, E, exec, ${config.defaultApplications.fileManager}"
     # foot terminal
     "$mod, Return, exec, ${terminalCmd} ${config.myShells.defaultShell}"
     "$mod SHIFT, Return, exec, [float] ${terminalCmd} ${config.myShells.defaultShell}"
 
     # cmdline utilities
-    "$mod, N, exec, [float] ${terminalCmd} ${pkgs.networkmanager}/bin/nmtui"
+    /*
+    NOTE Replaced by network manager applet
+     nmtui interface is no longer needed
+    TODO Fix floating window rule
+    */
+    # "$mod, N, exec, [float] ${terminalCmd} ${pkgs.networkmanager}/bin/nmtui"
     "$mod, M, exec, [float] ${terminalCmd} ${pkgs.zenith}/bin/zenith"
 
     # vimkeys navigation
@@ -36,6 +43,11 @@ in
     "$mod, K, movefocus, u"
     "$mod, L, movefocus, r"
   ]
+  ++ (
+    if config.services.swaync.enable
+    then ["$mod, N, exec, ${pkgs.swaynotificationcenter}/bin/swaync-client -t"]
+    else []
+  )
   ++ (
     # workspaces
     # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}

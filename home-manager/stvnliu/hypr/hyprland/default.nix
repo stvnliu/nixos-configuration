@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
   home.packages = with pkgs; [foot];
@@ -58,6 +59,7 @@
       };
       bind = import ./binds.nix {
         inherit config;
+        inherit lib;
         inherit pkgs;
       };
       bindm = [
