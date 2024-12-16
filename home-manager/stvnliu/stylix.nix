@@ -20,8 +20,8 @@ in {
         package = pkgs.nerd-fonts.intone-mono;
       };
       sizes = {
-        terminal = 18;
-        applications = 12;
+        terminal = 16;
+        applications = 14;
       };
     };
     cursor.size = 24;
