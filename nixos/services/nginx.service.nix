@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   services.nginx = {
     enable = true;
     virtualHosts."localhost" = {
@@ -11,10 +15,7 @@
           '';
         };
       };
-      listenAddresses = [
-        "127.0.0.1"
-        "[::1]"
-      ];
+      listenAddresses = ["127.0.0.1" "[::1]"];
     };
   };
   networking.firewall.allowedTCPPorts = [80];
