@@ -119,9 +119,11 @@
     zed-editor
     libsForQt5.qt5.qtquickcontrols2
     libsForQt5.qt5.qtgraphicaleffects
-    (blender.override {
+    /*
+      (blender.override {
       cudaSupport = true;
     })
+    */
     trash-cli
     #inputs.hyprswitch.packages.x86_64-linux.default
   ];
