@@ -9,7 +9,8 @@
     ./hypr
     ./shells
     ../../common/variables.nix
-    ./mako.nix
+    ./services
+    #./mako.nix DEPRECATED Changed to sway notification center
     ./wechat
     ./editors.nix
     ./gtk.nix
