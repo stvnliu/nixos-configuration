@@ -6,8 +6,8 @@
   gtk = {
     enable = true;
     iconTheme = {
-      package = pkgs.gruvbox-plus-icons;
-      name = "Gruvbox-Plus-Dark";
+      package = pkgs.adwaita-icon-theme;
+      name = "Adwaita";
     };
   };
   qt = {
@@ -15,5 +15,4 @@
     platformTheme.name = "gtk";
     style = {name = "Fusion";};
   };
-  home.packages = with pkgs; [libsForQt5.breeze-qt5];
 }
