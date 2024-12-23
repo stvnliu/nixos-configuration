@@ -87,59 +87,18 @@ in {
             fi
           }'';
         extraEntries = ''
-          ### BEGIN /etc/grub.d/10_linux ###
-          menuentry 'Arch Linux' --class arch --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-simple-996df93f-0794-450a-9315-38f188e85878' {
-          	load_video
-          	set gfxpayload=keep
-          	insmod gzio
-          	insmod part_gpt
-          	insmod fat
-          	search --no-floppy --fs-uuid --set=root 2E4F-3060
-          	echo	'Loading Linux linux ...'
-          	linux	/vmlinuz-linux root=UUID=996df93f-0794-450a-9315-38f188e85878 rw  loglevel=3 quiet
-          	echo	'Loading initial ramdisk ...'
-          	initrd	/amd-ucode.img /initramfs-linux.img
-          }
-          submenu 'Advanced options for Arch Linux' $menuentry_id_option 'gnulinux-advanced-996df93f-0794-450a-9315-38f188e85878' {
-          	menuentry 'Arch Linux, with Linux linux' --class arch --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-linux-advanced-996df93f-0794-450a-9315-38f188e85878' {
-          		load_video
-          		set gfxpayload=keep
-          		insmod gzio
-          		insmod part_gpt
-          		insmod fat
-          		search --no-floppy --fs-uuid --set=root 2E4F-3060
-          		echo	'Loading Linux linux ...'
-          		linux	/vmlinuz-linux root=UUID=996df93f-0794-450a-9315-38f188e85878 rw  loglevel=3 quiet
-          		echo	'Loading initial ramdisk ...'
-          		initrd	/amd-ucode.img /initramfs-linux.img
-          	}
-          	menuentry 'Arch Linux, with Linux linux (fallback initramfs)' --class arch --class gnu-linux --class gnu --class os $menuentry_id_option 'gnulinux-linux-fallback-996df93f-0794-450a-9315-38f188e85878' {
-          		load_video
-          		set gfxpayload=keep
-          		insmod gzio
-          		insmod part_gpt
-          		insmod fat
-          		search --no-floppy --fs-uuid --set=root 2E4F-3060
-          		echo	'Loading Linux linux ...'
-          		linux	/vmlinuz-linux root=UUID=996df93f-0794-450a-9315-38f188e85878 rw  loglevel=3 quiet
-          		echo	'Loading initial ramdisk ...'
-          		initrd	/amd-ucode.img /initramfs-linux-fallback.img
-          	}
-          }
 
-          ### END /etc/grub.d/10_linux ###
-
-                    menuentry "UEFI Firmware Settings" {
-                      fwsetup
-                    }
-                    menuentry "Reboot" {
-                    	reboot
-                    }
-                    menuentry "Poweroff" {
-                    	halt
-                    }
+          menuentry "UEFI Firmware Settings" {
+            fwsetup
+          }
+          menuentry "Reboot" {
+            reboot
+          }
+          menuentry "Poweroff" {
+            halt
+          }
         '';
-        #useOSProber = true;
+        useOSProber = true;
         configurationLimit = 10;
         fontSize = 32;
         theme = xenlism-grub-themes;
