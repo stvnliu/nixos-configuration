@@ -9,7 +9,7 @@
       inherit pkgs;
       inherit config;
     })
-    (import ./git_check_clean.script.nix {
+    (import ./git-check.script.nix {
       inherit pkgs;
       inherit config;
     })
