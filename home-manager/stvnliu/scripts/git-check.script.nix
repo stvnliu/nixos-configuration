@@ -3,6 +3,8 @@
   config,
 }: let
   git = config.programs.git.package;
+  # checks for any Git repositories with uncommitted changes
+  # used because I am too lazy
 in
   pkgs.writeShellScriptBin "git-check" ''
         #!${pkgs.bash}/bin/bash
