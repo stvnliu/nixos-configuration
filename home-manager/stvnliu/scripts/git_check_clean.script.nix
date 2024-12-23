@@ -5,8 +5,8 @@
   git = config.programs.git.package;
 in
   pkgs.writeShellScriptBin "git-check-clean" ''
-    #!${pkgs.bash}/bin/bash
-    cd_err() {
+        #!${pkgs.bash}/bin/bash
+        cd_err() {
       echo "change-directory occurred error. interrupting..."
     }
     git_check() {
@@ -17,8 +17,10 @@ in
         echo "Could not parse filter string"
         return
       fi
+      #echo "Checking git-cleanliness at $repo_dir, working in $PWD"
       cd "$repo_dir" || return
       inside_git_repo="$(${git}/bin/git rev-parse --is-inside-work-tree 2>/dev/null)"
+      result=256
       if [ "$inside_git_repo" ]; then
         if [ "$(${git}/bin/git status --porcelain)" ]; then
           result=0
@@ -30,6 +32,10 @@ in
       if [ "$filter" = "dirty" ]; then
         if [[ $result -eq 0 ]]; then
           echo "DIRTY $PWD"
+          read -rp "Enter dirty directory? [y/N] " userinput
+          if [[ "$userinput" = "y" ]]; then
+            $SHELL
+          fi
         fi
       else
         if [[ $result -eq 1 ]]; then
@@ -39,10 +45,8 @@ in
       #echo "going back to $prev"
       cd "$prev" || return
     }
-    export -f git_check
-    export -f cd_err
     path=$PWD
-    for item in $(${pkgs.findutils}/bin/find . -maxdepth 1 -type d); do
+    for item in $(find . -maxdepth 1 -type d); do
       git_check "$path" "$item" "$1"
     done
   ''
