@@ -192,6 +192,12 @@
       packages = with pkgs; [nh];
       extraGroups = ["wheel" "input" "networkmanager"];
     };
+    "xi_jinping" = {
+      initialPassword = "bingchilling";
+      isNormalUser = true;
+      packages = with pkgs; [git];
+      extraGroups = ["input"];
+    };
   };
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.05";

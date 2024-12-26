@@ -10,7 +10,9 @@
     enable = true;
     # The hyprland package to use
     package = pkgs.hyprland;
-    plugins = with pkgs.hyprlandPlugins; [hyprfocus];
+    plugins = with pkgs.hyprlandPlugins; [
+      # hyprfocus
+    ];
     # Whether to enable XWayland
     xwayland.enable = true;
     settings = {
