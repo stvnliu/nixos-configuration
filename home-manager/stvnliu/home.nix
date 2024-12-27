@@ -18,6 +18,7 @@
     ./xdg.nix
     ./stylix.nix
     ./spicetify.nix
+    ./emails.nix
     ./scripts
     ./programs
     ./packages
