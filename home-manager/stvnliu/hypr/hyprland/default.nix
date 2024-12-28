@@ -1,10 +1,14 @@
 {
+  inputs,
   config,
   pkgs,
   lib,
   ...
 }: {
-  home.packages = with pkgs; [foot];
+  home.packages = [
+    inputs.hyprland-qtutils.packages.x86_64-linux.default
+    pkgs.foot
+  ];
   wayland.windowManager.hyprland = {
     # Whether to enable Hyprland wayland compositor
     enable = true;
@@ -12,6 +16,7 @@
     package = pkgs.hyprland;
     plugins = with pkgs.hyprlandPlugins; [
       # hyprfocus
+      # hycov
     ];
     # Whether to enable XWayland
     xwayland.enable = true;
@@ -45,8 +50,8 @@
         config.myAutostartCommands
         ++ [
           # future hyprland-specific exec commands
-          "${config.programs.firefox.package}/bin/firefox"
-          "${pkgs.thunderbird}/bin/thunderbird"
+          #"${config.programs.firefox.package}/bin/firefox"
+          #"${pkgs.thunderbird}/bin/thunderbird"
         ];
       misc = {
         disable_hyprland_logo = true;

@@ -27,6 +27,7 @@
       url = "github:Gerg-L/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland-qtutils.url = "github:hyprwm/hyprland-qtutils";
   };
 
   outputs = {
@@ -62,8 +63,8 @@
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [
           ./home-manager/${stevenUserName}/home.nix
-          inputs.nixvim.homeManagerModules.nixvim
           stylix.homeManagerModules.stylix
+          inputs.nixvim.homeManagerModules.nixvim
           spicetify-nix.homeManagerModules.default
         ];
       };
