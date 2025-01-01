@@ -7,8 +7,8 @@
   # used because I am too lazy
 in
   pkgs.writeShellScriptBin "git-check" ''
-        #!${pkgs.bash}/bin/bash
-        cd_err() {
+    #!${pkgs.bash}/bin/bash
+    cd_err() {
       echo "change-directory occurred error. interrupting..."
     }
     git_check() {
