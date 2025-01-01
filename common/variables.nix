@@ -10,7 +10,11 @@ in {
   # Type definitions for nix variables used in this configuration
   options = with lib;
   with types; {
-    defaultApplications = {fileManager = mkOption {type = str;};};
+    defaultApplications = {
+      fileManager = mkOption {type = str;};
+      appLauncher = mkOption {type = str;};
+      terminal = mkOption {type = str;};
+    };
     myWallPaperPath = mkOption {type = path;};
     myUserName = mkOption {type = str;};
     myHostName = mkOption {type = str;};
@@ -45,6 +49,10 @@ in {
       "${pkgs.pa-notify}/bin/pa-notify"
       "${pkgs.networkmanagerapplet}/bin/nm-applet"
     ];
-    defaultApplications.fileManager = "${pkgs.nemo}/bin/nemo";
+    defaultApplications = {
+      terminal = "${pkgs.foot}/bin/footclient";
+      fileManager = "${pkgs.nemo}/bin/nemo";
+      appLauncher = "${pkgs.walker}/bin/walker";
+    };
   };
 }

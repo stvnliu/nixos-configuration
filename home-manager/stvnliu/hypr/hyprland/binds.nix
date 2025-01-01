@@ -1,11 +1,9 @@
 {
   config,
   pkgs,
-  lib,
   ...
 }: let
-  terminalCmd = "${pkgs.foot}/bin/footclient";
-  appLauncherCmd = "${pkgs.walker}/bin/walker";
+  terminalCmd = config.defaultApplications.terminal;
   screenshotLocation = "/home/${config.myUserName}/Screenshots/$(date '+%Y-%m-%d-%H-%M-%S').png";
 in
   [
@@ -22,7 +20,7 @@ in
     # keysyms for util functions
     # Example volume button that allows press and hold, volume limited to 150%
     "$mod, Q, killactive"
-    "$mod, D, exec, ${appLauncherCmd}"
+    "$mod, D, exec, ${config.defaultApplications.appLauncher}"
     "$mod, F, fullscreen"
     "$mod, E, exec, ${config.defaultApplications.fileManager}"
     # foot terminal
