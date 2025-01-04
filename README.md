@@ -13,7 +13,6 @@ This configuration is dependent on flakes being enabled in the system building t
 
 ### Build script 
 Build the default version of this configuration.
-Switches on the next boot.
 ```
 wget https://raw.githubusercontent.com/stvnliu/nixos-configuration/refs/heads/main/deploy.sh 
 chmod +x ./deploy.sh
@@ -21,6 +20,7 @@ chmod +x ./deploy.sh
 ```
 
 or manually:
+
 ```
 git clone <repo_url> <path_to_config>
 sudo nixos-rebuild --flake <path_to_config>#<your_hostname> boot
