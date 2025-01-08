@@ -1,7 +1,4 @@
-{ config
-, lib
-, pkgs
-, ...
+{ ...
 }: {
   networking.extraHosts = ''
     # home IP mapping

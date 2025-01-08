@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, lib, ... }: {
+{ inputs, config, pkgs, ... }: {
   home.packages =
     [ inputs.hyprland-qtutils.packages.x86_64-linux.default pkgs.foot ];
   wayland.windowManager.hyprland = {
@@ -40,7 +40,6 @@
         accel_profile = "flat";
       };
       exec-once = config.myAutostartCommands ++ import ./hypr_autostart.nix {
-        inherit pkgs;
         inherit config;
       };
       misc = {
@@ -51,12 +50,10 @@
       };
       "$mod" = "SUPER";
       binde = import ./xf86_binds.nix {
-        inherit config;
         inherit pkgs;
       };
       bind = import ./binds.nix {
         inherit config;
-        inherit lib;
         inherit pkgs;
       };
       bindm = [

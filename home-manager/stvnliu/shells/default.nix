@@ -1,11 +1,7 @@
-{ pkgs
-, lib
+{ lib
 , config
 , ...
 }:
-let
-  cfg = config.myShells;
-in
 with lib; {
   imports = [
     ./zsh.nix

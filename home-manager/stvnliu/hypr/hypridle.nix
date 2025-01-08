@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 let
   timeoutSeconds = 600;
 in

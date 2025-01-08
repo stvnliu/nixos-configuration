@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ ... }: {
   imports = [
     ./auto-pairs.nix
     ./autosave.nix

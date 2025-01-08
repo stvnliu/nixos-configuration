@@ -3,9 +3,6 @@
 , config
 , ...
 }:
-let
-  cfg = config.shell.zsh;
-in
 with lib; {
   options.myShells.zsh = {
     enable = mkEnableOption "Enables zsh and components.";
