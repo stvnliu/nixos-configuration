@@ -65,7 +65,7 @@
     };
     # Optional
     # Whether to enable hyprland-session.target on hyprland startup
-    systemd = { enable = true; };
+    systemd = { enable = false; }; # set to false due to UWSM
   };
   # ...
 }

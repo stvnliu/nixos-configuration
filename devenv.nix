@@ -24,11 +24,15 @@
   scripts.hello.exec = ''
     echo hello from $GREET
   '';
+  scripts.about.exec = ''
+    ${pkgs.glow}/bin/glow -p ./README.md
+    less ./LICENSE
+  '';
 
   enterShell = ''
     hello
     git --version
-    alejandra --version
+    nixpkgs-fmt --version
   '';
 
   # https://devenv.sh/tests/

@@ -86,7 +86,10 @@
     serviceConfig.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
   };
   programs = {
-    hyprland.enable = true; # enables Hyprland DM.
+    hyprland = {
+      enable = true; # enables Hyprland DM.
+      withUWSM = true; # NEW Universal Wayland Session Manager
+    };
     steam = {
       enable = true;
       remotePlay.openFirewall =
