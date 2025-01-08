@@ -1,31 +1,33 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: let
+{ config
+, pkgs
+, lib
+, ...
+}:
+let
   monitorMaxBrightness = "255";
   monitorMinBrightness = "32";
-in {
+in
+{
   # Type definitions for nix variables used in this configuration
   options = with lib;
-  with types; {
-    defaultApplications = {
-      fileManager = mkOption {type = str;};
-      appLauncher = mkOption {type = str;};
-      terminal = mkOption {type = str;};
+    with types; {
+      usingMusicPlayerDaemon = mkOption { type = bool; };
+      defaultApplications = {
+        fileManager = mkOption { type = str; };
+        appLauncher = mkOption { type = str; };
+        terminal = mkOption { type = str; };
+      };
+      myWallPaperPath = mkOption { type = path; };
+      myUserName = mkOption { type = str; };
+      myHostName = mkOption { type = str; };
+      myWallPaperPathString = mkOption { type = str; };
+      myDisplayName = mkOption { type = str; };
+      myEmail = mkOption { type = str; };
+      displayScale = mkOption { type = int; };
+      myAutostartCommands = mkOption { type = listOf str; };
+      myConfigLocation = mkOption { type = str; };
+      desktopFontFullName = mkOption { type = str; };
     };
-    myWallPaperPath = mkOption {type = path;};
-    myUserName = mkOption {type = str;};
-    myHostName = mkOption {type = str;};
-    myWallPaperPathString = mkOption {type = str;};
-    myDisplayName = mkOption {type = str;};
-    myEmail = mkOption {type = str;};
-    displayScale = mkOption {type = int;};
-    myAutostartCommands = mkOption {type = listOf str;};
-    myConfigLocation = mkOption {type = str;};
-    desktopFontFullName = mkOption {type = str;};
-  };
 
   # Default values for this configuration
   config = rec {
@@ -37,7 +39,7 @@ in {
     myDisplayName = "Zhongheng Liu";
     myEmail = "z.liu@outlook.com.gr";
     specialisation."powersave".configuration = {
-      myAutostartCommands = ["${pkgs.brightnessctl}/bin/brightnessctl s ${monitorMinBrightness}"];
+      myAutostartCommands = [ "${pkgs.brightnessctl}/bin/brightnessctl s ${monitorMinBrightness}" ];
     };
     myConfigLocation = "/home/${myUserName}/nix-conf";
     desktopFontFullName = "IntoneMono NFM:style=Regular";
@@ -54,5 +56,6 @@ in {
       fileManager = "${pkgs.nemo}/bin/nemo";
       appLauncher = "${pkgs.walker}/bin/walker";
     };
+    usingMusicPlayerDaemon = true;
   };
 }

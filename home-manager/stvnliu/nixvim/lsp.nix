@@ -1,4 +1,4 @@
-{...}: {
+{ ... }: {
   plugins = {
     lsp-signature.enable = true;
     lsp-status.enable = true;

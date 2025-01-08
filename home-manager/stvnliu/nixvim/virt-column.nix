@@ -1,7 +1,7 @@
 {
   plugins.virt-column = {
     enable = true;
-    settings.char = ["┃"];
+    settings.char = [ "┃" ];
     settings.virtcolumn = "80";
   };
 }

@@ -1,6 +1,7 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   xdg = {
     enable = true;
+    userDirs.enable = true;
     mimeApps = {
       enable = true;
       defaultApplications = {

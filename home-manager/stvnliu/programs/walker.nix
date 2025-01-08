@@ -1,7 +1,6 @@
-{
-  pkgs,
-  config,
-  ...
+{ pkgs
+, config
+, ...
 }: {
   programs.walker = {
     enable = true;
@@ -10,7 +9,7 @@
     # All options from the config.json can be used here.
     config = {
       search.placeholder = "Example";
-      list = {height = 200;};
+      list = { height = 200; };
       websearch.prefix = "?";
       switcher.prefix = "/";
     };

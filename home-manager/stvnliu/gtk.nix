@@ -1,7 +1,6 @@
-{
-  pkgs,
-  config,
-  ...
+{ pkgs
+, config
+, ...
 }: {
   gtk = {
     enable = true;
@@ -13,6 +12,6 @@
   qt = {
     enable = true;
     platformTheme.name = "gtk";
-    style = {name = "Fusion";};
+    style = { name = "Fusion"; };
   };
 }

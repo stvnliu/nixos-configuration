@@ -1,9 +1,8 @@
-{
-  inputs,
-  lib,
-  config,
-  pkgs,
-  ...
+{ inputs
+, lib
+, config
+, pkgs
+, ...
 }: {
   imports = [
     ./hypr
@@ -28,7 +27,7 @@
     overlays = [
       (final: prev: {
         ags = prev.ags.overrideAttrs (old: {
-          buildInputs = old.buildInputs ++ [pkgs.libdbusmenu-gtk3];
+          buildInputs = old.buildInputs ++ [ pkgs.libdbusmenu-gtk3 ];
         });
       })
     ];
@@ -51,7 +50,7 @@
     username = "${config.myUserName}";
     homeDirectory = "/home/${config.myUserName}";
     # copy wallpaper from assets
-    file = {"wallpaper.jpg".source = config.myWallPaperPath;};
+    file = { "wallpaper.jpg".source = config.myWallPaperPath; };
   };
   home.packages = with pkgs; [
     prismlauncher
@@ -69,6 +68,7 @@
     teams-for-linux
     sxiv
     heroic
+    vscodium-fhs
   ];
   myAutostartCommands = [
     #"${pkgs.clash-verge-rev}/bin/clash-verge"
@@ -77,7 +77,7 @@
   programs = {
     obs-studio = {
       enable = true;
-      plugins = with pkgs.obs-studio-plugins; [wlrobs input-overlay];
+      plugins = with pkgs.obs-studio-plugins; [ wlrobs input-overlay ];
     };
     home-manager.enable = true;
     firefox = {
@@ -96,7 +96,7 @@
     };
     thunderbird = {
       enable = true;
-      profiles.default = {isDefault = true;};
+      profiles.default = { isDefault = true; };
     };
   };
   # Nicely reload system units when changing configs

@@ -1,6 +1,6 @@
-{
-  pkgs,
-  config,
+{ pkgs
+, config
+,
 }: [
   ", XF86AudioPlay, exec, ${pkgs.playerctl}/bin/playerctl play-pause"
   ", XF86AudioStop, exec, ${pkgs.playerctl}/bin/playerctl stop"

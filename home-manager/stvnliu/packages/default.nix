@@ -1,8 +1,7 @@
-{
-  pkgs,
-  config,
-  lib,
-  ...
+{ pkgs
+, config
+, lib
+, ...
 }: {
   imports = [
     ./util-programs.nix
@@ -11,5 +10,6 @@
     ./wayland-utils.nix
     ./pentesting.nix
     ./dev.nix
+    ./gaming.nix
   ];
 }
