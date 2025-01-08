@@ -1,4 +1,4 @@
-{...}: {
+{ ... }: {
   imports = [
     ./nginx.service.nix
     ./pipewire.service.nix
@@ -10,5 +10,6 @@
     ./power_management.service.nix
     ./seatd.service.nix
     ./logind.service.nix
+    #./mpd.service.nix
   ];
 }

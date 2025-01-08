@@ -1,8 +1,8 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+{ config
+, pkgs
+, ...
+}:
+let
   distro-grub-themes = pkgs.stdenv.mkDerivation {
     pname = "distro-grub-themes";
     version = "3.1";
@@ -25,8 +25,9 @@
     };
     installPhase = "cp -r xenlism-grub-1080p-nixos/Xenlism-Nixos $out";
   };
-in {
-  environment.systemPackages = with pkgs; [hack-font];
+in
+{
+  environment.systemPackages = with pkgs; [ hack-font ];
   #fileSystems."/mnt/winsys" = {
   #	device = "/dev/nvme0n1p5";
   #	fsType = "ntfs-3g";
@@ -43,7 +44,7 @@ in {
       theme = "rings";
       themePackages = with pkgs; [
         # By default we would install all themes
-        (adi1090x-plymouth-themes.override {selected_themes = ["rings"];})
+        (adi1090x-plymouth-themes.override { selected_themes = [ "rings" ]; })
       ];
     };
 
@@ -62,16 +63,16 @@ in {
     # Hide the OS choice for bootloaders.
     # It's still possible to open the bootloader list by pressing any key
     # It will just not appear on screen unless a key is pressed
-    supportedFilesystems = ["ntfs"];
+    supportedFilesystems = [ "ntfs" ];
     loader = {
       #timeout = 0;
-      efi = {canTouchEfiVariables = true;};
+      efi = { canTouchEfiVariables = true; };
       grub = {
         enable = true;
         efiSupport = true;
         device = "nodev";
         fsIdentifier = "label";
-        devices = ["nodev"];
+        devices = [ "nodev" ];
         extraConfig = ''
           function load_video {
             if [ x$feature_all_video_module = xy ]; then

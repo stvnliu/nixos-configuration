@@ -1,11 +1,12 @@
-{
-  pkgs,
-  config,
-  lib,
-  ...
-}: let
+{ pkgs
+, config
+, lib
+, ...
+}:
+let
   tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
-in {
+in
+{
   services.greetd = {
     enable = true;
     settings = {

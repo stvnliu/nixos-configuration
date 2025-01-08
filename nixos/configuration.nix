@@ -1,16 +1,14 @@
 # This is your system's configuration file.
 # Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
-{
-  inputs,
-  lib,
-  config,
-  pkgs,
-  ...
+{ inputs
+, lib
+, config
+, pkgs
+, ...
 }: {
   imports = [
     ../common/variables.nix
     ./greetd.nix
-    #./ly.nix
     ./bootloader.nix
     ./nvidia.nix
     ./fonts.nix
@@ -23,13 +21,14 @@
     FLAKE = config.myConfigLocation;
     MANPAGER = "nvim +Man!";
     NVD_BACKEND = "direct";
+    NIXOS_OZONE_WL = "1";
     # GTK_IM_MODULE = lib.mkForce "";
   };
   services.keyd = {
     enable = true;
     keyboards = {
       default = {
-        ids = ["*"];
+        ids = [ "*" ];
         settings = {
           main = {
             capslock = "overload(control, esc)";
@@ -49,7 +48,7 @@
     enable = true;
     capSysNice = true;
   };
-  security.pam.services.hyprlock = {};
+  security.pam.services.hyprlock = { };
   i18n.inputMethod = {
     type = "fcitx5";
     enable = true;
@@ -65,7 +64,7 @@
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
-    settings = {General = {Disable = "Handsfree,Headset";};};
+    settings = { General = { Disable = "Handsfree,Headset"; }; };
   };
   specialisation = {
     in-china.configuration = {
@@ -77,13 +76,13 @@
   };
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [xdg-desktop-portal-gtk];
-    config = {common.default = ["gtk"];};
+    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+    config = { common.default = [ "gtk" ]; };
   };
   systemd.user.services.mpris-proxy = {
     description = "Mpris proxy";
-    after = ["network.target" "sound.target"];
-    wantedBy = ["default.target"];
+    after = [ "network.target" "sound.target" ];
+    wantedBy = [ "default.target" ];
     serviceConfig.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
   };
   programs = {
@@ -96,13 +95,13 @@
         true; # Open ports in the firewall for Source Dedicated Server
       localNetworkGameTransfers.openFirewall =
         true; # Open ports in the firewall for Steam Local Network Game Transfers
-      extraCompatPackages = with pkgs; [proton-ge-bin];
+      extraCompatPackages = with pkgs; [ proton-ge-bin ];
     };
     gamemode.enable = true;
   };
   boot = {
     kernelPackages = pkgs.linuxPackages_zen;
-    supportedFilesystems = ["ntfs"];
+    supportedFilesystems = [ "ntfs" ];
   };
   documentation = {
     enable = true;
@@ -114,7 +113,7 @@
   environment.systemPackages = with pkgs; [
     man-pages-posix
     man-pages
-    (pass-wayland.withExtensions (exts: [exts.pass-otp exts.pass-import]))
+    (pass-wayland.withExtensions (exts: [ exts.pass-otp exts.pass-import ]))
     gparted
     zed-editor
     libsForQt5.qt5.qtquickcontrols2
@@ -122,7 +121,7 @@
     /*
       (blender.override {
       cudaSupport = true;
-    })
+      })
     */
     trash-cli
     #inputs.hyprswitch.packages.x86_64-linux.default
@@ -154,28 +153,30 @@
   #	wrapperFeatures.gtk = true;
   #};
   nixpkgs = {
-    overlays = [];
+    overlays = [ ];
     config = {
       allowUnfree = true;
-      permittedInsecurePackages = ["dotnet-core-combined"];
+      permittedInsecurePackages = [ "dotnet-core-combined" ];
     };
   };
 
-  nix = let
-    flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
-  in {
-    settings = {
-      experimental-features = "nix-command flakes";
-      # flake-registry = "";
-      nix-path = config.nix.nixPath;
+  nix =
+    let
+      flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
+    in
+    {
+      settings = {
+        experimental-features = "nix-command flakes";
+        # flake-registry = "";
+        nix-path = config.nix.nixPath;
+      };
+      extraOptions = ''
+        trusted-users = root stvnliu
+      '';
+      channel.enable = false;
+      registry = lib.mapAttrs (_: flake: { inherit flake; }) flakeInputs;
+      nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
     };
-    extraOptions = ''
-      trusted-users = root stvnliu
-    '';
-    channel.enable = false;
-    registry = lib.mapAttrs (_: flake: {inherit flake;}) flakeInputs;
-    nixPath = lib.mapAttrsToList (n: _: "${n}=flake:${n}") flakeInputs;
-  };
 
   systemd.network.wait-online.enable = false;
   networking = {
@@ -188,15 +189,15 @@
     "${config.myUserName}" = {
       initialPassword = "stevenpassword";
       isNormalUser = true;
-      openssh.authorizedKeys.keys = [];
-      packages = with pkgs; [nh];
-      extraGroups = ["wheel" "input" "networkmanager"];
+      openssh.authorizedKeys.keys = [ ];
+      packages = with pkgs; [ nh ];
+      extraGroups = [ "wheel" "input" "networkmanager" ];
     };
     "xi_jinping" = {
       initialPassword = "bingchilling";
       isNormalUser = true;
-      packages = with pkgs; [git];
-      extraGroups = ["input"];
+      packages = with pkgs; [ git ];
+      extraGroups = [ "input" ];
     };
   };
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

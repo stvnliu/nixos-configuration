@@ -1,7 +1,6 @@
-{
-  pkgs,
-  config,
-  ...
+{ pkgs
+, config
+, ...
 }: {
   services.nginx = {
     enable = true;
@@ -15,8 +14,8 @@
           '';
         };
       };
-      listenAddresses = ["127.0.0.1" "[::1]"];
+      listenAddresses = [ "127.0.0.1" "[::1]" ];
     };
   };
-  networking.firewall.allowedTCPPorts = [80];
+  networking.firewall.allowedTCPPorts = [ 80 ];
 }

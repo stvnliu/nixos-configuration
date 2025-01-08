@@ -1,6 +1,6 @@
-{...}: {
+{ ... }: {
   services.printing = {
     enable = true;
-    drivers = [];
+    drivers = [ ];
   };
 }
