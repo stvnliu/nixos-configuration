@@ -13,7 +13,6 @@
     ./ags
     ./xdg.nix
     ./stylix.nix
-    ./spicetify.nix
     ./scripts
     ./programs
     ./packages
