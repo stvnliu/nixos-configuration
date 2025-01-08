@@ -1,6 +1,4 @@
-{ inputs
-, lib
-, config
+{ config
 , pkgs
 , ...
 }: {
@@ -9,7 +7,6 @@
     ./shells
     ../../common/variables.nix
     ./services
-    #./mako.nix DEPRECATED Changed to sway notification center
     ./wechat
     ./editors.nix
     ./gtk.nix
@@ -25,7 +22,7 @@
   nixpkgs = {
     # You can add overlays here
     overlays = [
-      (final: prev: {
+      (_final: prev: {
         ags = prev.ags.overrideAttrs (old: {
           buildInputs = old.buildInputs ++ [ pkgs.libdbusmenu-gtk3 ];
         });
@@ -84,7 +81,7 @@
       enable = true;
       package = with pkgs; (firefox-devedition.override {
         nativeMessagingHosts = [
-          (passff-host.overrideAttrs (old: {
+          (passff-host.overrideAttrs (_old: {
             dontStrip = true;
             patchPhase = ''
               sed -i 's#COMMAND = "pass"#COMMAND = "${

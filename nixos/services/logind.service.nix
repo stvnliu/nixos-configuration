@@ -1,7 +1,4 @@
-{ pkgs
-, config
-, lib
-, ...
+{ ...
 }: {
   services.logind.extraConfig = ''
     # don't shutdown in short press

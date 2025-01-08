@@ -1,6 +1,4 @@
-{ pkgs
-, lib
-, ...
+{ ...
 }:
 let
   defaultTimeoutMillis = 5 * 1000;

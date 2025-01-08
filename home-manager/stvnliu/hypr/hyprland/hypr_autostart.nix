@@ -1,4 +1,4 @@
-{ pkgs, config }:
+{ config }:
 let
   term = config.defaultApplications.terminal;
   shell = config.myShells.defaultShell;

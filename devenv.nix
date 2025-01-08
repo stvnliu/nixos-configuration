@@ -1,4 +1,4 @@
-{ pkgs, lib, config, inputs, ... }: {
+{ pkgs, ... }: {
   # https://devenv.sh/basics/
   env.GREET = "devenv";
   cachix.enable = false;
@@ -12,6 +12,7 @@
     nixpkgs-fmt.enable = true;
     shellcheck.enable = true;
     commitizen.enable = true;
+    deadnix.enable = true;
   };
   # https://devenv.sh/processes/
   # processes.cargo-watch.exec = "cargo-watch";

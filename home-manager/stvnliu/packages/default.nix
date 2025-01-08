@@ -1,7 +1,4 @@
-{ pkgs
-, config
-, lib
-, ...
+{ ...
 }: {
   imports = [
     ./util-programs.nix
