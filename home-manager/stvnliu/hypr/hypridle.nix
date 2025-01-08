@@ -1,6 +1,8 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   timeoutSeconds = 600;
-in {
+in
+{
   services.hypridle = {
     enable = true;
     settings = {

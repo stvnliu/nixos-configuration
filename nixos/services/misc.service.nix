@@ -1,4 +1,4 @@
-{...}: {
+{ ... }: {
   specialisation.powersave.configuration = {
     services.auto-cpufreq.enable = true;
   };

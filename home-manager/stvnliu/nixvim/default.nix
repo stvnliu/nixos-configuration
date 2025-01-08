@@ -1,4 +1,4 @@
-{config, ...}: {
+{ config, ... }: {
   imports = [
     ./auto-pairs.nix
     ./autosave.nix
@@ -26,7 +26,7 @@
   enableMan = true;
   defaultEditor = true;
   globals.mapleader = " ";
-  colorschemes.gruvbox = {enable = true;};
+  colorschemes.gruvbox = { enable = true; };
   keymaps =
     [
       # Global

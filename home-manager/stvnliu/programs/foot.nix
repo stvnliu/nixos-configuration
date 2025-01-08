@@ -1,8 +1,7 @@
-{
-  pkgs,
-  config,
-  lib,
-  ...
+{ pkgs
+, config
+, lib
+, ...
 }: {
   programs.foot = {
     enable = true;
@@ -11,7 +10,7 @@
         term = "xterm-256color";
         dpi-aware = lib.mkForce "yes";
       };
-      mouse = {hide-when-typing = "yes";};
+      mouse = { hide-when-typing = "yes"; };
     };
     server.enable = true;
   };

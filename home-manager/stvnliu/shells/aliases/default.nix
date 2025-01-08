@@ -1,4 +1,4 @@
-{pkgs}: {
+{ pkgs }: {
   gil = "${pkgs.lazygit}/bin/lazygit";
   cd = "z";
   cdi = "zi";

@@ -1,10 +1,11 @@
-{
-  pkgs,
-  config,
-  ...
-}: let
+{ pkgs
+, config
+, ...
+}:
+let
   globalOpacity = 0.75;
-in {
+in
+{
   stylix = {
     enable = true;
     autoEnable = true;

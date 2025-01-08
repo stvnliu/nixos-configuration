@@ -1,21 +1,15 @@
-{
-  pkgs,
-  lib,
-  config,
-  inputs,
-  ...
-}: {
+{ pkgs, lib, config, inputs, ... }: {
   # https://devenv.sh/basics/
   env.GREET = "devenv";
   cachix.enable = false;
   # https://devenv.sh/packages/
-  packages = [pkgs.git];
+  packages = [ pkgs.git ];
 
   # https://devenv.sh/languages/
   # languages.rust.enable = true;
   languages.nix.enable = true;
   pre-commit.hooks = {
-    alejandra.enable = true;
+    nixpkgs-fmt.enable = true;
     shellcheck.enable = true;
     commitizen.enable = true;
   };
@@ -38,9 +32,7 @@
 
   # https://devenv.sh/tests/
   enterTest =
-    /*
-    shell
-    */
+    # shell
     ''
       echo "Running tests"
       git --version | grep --color=auto "${pkgs.git.version}"

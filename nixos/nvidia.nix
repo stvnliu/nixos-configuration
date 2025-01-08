@@ -1,8 +1,7 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }: {
   specialisation = {
     powersave.configuration = {
@@ -15,14 +14,14 @@
       };
     };
   };
-  boot.kernelModules = ["nvidia_uvm"];
+  boot.kernelModules = [ "nvidia_uvm" ];
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
       libvdpau-va-gl
     ];
   };
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     dynamicBoost.enable = true;
     prime = {

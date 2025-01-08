@@ -3,28 +3,28 @@
   plugins = {
     luasnip.enable = true;
     /*
-    copilot-lua = {
+      copilot-lua = {
       enable = true;
       suggestion.enabled = false;
       panel.enabled = false;
-    };
+      };
     */
     cmp = {
       enable = true;
       settings = {
         autoEnableSources = true;
-        experimental = {ghost_text = false;};
+        experimental = { ghost_text = false; };
         performance = {
           debounce = 60;
           fetchingTimeout = 200;
           maxViewEntries = 30;
         };
-        snippet = {expand = "luasnip";};
-        cmp-buffer = {enable = true;};
-        cmp-emoji = {enable = true;};
-        cmp-nvim-lsp = {enable = true;};
-        cmp-path = {enable = true;};
-        cmp_luasnip = {enable = true;};
+        snippet = { expand = "luasnip"; };
+        cmp-buffer = { enable = true; };
+        cmp-emoji = { enable = true; };
+        cmp-nvim-lsp = { enable = true; };
+        cmp-path = { enable = true; };
+        cmp_luasnip = { enable = true; };
 
         /*
         snippet.expand = ''
@@ -34,17 +34,17 @@
         '';
         */
         sources = [
-          {name = "nvim_lsp";}
-          {name = "luasnip";}
+          { name = "nvim_lsp"; }
+          { name = "luasnip"; }
           {
             name = "buffer";
             option.get_bufnrs.__raw = "vim.api.nvim_list_bufs";
           }
-          {name = "nvim_lua";}
-          {name = "path";}
+          { name = "nvim_lua"; }
+          { name = "path"; }
         ];
         formatting = {
-          fields = ["abbr" "kind" "menu"];
+          fields = [ "abbr" "kind" "menu" ];
           format =
             # lua
             ''
@@ -104,11 +104,11 @@
             winhighlight = "FloatBorder:CmpBorder,Normal:CmpPmenu,CursorLine:CmpSel,Search:PmenuSel";
             scrollbar = false;
             sidePadding = 0;
-            border = ["╭" "─" "╮" "│" "╯" "─" "╰" "│"];
+            border = [ "╭" "─" "╮" "│" "╯" "─" "╰" "│" ];
           };
 
           settings.documentation = {
-            border = ["╭" "─" "╮" "│" "╯" "─" "╰" "│"];
+            border = [ "╭" "─" "╮" "│" "╯" "─" "╰" "│" ];
             winhighlight = "FloatBorder:CmpBorder,Normal:CmpPmenu,CursorLine:CmpSel,Search:PmenuSel";
           };
         };

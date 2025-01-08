@@ -1,8 +1,7 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
+{ pkgs
+, lib
+, config
+, ...
 }: {
   virtualisation = {
     libvirtd.enable = true;
@@ -13,5 +12,5 @@
   #virtualisation.virtualbox.host = {
   #  enable = true;
   #};
-  users.users."${config.myUserName}".extraGroups = ["libvirtd"];
+  users.users."${config.myUserName}".extraGroups = [ "libvirtd" ];
 }

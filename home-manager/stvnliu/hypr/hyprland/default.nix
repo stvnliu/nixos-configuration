@@ -1,23 +1,21 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}: {
-  home.packages = with pkgs; [foot];
+{ inputs, config, pkgs, lib, ... }: {
+  home.packages =
+    [ inputs.hyprland-qtutils.packages.x86_64-linux.default pkgs.foot ];
   wayland.windowManager.hyprland = {
     # Whether to enable Hyprland wayland compositor
     enable = true;
     # The hyprland package to use
     package = pkgs.hyprland;
-    plugins = with pkgs.hyprlandPlugins; [
-      # hyprfocus
-    ];
+    plugins = with pkgs.hyprlandPlugins;
+      [
+        # hyprfocus
+        # hycov
+      ];
     # Whether to enable XWayland
     xwayland.enable = true;
     settings = {
-      env = ["AQ_DRM_DEVICES, /dev/dri/card1:/dev/dri/card0"];
-      xwayland = {force_zero_scaling = true;};
+      env = [ "AQ_DRM_DEVICES, /dev/dri/card1:/dev/dri/card0" ];
+      xwayland = { force_zero_scaling = true; };
       monitor = [
         #"eDP-1, 1920x1080@165,0x0,1"
         "desc:Xiaomi Corporation Mi 27 NFGL 3215000032603, 1920x1080@75, 2560x0, 1"
@@ -32,8 +30,8 @@
         gaps_out = 5;
         allow_tearing = true;
       };
-      windowrulev2 = ["immediate, class:^(cs2)$"];
-      decoration = {rounding = 5;};
+      windowrulev2 = import ./window_rules.nix;
+      decoration = { rounding = 5; };
       input = {
         # xset rate 250 50 replacement on wayland...
         # FAST MODE LET'S GOOO
@@ -41,13 +39,10 @@
         repeat_delay = 250;
         accel_profile = "flat";
       };
-      exec-once =
-        config.myAutostartCommands
-        ++ [
-          # future hyprland-specific exec commands
-          "${config.programs.firefox.package}/bin/firefox"
-          "${pkgs.thunderbird}/bin/thunderbird"
-        ];
+      exec-once = config.myAutostartCommands ++ import ./hypr_autostart.nix {
+        inherit pkgs;
+        inherit config;
+      };
       misc = {
         disable_hyprland_logo = true;
         disable_splash_rendering = true;
@@ -73,7 +68,7 @@
     };
     # Optional
     # Whether to enable hyprland-session.target on hyprland startup
-    systemd = {enable = true;};
+    systemd = { enable = true; };
   };
   # ...
 }

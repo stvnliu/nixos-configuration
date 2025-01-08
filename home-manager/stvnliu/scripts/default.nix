@@ -1,10 +1,9 @@
-{
-  config,
-  pkgs,
-  ...
+{ config
+, pkgs
+, ...
 }: {
   home.packages = [
-    (import ./heic-to-jpg.script.nix {inherit pkgs;})
+    (import ./heic-to-jpg.script.nix { inherit pkgs; })
     (import ./tmux-default.script.nix {
       inherit pkgs;
       inherit config;
