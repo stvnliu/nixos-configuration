@@ -54,7 +54,7 @@ in
     defaultApplications = {
       terminal = "${pkgs.foot}/bin/footclient";
       fileManager = "${pkgs.nemo}/bin/nemo";
-      appLauncher = "${pkgs.walker}/bin/walker";
+      appLauncher = "${pkgs.wmenu}/bin/wmenu-run -b";
     };
     usingMusicPlayerDaemon = true;
   };
