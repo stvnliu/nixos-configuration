@@ -21,7 +21,7 @@ chmod +x ./deploy.sh
 
 or manually:
 
-```
+```sh
 git clone <repo_url> <path_to_config>
 sudo nixos-rebuild --flake <path_to_config>#<your_hostname> boot
 ```
