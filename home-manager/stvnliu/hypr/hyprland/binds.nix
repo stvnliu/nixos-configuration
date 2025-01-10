@@ -25,7 +25,7 @@ in
   "$mod, E, exec, ${config.defaultApplications.fileManager}"
   # foot terminal
   "$mod, Return, exec, ${terminalCmd} ${config.myShells.defaultShell}"
-  "$mod SHIFT, Return, exec, [float] ${terminalCmd} ${config.myShells.defaultShell}"
+  "$mod SHIFT, Return, exec, ${terminalCmd} --title=floats ${config.myShells.defaultShell}"
 
   # cmdline utilities
   /*
@@ -43,7 +43,7 @@ in
   "$mod, L, movefocus, r"
 ]
 ++ (
-  if config.services.mpd.enable then [ "$mod, M, exec, ${terminalCmd} --title=ncmpc ${pkgs.ncmpc}/bin/ncmpc -h 127.0.0.1" ] else [ ]
+  if config.services.mpd.enable then [ "$mod, M, exec, ${terminalCmd} --title=ncmpc ${pkgs.ncmpcpp}/bin/ncmpcpp" ] else [ ]
 )
 ++ (
   if config.services.swaync.enable

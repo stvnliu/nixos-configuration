@@ -39,9 +39,8 @@
         repeat_delay = 250;
         accel_profile = "flat";
       };
-      exec-once = config.myAutostartCommands ++ import ./hypr_autostart.nix {
-        inherit config;
-      };
+      exec-once = config.myAutostartCommands
+        ++ (import ./hypr_autostart.nix { inherit config; inherit pkgs; });
       misc = {
         disable_hyprland_logo = true;
         disable_splash_rendering = true;
@@ -49,9 +48,7 @@
         focus_on_activate = true; # see if fixes mako daemon not focusing
       };
       "$mod" = "SUPER";
-      binde = import ./xf86_binds.nix {
-        inherit pkgs;
-      };
+      binde = import ./xf86_binds.nix { inherit pkgs; };
       bind = import ./binds.nix {
         inherit config;
         inherit pkgs;
