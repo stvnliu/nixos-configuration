@@ -8,7 +8,7 @@
     userName = config.myDisplayName;
     userEmail = config.myEmail;
     extraConfig = {
-      core.autocrlf = true;
+      core.autocrlf = "input";
       push.autoSetupRemote = true;
       commit.gpgsign = true;
       #gpg.format = "ssh";
