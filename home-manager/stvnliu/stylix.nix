@@ -13,12 +13,12 @@ in
     image = config.myWallPaperPath;
     fonts = {
       sansSerif = {
-        name = "Aileron";
-        package = pkgs.aileron;
+        name = "Helvetica Neue LT Std";
+        package = pkgs.helvetica-neue-lt-std;
       };
       monospace = {
         name = config.desktopFontFullName;
-        package = pkgs.nerd-fonts.intone-mono;
+        package = pkgs.nerd-fonts.blex-mono;
       };
       sizes = {
         terminal = 16;

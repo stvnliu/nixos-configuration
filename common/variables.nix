@@ -42,7 +42,7 @@ in
       myAutostartCommands = [ "${pkgs.brightnessctl}/bin/brightnessctl s ${monitorMinBrightness}" ];
     };
     myConfigLocation = "/home/${myUserName}/nix-conf";
-    desktopFontFullName = "IntoneMono NFM:style=Regular";
+    desktopFontFullName = "BlexMono Nerd Font:style=Regular";
     myAutostartCommands = [
       "${pkgs.brightnessctl}/bin/brightnessctl s ${monitorMaxBrightness}"
       "fcitx5"
