@@ -11,6 +11,11 @@
         #ruff.enable = true;
         #ruff_lsp.enable = true;
 
+        rust-analyzer = {
+          enable = true;
+          installCargo = false;
+          installRustc = false;
+        };
         # For CXX
         clangd.enable = true;
 
@@ -19,7 +24,7 @@
         fsautocomplete.enable = true;
         gopls.enable = true;
 
-        nushell.enable = true;
+        #nushell.enable = true;
 
         # For Nix
         #nil_ls.enable = true;
@@ -50,12 +55,12 @@
         "K" = "hover";
       };
     };
-    lsp-lines.enable = true;
+    #lsp-lines.enable = true;
 
-    rustaceanvim = {
-      enable = true;
-      # rust-tools.enable = true;
-    };
+    #rustaceanvim = {
+    #  enable = true;
+    #  # rust-tools.enable = true;
+    #};
   };
   diagnostics.virtual_lines.only_current_line = true;
 }

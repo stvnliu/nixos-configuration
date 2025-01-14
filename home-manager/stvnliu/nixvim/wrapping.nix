@@ -1,0 +1,6 @@
+{ ... }:
+{
+  plugins.wrapping = {
+    enable = true;
+  };
+}

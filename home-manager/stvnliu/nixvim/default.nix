@@ -21,12 +21,23 @@
     ./wilder.nix
     ./virt-column.nix
     ./devicons.nix
+    ./tagbar.nix
+    ./wrapping.nix
   ];
   enable = true;
   enableMan = true;
   defaultEditor = true;
   globals.mapleader = " ";
   colorschemes.gruvbox = { enable = true; };
+  performance = {
+    byteCompileLua.enable = true;
+    combinePlugins = {
+      enable = true;
+      /*standalonePlugins = [
+        "nvim-treesitter"
+      ];*/
+    };
+  };
   keymaps =
     [
       # Global
