@@ -1,6 +1,4 @@
-{ pkgs
-, ...
-}: {
+{ pkgs, ... }: {
   home.packages = with pkgs; [
     bottom
     libnotify
@@ -15,7 +13,9 @@
 
     cheat
     thefuck
-
+    pcmanfm
+    udiskie
+    sxiv
     transmission_4-gtk
   ];
 }

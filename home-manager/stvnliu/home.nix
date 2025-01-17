@@ -51,7 +51,6 @@
   home.packages = with pkgs; [
     prismlauncher
     protonvpn-gui
-    devenv
     vlc
     rhythmbox
     qq
@@ -59,12 +58,7 @@
     mpv
     kdenlive
     obsidian
-    pcmanfm
-    udiskie
-    teams-for-linux
-    sxiv
     heroic
-    vscodium-fhs
   ];
   myAutostartCommands = [
     #"${pkgs.clash-verge-rev}/bin/clash-verge"
