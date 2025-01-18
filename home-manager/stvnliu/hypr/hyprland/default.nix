@@ -8,6 +8,7 @@
     package = pkgs.hyprland;
     plugins = with pkgs.hyprlandPlugins;
       [
+        hyprexpo
         # hyprfocus
         # hycov
       ];

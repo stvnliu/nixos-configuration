@@ -17,6 +17,8 @@ in
   "$mod, S, togglespecialworkspace"
   "$mod SHIFT, S, movetoworkspace, special"
 
+  "$mod, Tab, hyprexpo:expo, toggle"
+
   # keysyms for util functions
   # Example volume button that allows press and hold, volume limited to 150%
   "$mod, Q, killactive"
