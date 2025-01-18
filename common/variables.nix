@@ -41,7 +41,7 @@ in
     specialisation."powersave".configuration = {
       myAutostartCommands = [ "${pkgs.brightnessctl}/bin/brightnessctl s ${monitorMinBrightness}" ];
     };
-    myConfigLocation = "/home/${myUserName}/nix-conf";
+    myConfigLocation = "/home/${myUserName}/Development/Nix/nixos-configuration";
     desktopFontFullName = "BlexMono Nerd Font:style=Regular";
     myAutostartCommands = [
       "${pkgs.brightnessctl}/bin/brightnessctl s ${monitorMaxBrightness}"
