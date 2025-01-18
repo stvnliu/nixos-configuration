@@ -1,7 +1,4 @@
-{ pkgs
-, config
-,
-}:
+{ pkgs, config, }:
 let
   git = config.programs.git.package;
   # checks for any Git repositories with uncommitted changes
@@ -33,7 +30,7 @@ pkgs.writeShellScriptBin "git-check" ''
       if $default_skip; then return; fi
       read -rp "Enter dirty directory? [y/n/N(skip others)] " userinput
       if [[ "$userinput" = "y" ]]; then
-        $SHELL
+        ${pkgs.lazygit}/bin/lazygit 
       fi
       if [[ "$userinput" = "N" ]]; then
         default_skip=true
