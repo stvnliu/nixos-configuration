@@ -23,6 +23,7 @@
     ./devicons.nix
     ./tagbar.nix
     ./wrapping.nix
+    ./twilight.nix
   ];
   enable = true;
   enableMan = true;

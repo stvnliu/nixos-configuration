@@ -18,7 +18,7 @@ in
       };
       monospace = {
         name = config.desktopFontFullName;
-        package = pkgs.nerd-fonts.blex-mono;
+        package = pkgs.nerd-fonts.ubuntu-mono;
       };
       sizes = {
         terminal = 16;

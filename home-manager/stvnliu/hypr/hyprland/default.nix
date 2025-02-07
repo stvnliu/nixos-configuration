@@ -8,7 +8,7 @@
     package = pkgs.hyprland;
     plugins = with pkgs.hyprlandPlugins;
       [
-        hyprexpo
+        # hyprexpo
         # hyprfocus
         # hycov
       ];
@@ -40,8 +40,11 @@
         repeat_delay = 250;
         accel_profile = "flat";
       };
-      exec-once = config.myAutostartCommands
-        ++ (import ./hypr_autostart.nix { inherit config; inherit pkgs; });
+      exec-once = config.myAutostartCommands ++ (import ./hypr_autostart.nix {
+        inherit config;
+        inherit pkgs;
+        inherit inputs;
+      });
       misc = {
         disable_hyprland_logo = true;
         disable_splash_rendering = true;
@@ -53,6 +56,7 @@
       bind = import ./binds.nix {
         inherit config;
         inherit pkgs;
+        inherit inputs;
       };
       bindm = [
         # mouse movements

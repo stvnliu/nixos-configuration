@@ -1,11 +1,6 @@
 # This is your system's configuration file.
 # Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
-{ inputs
-, lib
-, config
-, pkgs
-, ...
-}: {
+{ inputs, lib, config, pkgs, ... }: {
   imports = [
     ../common/variables.nix
     ./greetd.nix
@@ -15,7 +10,10 @@
     ./services/laptop.preset.nix
     ./virtualisation.nix
     ./hardware-configuration.nix
+    ./custom-hosts.nix
   ];
+
+  # Virtual cam settings: see https://wiki.nixos.org/wiki/OBS_Studio#Using_the_Virtual_Camera
   environment.sessionVariables = {
     GDK_SCALE = config.displayScale;
     FLAKE = config.myConfigLocation;
@@ -103,6 +101,10 @@
     gamemode.enable = true;
   };
   boot = {
+    extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
+    extraModprobeConfig = ''
+      options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
+    '';
     kernelPackages = pkgs.linuxPackages_zen;
     supportedFilesystems = [ "ntfs" ];
   };
@@ -121,10 +123,9 @@
     zed-editor
     libsForQt5.qt5.qtquickcontrols2
     libsForQt5.qt5.qtgraphicaleffects
-    /*
-      (blender.override {
-      cudaSupport = true;
-      })
+    /* (blender.override {
+       cudaSupport = true;
+       })
     */
     trash-cli
     #inputs.hyprswitch.packages.x86_64-linux.default
@@ -164,10 +165,8 @@
   };
 
   nix =
-    let
-      flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
-    in
-    {
+    let flakeInputs = lib.filterAttrs (_: lib.isType "flake") inputs;
+    in {
       settings = {
         experimental-features = "nix-command flakes";
         # flake-registry = "";

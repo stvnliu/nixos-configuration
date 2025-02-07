@@ -2,6 +2,7 @@
   description = "Your new nix config";
 
   inputs = {
+    hyprswitch.url = "github:h3rmt/hyprswitch/release";
     # Nixpkgs
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -15,12 +16,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    /*
-      lix-module = {
-      url =
-        "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
-      };
+    /* lix-module = {
+       url =
+         "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
+       inputs.nixpkgs.follows = "nixpkgs";
+       };
     */
     stylix = { url = "github:danth/stylix"; };
     spicetify-nix = {
@@ -30,14 +30,7 @@
     hyprland-qtutils.url = "github:hyprwm/hyprland-qtutils";
   };
 
-  outputs =
-    { self
-    , nixpkgs
-    , home-manager
-    , stylix
-    , spicetify-nix
-    , ...
-    } @ inputs:
+  outputs = { self, nixpkgs, home-manager, stylix, spicetify-nix, ... }@inputs:
     let
       inherit (self) outputs;
       myHostName = "nixos-msi";
@@ -59,17 +52,19 @@
       # Standalone home-manager configuration entrypoint
       # Available through 'home-manager --flake .#your-username@your-hostname'
       homeConfigurations = {
-        "${stevenUserName}@${myHostName}" = home-manager.lib.homeManagerConfiguration {
-          pkgs =
-            nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-          extraSpecialArgs = { inherit inputs outputs; };
-          modules = [
-            ./home-manager/${stevenUserName}/home.nix
-            stylix.homeManagerModules.stylix
-            inputs.nixvim.homeManagerModules.nixvim
-            spicetify-nix.homeManagerModules.default
-          ];
-        };
+        "${stevenUserName}@${myHostName}" =
+          home-manager.lib.homeManagerConfiguration {
+            pkgs =
+              nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+            extraSpecialArgs = { inherit inputs outputs; };
+            modules = [
+              ./home-manager/${stevenUserName}/home.nix
+              stylix.homeManagerModules.stylix
+              inputs.nixvim.homeManagerModules.nixvim
+              spicetify-nix.homeManagerModules.default
+
+            ];
+          };
       };
     };
 }

@@ -1,7 +1,4 @@
-{ config
-, pkgs
-, ...
-}: {
+{ config, pkgs, ... }: {
   imports = [
     ./hypr
     ./shells
@@ -13,11 +10,13 @@
     ./ags
     ./xdg.nix
     ./stylix.nix
+    #./dwl
     ./scripts
     ./programs
     ./packages
   ];
 
+  #services.pass-secret-service.enable = true;
   nixpkgs = {
     # You can add overlays here
     overlays = [
@@ -59,6 +58,7 @@
     kdenlive
     obsidian
     heroic
+    rustdesk
   ];
   myAutostartCommands = [
     #"${pkgs.clash-verge-rev}/bin/clash-verge"
@@ -67,22 +67,23 @@
   programs = {
     obs-studio = {
       enable = true;
-      plugins = with pkgs.obs-studio-plugins; [ wlrobs input-overlay ];
+      plugins = with pkgs.obs-studio-plugins; [ wlrobs input-overlay droidcam-obs ];
     };
     home-manager.enable = true;
     firefox = {
       enable = true;
-      package = with pkgs; (firefox-devedition.override {
-        nativeMessagingHosts = [
-          (passff-host.overrideAttrs (_old: {
-            dontStrip = true;
-            patchPhase = ''
-              sed -i 's#COMMAND = "pass"#COMMAND = "${
-                pass.withExtensions (ext: with ext; [pass-otp pass-import])
-              }/bin/pass"#' src/passff.py'';
-          }))
-        ];
-      });
+      package = with pkgs;
+        (firefox-devedition.override {
+          nativeMessagingHosts = [
+            (passff-host.overrideAttrs (_old: {
+              dontStrip = true;
+              patchPhase = ''
+                sed -i 's#COMMAND = "pass"#COMMAND = "${
+                  pass.withExtensions (ext: with ext; [ pass-otp pass-import ])
+                }/bin/pass"#' src/passff.py'';
+            }))
+          ];
+        });
     };
     thunderbird = {
       enable = true;

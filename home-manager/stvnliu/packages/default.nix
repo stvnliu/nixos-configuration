@@ -8,5 +8,6 @@
     ./pentesting.nix
     ./dev.nix
     ./gaming.nix
+    ./hypr.nix
   ];
 }

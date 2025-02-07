@@ -4,6 +4,7 @@
 }: {
   programs.git = {
     enable = true;
+    lfs.enable = true;
     package = pkgs.gitFull;
     userName = config.myDisplayName;
     userEmail = config.myEmail;
