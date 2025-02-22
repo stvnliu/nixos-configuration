@@ -8,11 +8,12 @@
     ./nvidia.nix
     ./fonts.nix
     ./services/laptop.preset.nix
-    ./virtualisation.nix
+    #./virtualisation.nix
+    #./dwm
+    ./spec.nix
     ./hardware-configuration.nix
     ./custom-hosts.nix
   ];
-
   # Virtual cam settings: see https://wiki.nixos.org/wiki/OBS_Studio#Using_the_Virtual_Camera
   environment.sessionVariables = {
     GDK_SCALE = config.displayScale;
@@ -64,14 +65,14 @@
     powerOnBoot = true;
     settings = { General = { Disable = "Handsfree,Headset"; }; };
   };
-  specialisation = {
-    in-china.configuration = {
-      networking.proxy = {
-        default = "http://127.0.0.1:7897/";
-        noProxy = "127.0.0.1,localhost,internal.domain";
-      };
-    };
-  };
+  #specialisation = {
+  #  in-china.configuration = {
+  #    networking.proxy = {
+  #      default = "http://127.0.0.1:7897/";
+  #      noProxy = "127.0.0.1,localhost,internal.domain";
+  #    };
+  #  };
+  #};
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
@@ -84,10 +85,6 @@
     serviceConfig.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
   };
   programs = {
-    hyprland = {
-      enable = true; # enables Hyprland DM.
-      withUWSM = true; # NEW Universal Wayland Session Manager
-    };
     steam = {
       enable = true;
       remotePlay.openFirewall =

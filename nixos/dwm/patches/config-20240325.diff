@@ -1,0 +1,60 @@
+diff --git a/config.def.h b/config.def.h
+index 9efa774..1b543e3 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -1,21 +1,22 @@
+ /* See LICENSE file for copyright and license details. */
+-
++#include <X11/XF86keysym.h>
+ /* appearance */
+ static const unsigned int borderpx  = 1;        /* border pixel of windows */
+ static const unsigned int snap      = 32;       /* snap pixel */
+ static const int showbar            = 1;        /* 0 means no bar */
+-static const int topbar             = 1;        /* 0 means bottom bar */
+-static const char *fonts[]          = { "monospace:size=10" };
+-static const char dmenufont[]       = "monospace:size=10";
+-static const char col_gray1[]       = "#222222";
+-static const char col_gray2[]       = "#444444";
++static const int topbar             = 0;        /* 0 means bottom bar */
++static const char *fonts[]          = { "IntoneMonoNerdFont:size=10" };
++static const char dmenufont[]       = "IntoneMonoNerdFont:size=10";
++static const char col_gray1[]       = "#1d1d19";
++static const char col_gray2[]       = "#444440";
+ static const char col_gray3[]       = "#bbbbbb";
+ static const char col_gray4[]       = "#eeeeee";
+ static const char col_cyan[]        = "#005577";
++static const char col_gruvbox_yellow[] = "#353124";
+ static const char *colors[][3]      = {
+ 	/*               fg         bg         border   */
+ 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
+-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
++	[SchemeSel]  = { col_gray4, col_gruvbox_yellow,  col_gruvbox_yellow  },
+ };
+ 
+ /* tagging */
+@@ -59,11 +60,24 @@ static const Layout layouts[] = {
+ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
+ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+ static const char *termcmd[]  = { "st", NULL };
+-
++static const char *lockcmd[] = { "xlock" , "-mode", "space", NULL };
++static const char *mccmd[]    =   { "st", "-e", "mc", NULL };
++static const char *raisevol[] =   { "pamixer", "-i", "5", NULL};
++static const char *lowervol[] =   { "pamixer", "-d", "5", NULL};
++static const char *mutevol[]  =   {"pamixer", "--set-volume", "0", NULL};
++static const char *screenshot[] = {"flameshot", "gui", NULL};
++static const char *btop[] = {"btop", NULL};
+ static const Key keys[] = {
+ 	/* modifier                     key        function        argument */
++	{0,                             XF86XK_AudioRaiseVolume, spawn, {.v = raisevol } },
++	{0,                             XF86XK_AudioLowerVolume, spawn, {.v = lowervol } },
++	{0,                             XF86XK_AudioMute, spawn,   {.v = mutevol } },
++	{0,                             XK_Print,  spawn,          {.v = screenshot } },
++	{ MODKEY,                       XK_e,      spawn,          {.v = mccmd } },
+ 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+ 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
++	{ MODKEY|ControlMask,		XK_m,      spawn,          {.v = btop } },
++	{MODKEY|ControlMask,		XK_l, spawn, {.v = lockcmd } },
+ 	{ MODKEY,                       XK_b,      togglebar,      {0} },
+ 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
+ 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
