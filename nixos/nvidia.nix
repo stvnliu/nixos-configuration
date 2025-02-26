@@ -1,19 +1,18 @@
 { config
-, lib
 , pkgs
 , ...
 }: {
-  specialisation = {
-    powersave.configuration = {
-      hardware.nvidia.prime = {
-        offload = {
-          enable = lib.mkForce true;
-          enableOffloadCmd = lib.mkForce true;
-        };
-        sync.enable = lib.mkForce false;
-      };
-    };
-  };
+  #specialisation = {
+  #  powersave.configuration = {
+  #    hardware.nvidia.prime = {
+  #      offload = {
+  #        enable = lib.mkForce true;
+  #        enableOffloadCmd = lib.mkForce true;
+  #      };
+  #      sync.enable = lib.mkForce false;
+  #    };
+  #  };
+  #};
   boot.kernelModules = [ "nvidia_uvm" ];
   hardware.graphics = {
     enable = true;

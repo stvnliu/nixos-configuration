@@ -1,4 +1,9 @@
-{ inputs, config, pkgs, ... }: {
+{ inputs, config, pkgs, lib, ... }:
+let
+  bgbordercolor = config.lib.stylix.colors.base01;
+  fgbordercolor = config.lib.stylix.colors.base02;
+in
+{
   home.packages =
     [ inputs.hyprland-qtutils.packages.x86_64-linux.default pkgs.foot ];
   wayland.windowManager.hyprland = {
@@ -8,6 +13,7 @@
     package = pkgs.hyprland;
     plugins = with pkgs.hyprlandPlugins;
       [
+        hyprbars
         # hyprexpo
         # hyprfocus
         # hycov
@@ -15,6 +21,7 @@
     # Whether to enable XWayland
     xwayland.enable = true;
     settings = {
+      plugins = import ./hyprbars.nix { inherit config; };
       env = [ "AQ_DRM_DEVICES, /dev/dri/card1:/dev/dri/card0" ];
       xwayland = { force_zero_scaling = true; };
       monitor = [
@@ -26,6 +33,8 @@
         ", preferred, auto, 1" # wildcard definition
       ];
       general = {
+        "col.inactive_border" = lib.mkForce "rgb(${bgbordercolor})";
+        "col.active_border" = lib.mkForce "rgb(${fgbordercolor})";
         border_size = 1;
         gaps_in = 2.5;
         gaps_out = 5;

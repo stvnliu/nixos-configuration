@@ -32,10 +32,10 @@ in
   # Default values for this configuration
   config = rec {
     myUserName = "stvnliu";
-    myWallPaperPath = ../home-manager/${myUserName}/assets/deer-wallpaper.jpg;
+    myWallPaperPath = ../home-manager/${myUserName}/assets/od_neon.png;
     myHostName = "nixos-msi";
-    displayScale = 2;
-    myWallPaperPathString = "/home/${myUserName}/wallpaper.jpg";
+    displayScale = 1;
+    myWallPaperPathString = "/home/${myUserName}/wallpaper.png";
     myDisplayName = "Zhongheng Liu";
     myEmail = "z.liu@outlook.com.gr";
     specialisation."powersave".configuration = {

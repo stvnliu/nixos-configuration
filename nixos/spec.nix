@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: {
+{ pkgs, lib, ... }: {
   specialisation = {
     wayland = {
       configuration = {
@@ -16,9 +16,9 @@
           services.xserver.displayManager.startx.enable = true;
         }
         (import ./dwm {
-          inherit config;
+          #inherit config;
           inherit pkgs;
-          inherit lib;
+          #inherit lib;
         });
     };
   };

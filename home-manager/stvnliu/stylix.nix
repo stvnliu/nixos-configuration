@@ -9,7 +9,7 @@ in
   stylix = {
     enable = true;
     autoEnable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/phd.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/onedark-dark.yaml";
     image = config.myWallPaperPath;
     fonts = {
       sansSerif = {

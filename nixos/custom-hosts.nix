@@ -8,6 +8,8 @@ let
     "www"
     "blog"
     "files"
+    "code"
+    "chat"
   ];
 in
 {
