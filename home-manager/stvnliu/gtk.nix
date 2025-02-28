@@ -8,9 +8,4 @@
       name = "Adwaita";
     };
   };
-  qt = {
-    enable = true;
-    platformTheme.name = "gtk";
-    style = { name = "Fusion"; };
-  };
 }

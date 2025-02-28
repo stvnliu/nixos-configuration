@@ -18,7 +18,7 @@ in
       };
       monospace = {
         name = config.desktopFontFullName;
-        package = pkgs.nerd-fonts.ubuntu-mono;
+        package = pkgs.nerd-fonts.jetbrains-mono;
       };
       sizes = {
         terminal = 16;

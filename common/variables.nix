@@ -34,7 +34,7 @@ in
     myUserName = "stvnliu";
     myWallPaperPath = ../home-manager/${myUserName}/assets/od_neon.png;
     myHostName = "nixos-msi";
-    displayScale = 1;
+    displayScale = 2;
     myWallPaperPathString = "/home/${myUserName}/wallpaper.png";
     myDisplayName = "Zhongheng Liu";
     myEmail = "z.liu@outlook.com.gr";
@@ -42,7 +42,7 @@ in
       myAutostartCommands = [ "${pkgs.brightnessctl}/bin/brightnessctl s ${monitorMinBrightness}" ];
     };
     myConfigLocation = "/home/${myUserName}/Development/Nix/nixos-configuration";
-    desktopFontFullName = "UbuntuMono Nerd Font:style=Regular";
+    desktopFontFullName = "JetBrainsMono Nerd Font:style=Regular";
     myAutostartCommands = [
       "${pkgs.brightnessctl}/bin/brightnessctl s ${monitorMaxBrightness}"
       "fcitx5"

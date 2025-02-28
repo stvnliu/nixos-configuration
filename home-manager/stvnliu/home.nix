@@ -7,7 +7,7 @@
     ./wechat
     ./editors.nix
     ./gtk.nix
-    ./ags
+    #./ags
     ./xdg.nix
     ./stylix.nix
     #./dwl
@@ -55,7 +55,7 @@
     qq
     shotwell
     mpv
-    kdenlive
+    kdePackages.kdenlive
     obsidian
     heroic
     rustdesk
@@ -67,7 +67,7 @@
   programs = {
     obs-studio = {
       enable = true;
-      plugins = with pkgs.obs-studio-plugins; [ wlrobs input-overlay droidcam-obs ];
+      plugins = with pkgs.obs-studio-plugins; [ wlrobs input-overlay ];
     };
     home-manager.enable = true;
     firefox = {

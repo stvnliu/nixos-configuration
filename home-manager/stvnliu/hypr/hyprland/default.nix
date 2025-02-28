@@ -13,7 +13,7 @@ in
     package = pkgs.hyprland;
     plugins = with pkgs.hyprlandPlugins;
       [
-        hyprbars
+        # hyprbars
         # hyprexpo
         # hyprfocus
         # hycov
