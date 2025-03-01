@@ -5,7 +5,7 @@
         programs = {
           hyprland = {
             enable = true; # enables Hyprland DM.
-            withUWSM = true; # NEW Universal Wayland Session Manager
+            #withUWSM = true; # NEW Universal Wayland Session Manager
           };
         };
       };

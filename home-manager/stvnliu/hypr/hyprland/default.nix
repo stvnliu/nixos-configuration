@@ -22,10 +22,9 @@ in
     xwayland.enable = true;
     settings = {
       plugins = import ./hyprbars.nix { inherit config; };
-      env = [ "AQ_DRM_DEVICES, /dev/dri/card1:/dev/dri/card0" ];
+      # env = [ "AQ_DRM_DEVICES, /dev/dri/card0" ];
       xwayland = { force_zero_scaling = true; };
       monitor = [
-        #"eDP-1, 1920x1080@165,0x0,1"
         "desc:Xiaomi Corporation Mi 27 NFGL 3215000032603, 1920x1080@75, 2560x0, 1"
         "desc:BOE 0x0B40,preferred, auto, ${
           builtins.toString config.displayScale
@@ -44,7 +43,6 @@ in
       decoration = { rounding = 5; };
       input = {
         # xset rate 250 50 replacement on wayland...
-        # FAST MODE LET'S GOOO
         repeat_rate = 50;
         repeat_delay = 250;
         accel_profile = "flat";
@@ -54,11 +52,16 @@ in
         inherit pkgs;
         inherit inputs;
       });
+      cursor = {
+        # Fixes https://github.com/hyprwm/Hyprland/issues/9324
+        # Needed because by default, Hyprland enabled Nvidia hardware cursors.
+        no_hardware_cursors = true;
+      };
       misc = {
         disable_hyprland_logo = true;
         disable_splash_rendering = true;
         font_family = "monospace";
-        focus_on_activate = true; # see if fixes mako daemon not focusing
+        focus_on_activate = true;
       };
       "$mod" = "SUPER";
       binde = import ./xf86_binds.nix { inherit pkgs; };
@@ -76,7 +79,7 @@ in
     };
     # Optional
     # Whether to enable hyprland-session.target on hyprland startup
-    systemd = { enable = false; }; # set to false due to UWSM
+    systemd = { enable = true; }; # set to false due to UWSM
   };
   # ...
 }

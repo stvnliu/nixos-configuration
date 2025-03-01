@@ -16,11 +16,9 @@
         modules-left = [ "hyprland/workspaces" "hyprland/submap" ];
         modules-center = [ "mpd" ];
         modules-right = [
-          "tray"
           "clock"
-          "battery"
-          "cpu"
-          "memory"
+          "group/trays"
+          "group/monitor"
           "wireplumber"
           "temperature"
         ];
@@ -36,8 +34,19 @@
           "icon-size" = 18;
           "spacing" = 10;
         };
+        "custom/tray-label" = { "format" = "[TRAY]"; };
+        "custom/monitor-label" = { "format" = "[HW]"; };
+        "group/trays" = {
+          "orientation" = "inherit";
+          "modules" = [ "custom/tray-label" "tray" ];
+          "drawer" = { };
+        };
+        "group/monitor" = {
+          "orientation" = "inherit";
+          "modules" = [ "custom/monitor-label" "battery" "cpu" "memory" ];
+          "drawer" = { };
+        };
         "mpd" = {
-          "max-length" = 50;
           "format" =
             "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ";
           "format-disconnected" = "Disconnected ";

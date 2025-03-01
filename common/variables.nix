@@ -1,11 +1,10 @@
-{ config
-, pkgs
-, lib
-, ...
-}:
+{ config, pkgs, lib, ... }:
 let
   monitorMaxBrightness = "255";
   monitorMinBrightness = "32";
+  stylixBG = config.lib.stylix.colors.base00;
+  stylixFG = config.lib.stylix.colors.base07;
+  stylixPrimaryBG = config.lib.stylix.colors.base12;
 in
 {
   # Type definitions for nix variables used in this configuration
@@ -39,9 +38,11 @@ in
     myDisplayName = "Zhongheng Liu";
     myEmail = "z.liu@outlook.com.gr";
     specialisation."powersave".configuration = {
-      myAutostartCommands = [ "${pkgs.brightnessctl}/bin/brightnessctl s ${monitorMinBrightness}" ];
+      myAutostartCommands =
+        [ "${pkgs.brightnessctl}/bin/brightnessctl s ${monitorMinBrightness}" ];
     };
-    myConfigLocation = "/home/${myUserName}/Development/Nix/nixos-configuration";
+    myConfigLocation =
+      "/home/${myUserName}/Development/Nix/nixos-configuration";
     desktopFontFullName = "JetBrainsMono Nerd Font:style=Regular";
     myAutostartCommands = [
       "${pkgs.brightnessctl}/bin/brightnessctl s ${monitorMaxBrightness}"
@@ -54,7 +55,8 @@ in
     defaultApplications = {
       terminal = "${pkgs.foot}/bin/footclient";
       fileManager = "${pkgs.nemo}/bin/nemo";
-      appLauncher = "${pkgs.wmenu}/bin/wmenu-run -b";
+      appLauncher =
+        "${pkgs.wmenu}/bin/wmenu-run -p \"Launch a program...\" -N ${stylixBG} -n ${stylixFG} -S ${stylixPrimaryBG}";
     };
     usingMusicPlayerDaemon = true;
   };
