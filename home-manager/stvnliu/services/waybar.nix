@@ -12,16 +12,11 @@
         layer = "top";
         position = "bottom";
         height = 30;
-        output = [ "eDP-2" "HDMI-A-1" ];
+        output = [ "eDP-1" "eDP-2" "HDMI-A-1" ];
         modules-left = [ "hyprland/workspaces" "hyprland/submap" ];
         modules-center = [ "mpd" ];
-        modules-right = [
-          "clock"
-          "group/trays"
-          "group/monitor"
-          "wireplumber"
-          "temperature"
-        ];
+        modules-right =
+          [ "clock" "group/trays" "group/monitor" "wireplumber" "temperature" ];
         "battery" = {
           "bat" = "BAT1";
           "format" = "BAT {capacity}% @ {power}W";
@@ -39,14 +34,17 @@
         "group/trays" = {
           "orientation" = "inherit";
           "modules" = [ "custom/tray-label" "tray" ];
-          "drawer" = { };
+          "drawer" = { "click-to-reveal" = true; };
         };
         "group/monitor" = {
           "orientation" = "inherit";
           "modules" = [ "custom/monitor-label" "battery" "cpu" "memory" ];
-          "drawer" = { };
+          "drawer" = { "click-to-reveal" = true; };
         };
         "mpd" = {
+          "artist-len" = 10;
+          "album-len" = 10;
+          "title-len" = 20;
           "format" =
             "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ";
           "format-disconnected" = "Disconnected ";
