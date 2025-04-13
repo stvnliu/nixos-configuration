@@ -28,6 +28,7 @@
     ];
     # Configure your nixpkgs instance
     config = {
+      cudaSupport = true;
       permittedInsecurePackages = [
         "dotnet-core-combined"
         "dotnet-sdk-6.0.428"
@@ -58,7 +59,6 @@
     kdePackages.kdenlive
     obsidian
     heroic
-    rustdesk
   ];
   myAutostartCommands = [
     #"${pkgs.clash-verge-rev}/bin/clash-verge"

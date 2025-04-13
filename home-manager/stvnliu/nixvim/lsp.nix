@@ -11,7 +11,7 @@
         #ruff.enable = true;
         #ruff_lsp.enable = true;
 
-        rust-analyzer = {
+        rust_analyzer = {
           enable = true;
           installCargo = false;
           installRustc = false;

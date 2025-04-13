@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 let
   monitorMaxBrightness = "255";
-  monitorMinBrightness = "32";
+  # monitorMinBrightness = "32";
   stylixBG = config.lib.stylix.colors.base00;
   stylixFG = config.lib.stylix.colors.base07;
   stylixPrimaryBG = config.lib.stylix.colors.base12;
@@ -25,7 +25,10 @@ in
       displayScale = mkOption { type = int; };
       myAutostartCommands = mkOption { type = listOf str; };
       myConfigLocation = mkOption { type = str; };
-      desktopFontFullName = mkOption { type = str; };
+      desktopFont = {
+        shortName = mkOption { type = str; };
+        fullName = mkOption { type = str; };
+      };
     };
 
   # Default values for this configuration
@@ -37,13 +40,17 @@ in
     myWallPaperPathString = "/home/${myUserName}/wallpaper.png";
     myDisplayName = "Zhongheng Liu";
     myEmail = "z.liu@outlook.com.gr";
-    specialisation."powersave".configuration = {
-      myAutostartCommands =
-        [ "${pkgs.brightnessctl}/bin/brightnessctl s ${monitorMinBrightness}" ];
-    };
+    /* specialisation."powersave".configuration = {
+         myAutostartCommands =
+           [ "${pkgs.brightnessctl}/bin/brightnessctl s ${monitorMinBrightness}" ];
+       };
+    */
     myConfigLocation =
       "/home/${myUserName}/Development/Nix/nixos-configuration";
-    desktopFontFullName = "JetBrainsMono Nerd Font:style=Regular";
+    desktopFont = {
+      fullName = "${desktopFont.shortName}:style=Regular";
+      shortName = "JetBrains Mono Nerd Font";
+    };
     myAutostartCommands = [
       "${pkgs.brightnessctl}/bin/brightnessctl s ${monitorMaxBrightness}"
       "fcitx5"
@@ -55,8 +62,8 @@ in
     defaultApplications = {
       terminal = "${pkgs.foot}/bin/footclient";
       fileManager = "${pkgs.nemo}/bin/nemo";
-      appLauncher =
-        "${pkgs.wmenu}/bin/wmenu-run -p \"Launch a program...\" -N ${stylixBG} -n ${stylixFG} -S ${stylixPrimaryBG}";
+      appLauncher = ''
+        ${pkgs.wmenu}/bin/wmenu-run -p "Launch a program..." -N ${stylixBG} -n ${stylixFG} -S ${stylixPrimaryBG}'';
     };
     usingMusicPlayerDaemon = true;
   };

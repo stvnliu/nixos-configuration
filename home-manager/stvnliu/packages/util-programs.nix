@@ -18,5 +18,6 @@
       udiskie
       sxiv
       transmission_4-gtk
+      chromium
     ];
 }

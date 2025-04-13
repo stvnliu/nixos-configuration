@@ -17,7 +17,7 @@ in
         package = pkgs.helvetica-neue-lt-std;
       };
       monospace = {
-        name = config.desktopFontFullName;
+        name = config.desktopFont.fullName;
         package = pkgs.nerd-fonts.jetbrains-mono;
       };
       sizes = {
@@ -25,7 +25,6 @@ in
         applications = 14;
       };
     };
-    cursor.size = 24;
     opacity = {
       applications = globalOpacity;
       desktop = globalOpacity;

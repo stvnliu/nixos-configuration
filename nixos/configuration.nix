@@ -12,7 +12,7 @@
     #./dwm
     ./spec.nix
     ./hardware-configuration.nix
-    ./custom-hosts.nix
+    #./custom-hosts.nix
   ];
   # Virtual cam settings: see https://wiki.nixos.org/wiki/OBS_Studio#Using_the_Virtual_Camera
   environment.sessionVariables = {
@@ -23,6 +23,10 @@
     NIXOS_OZONE_WL = "1";
     # GTK_IM_MODULE = lib.mkForce "";
   };
+  /*services.jellyfin = {
+    enable = true;
+    openFirewall = true;
+  };*/
   services.keyd = {
     enable = true;
     keyboards = {
@@ -156,6 +160,7 @@
   nixpkgs = {
     overlays = [ ];
     config = {
+      cudaSupport = true;
       allowUnfree = true;
       permittedInsecurePackages = [ "dotnet-core-combined" ];
     };

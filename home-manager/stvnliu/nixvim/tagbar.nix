@@ -1,9 +1,10 @@
 { pkgs, ... }:
 
 {
+
+  dependencies.ctags.package = pkgs.universal-ctags;
   plugins.tagbar = {
     enable = true;
-    tagsPackage = pkgs.universal-ctags;
     settings = {
       autoclose = false;
       autofocus = false;
