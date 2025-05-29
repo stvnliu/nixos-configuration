@@ -1,20 +1,22 @@
-{ pkgs
-, ...
-}: {
-  imports = [
-    #./vscode.nix
-    #./intellij.nix
-  ];
+{ pkgs, ... }: {
   programs.nixvim = import ./nixvim;
   # dependencies for nixvim configuration
   home.packages = with pkgs; [ ripgrep fd ];
   programs.helix = {
     enable = true;
-  };
-  /*
-    programs.vscode = {
-    enable = true;
-    package = pkgs.vscode.fhs;
+    settings = {
+      editor.cursor-shape = {
+        normal = "block";
+        insert = "bar";
+        select = "underline";
+      };
     };
-  */
+    languages.language = import ./helix-langs.nix { inherit pkgs; };
+    themes = {
+      autumn_night_transparent = {
+        "inherits" = "autumn_night";
+        "ui.background" = { };
+      };
+    };
+  };
 }
