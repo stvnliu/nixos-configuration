@@ -1,10 +1,5 @@
-{ config, pkgs, inputs }:
-let
-  term = config.defaultApplications.terminal;
-  shell = config.myShells.defaultShell;
-in
-[
-  "${term} --title=autorun ${shell}"
+{ config, pkgs, inputs }: [
+  "${config.programs.thunderbird.package}/bin/thunderbird"
   "${pkgs.mpris-notifier}/bin/mpris-notifier"
   "${pkgs.mpd-discord-rpc}/bin/mpd-discord-rpc"
   "${pkgs.easyeffects}/bin/easyeffects --gapplication-service"
