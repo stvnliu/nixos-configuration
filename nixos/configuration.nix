@@ -8,9 +8,9 @@
     ./nvidia.nix
     ./fonts.nix
     ./services/laptop.preset.nix
-    #./virtualisation.nix
+    ./virtualisation.nix
     #./dwm
-    ./spec.nix
+    #./spec.nix
     ./hardware-configuration.nix
     #./custom-hosts.nix
   ];
@@ -23,10 +23,11 @@
     NIXOS_OZONE_WL = "1";
     # GTK_IM_MODULE = lib.mkForce "";
   };
-  /*services.jellyfin = {
-    enable = true;
-    openFirewall = true;
-  };*/
+  /* services.jellyfin = {
+       enable = true;
+       openFirewall = true;
+     };
+  */
   services.keyd = {
     enable = true;
     keyboards = {
@@ -63,6 +64,9 @@
     ];
     #enabled = "ibus";
     #ibus.engines = with pkgs.ibus-engines; [rime];
+  };
+  programs.hyprland = {
+    enable = true;
   };
   hardware.bluetooth = {
     enable = true;
