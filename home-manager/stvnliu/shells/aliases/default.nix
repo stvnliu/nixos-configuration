@@ -10,4 +10,5 @@
   homeupdate = "${pkgs.nh}/bin/nh home switch";
   batmon = "watch -n0 upower -i /org/freedesktop/UPower/devices/battery_BAT1";
   inception = "${pkgs.pipx}/bin/pipx run copier copy --trust gh:DataChefHQ/Inception .";
+  help = "echo \"No help for u lololololololol\"";
 }
