@@ -28,6 +28,7 @@ in
       desktopFont = {
         shortName = mkOption { type = str; };
         fullName = mkOption { type = str; };
+        package = mkOption { type = package; };
       };
     };
 
@@ -48,8 +49,9 @@ in
     myConfigLocation =
       "/home/${myUserName}/Development/Nix/nixos-configuration";
     desktopFont = {
+      shortName = "0xProto Nerd Font";
       fullName = "${desktopFont.shortName}:style=Regular";
-      shortName = "JetBrains Mono Nerd Font";
+      package = pkgs.nerd-fonts._0xproto;
     };
     myAutostartCommands = [
       "${pkgs.brightnessctl}/bin/brightnessctl s ${monitorMaxBrightness}"
