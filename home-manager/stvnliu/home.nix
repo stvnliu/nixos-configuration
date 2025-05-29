@@ -73,16 +73,9 @@
     firefox = {
       enable = true;
       package = with pkgs;
-        (firefox-devedition.override {
-          nativeMessagingHosts = [
-            (passff-host.overrideAttrs (_old: {
-              dontStrip = true;
-              patchPhase = ''
-                sed -i 's#COMMAND = "pass"#COMMAND = "${
-                  pass.withExtensions (ext: with ext; [ pass-otp pass-import ])
-                }/bin/pass"#' src/passff.py'';
-            }))
-          ];
+        (librewolf.override {
+          nativeMessagingHosts = [ passff-host ];
+          hasMozSystemDirPatch = true;
         });
     };
     thunderbird = {
