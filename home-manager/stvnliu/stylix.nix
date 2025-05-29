@@ -12,17 +12,17 @@ in
     base16Scheme = "${pkgs.base16-schemes}/share/themes/onedark-dark.yaml";
     image = config.myWallPaperPath;
     fonts = {
-      sansSerif = {
+      /*sansSerif = {
         name = "Helvetica Neue LT Std";
         package = pkgs.helvetica-neue-lt-std;
-      };
+      };*/
       monospace = {
         name = config.desktopFont.fullName;
-        package = pkgs.nerd-fonts.jetbrains-mono;
+        package = config.desktopFont.package;
       };
       sizes = {
         terminal = 16;
-        applications = 14;
+        applications = 12;
       };
     };
     opacity = {
